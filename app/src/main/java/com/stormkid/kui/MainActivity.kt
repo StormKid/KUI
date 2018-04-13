@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-         verticalLayout {
+        verticalLayout {
             val name = editText()
             button("Say Hello") {
                 onClick { toast("Hello, ${name.text}!") }
