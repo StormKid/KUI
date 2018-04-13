@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion sdk_version
+
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion sdk_version
+        versionCode 1
+        versionName v7_version
+
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    // Anko Layouts
+    api "org.jetbrains.anko:anko-sdk25:$anko_version" // sdk15, sdk19, sdk21, sdk23 are also available
+    api "org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"
+    // Appcompat-v7 (Anko Layouts)
+    api "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
+    api "org.jetbrains.anko:anko-coroutines:$anko_version"
+    // RecyclerView-v7
+    api "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
+    api "org.jetbrains.anko:anko-recyclerview-v7-coroutines:$anko_version"
+    api "com.android.support:recyclerview-v7:$v7_version"
+}
