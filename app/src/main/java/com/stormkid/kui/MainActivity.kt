@@ -2,6 +2,7 @@ package com.stormkid.kui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.stormkid.kui_base.dimen.AutoHelper
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,5 +17,6 @@ class MainActivity : AppCompatActivity() {
 //            }
 //
 //        }
+        AutoHelper.BuildAuto(this).caculateViewSize()
     }
 }
