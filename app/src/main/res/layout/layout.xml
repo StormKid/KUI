@@ -5,5 +5,5 @@
               android:layout_height="match_parent">
     <com.stormkid.kui_base.toolbar.ToolBar android:layout_width="match_parent"
                                            android:background="#11ffff"
-                                           android:layout_height="40dp"/>
+                                           android:layout_height="wrap_content"/>
 </LinearLayout>

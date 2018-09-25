@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.util.AttributeSet
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import com.stormkid.kui_base.dimen.ViewUtils
 
 /**
 主代码
@@ -17,10 +18,9 @@ class ToolBar: RelativeLayout{
     constructor(context: Context,attributeSet: AttributeSet?):this(context,attributeSet,0)
     constructor(context: Context,attributeSet: AttributeSet?,defAttr:Int):super(context,attributeSet,defAttr) {
         val imageView  =   ImageView(context).apply {
-            this.layoutParams = RelativeLayout.LayoutParams(40,40)
+            this.layoutParams = RelativeLayout.LayoutParams(ViewUtils.dip2px(context,40f),ViewUtils.dip2px(context,40f))
             this.setBackgroundColor(Color.RED)
         }
-
         this.addView(imageView)
     }
 
