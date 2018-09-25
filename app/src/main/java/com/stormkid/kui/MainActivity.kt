@@ -18,5 +18,6 @@ class MainActivity : AppCompatActivity() {
 //
 //        }
 //        AutoHelper.BuildAuto(this).caculateViewSize()
+        setContentView(R.layout.layout)
     }
 }
