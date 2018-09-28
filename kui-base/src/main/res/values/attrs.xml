@@ -6,10 +6,13 @@
         <attr name="right_image_icon" format="reference"/>
         <attr name="is_nav_bar" format="boolean"/>
         <attr name="title_text" format="string"/>
+        <attr name="title_size" format="dimension"/>
         <attr name="title_gravity" format="enum">
             <enum name="CENTER" value="0"/>
             <enum name="LEFT" value="1"/>
             <enum name="RIGHT" value="2"/>
         </attr>
+        <attr name="content_text" format="string"/>
+        <attr name="content_size" format="dimension"/>
     </declare-styleable>
 </resources>
