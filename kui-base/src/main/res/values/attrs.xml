@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="ToolBar">
+    <declare-styleable name="KuiToolBar">
         <attr name="image_dimen" format="dimension"/>
         <attr name="left_image_icon" format="reference"/>
         <attr name="right_image_icon" format="reference"/>

@@ -17,23 +17,23 @@ import com.stormkid.kui_base.dimen.ViewUtils
 @author ke_li
 @date 2018/9/25
  */
-class ToolBar : RelativeLayout {
+class KuiToolBar : RelativeLayout {
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
     @SuppressLint("Recycle")
     constructor(context: Context, attributeSet: AttributeSet?, defAttr: Int) : super(context, attributeSet, defAttr) {
         val a = context.obtainStyledAttributes(attributeSet,
-                R.styleable.ToolBar, defAttr, 0)
-        val imageSize = a.getDimensionPixelSize(R.styleable.ToolBar_image_dimen, 40).toFloat()
-        val leftIcon = a.getResourceId(R.styleable.ToolBar_left_image_icon, 0)
-        val rightIcon = a.getResourceId(R.styleable.ToolBar_right_image_icon, 0)
-        val title = a.getString(R.styleable.ToolBar_title_text)
-        val titleSize = a.getDimensionPixelOffset(R.styleable.ToolBar_title_size, 14).toFloat()
-        val titleGravity = a.getInt(R.styleable.ToolBar_title_gravity, 0)
-        val isNav = a.getBoolean(R.styleable.ToolBar_is_nav_bar, true)
-        val content = a.getString(R.styleable.ToolBar_content_text)
-        val contentSize = a.getDimensionPixelOffset(R.styleable.ToolBar_content_size, 12).toFloat()
+                R.styleable.KuiToolBar, defAttr, 0)
+        val imageSize = a.getDimensionPixelSize(R.styleable.KuiToolBar_image_dimen, 40).toFloat()
+        val leftIcon = a.getResourceId(R.styleable.KuiToolBar_left_image_icon, 0)
+        val rightIcon = a.getResourceId(R.styleable.KuiToolBar_right_image_icon, 0)
+        val title = a.getString(R.styleable.KuiToolBar_title_text)
+        val titleSize = a.getDimensionPixelOffset(R.styleable.KuiToolBar_title_size, 14).toFloat()
+        val titleGravity = a.getInt(R.styleable.KuiToolBar_title_gravity, 0)
+        val isNav = a.getBoolean(R.styleable.KuiToolBar_is_nav_bar, true)
+        val content = a.getString(R.styleable.KuiToolBar_content_text)
+        val contentSize = a.getDimensionPixelOffset(R.styleable.KuiToolBar_content_size, 12).toFloat()
         initImageView(imageSize, leftIcon, rightIcon)
         initTitle(title, titleGravity, imageSize, titleSize)
         initContent(content, contentSize)

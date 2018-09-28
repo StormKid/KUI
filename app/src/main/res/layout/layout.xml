@@ -3,11 +3,11 @@
               android:layout_width="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_height="match_parent">
-    <com.stormkid.kui_base.toolbar.ToolBar android:layout_width="match_parent"
-                                           android:background="#11ffff"
-                                           app:title_text="哈哈哈"
-                                           app:left_image_icon="@color/colorAccent"
-                                            app:right_image_icon="@color/colorAccent"
-                                           app:title_gravity="RIGHT"
-                                           android:layout_height="40dp"/>
+    <com.stormkid.kui_base.toolbar.KuiToolBar android:layout_width="match_parent"
+                                              android:background="#11ffff"
+                                              app:title_text="哈哈哈"
+                                              app:left_image_icon="@color/colorAccent"
+                                              app:right_image_icon="@color/colorAccent"
+                                              app:title_gravity="RIGHT"
+                                              android:layout_height="40dp"/>
 </LinearLayout>
