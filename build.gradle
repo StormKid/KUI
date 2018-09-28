@@ -3,7 +3,7 @@
 buildscript {
     ext{
         kotlin_version = "1.2.+"
-        v7_version = "27.1.1"
+        v7_version = "27.0.1"
         sdk_version = 27
         app_version = "1.0.0"
         anko_version = "0.10.4"

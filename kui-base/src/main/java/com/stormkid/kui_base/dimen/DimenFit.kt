@@ -29,8 +29,9 @@ class DimenFit private constructor(){
          val instance by  lazy { DimenFit() }
     }
 
-    fun initScreen(screenWidth:Float){
+    fun initScreen(screenWidth:Float): DimenFit {
         this.selfScreen = screenWidth
+        return this
     }
 
     fun setCustDensity(application: Application,activity: Activity){

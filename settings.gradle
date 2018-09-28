@@ -1,1 +1,1 @@
-include ':app', ':kui-base', ':kui-base-anko'
+include ':app', ':kui-base', ':kui-base-anko', ':kui-icon'

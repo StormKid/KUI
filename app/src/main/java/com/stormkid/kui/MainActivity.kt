@@ -2,6 +2,7 @@ package com.stormkid.kui
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.stormkid.kui_base.dimen.DimenFit
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 //
 //        }
 //        AutoHelper.BuildAuto(this).caculateViewSize()
+        DimenFit.instance.setCustDensity(application,this)
         setContentView(R.layout.layout)
     }
 }

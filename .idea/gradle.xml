@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/kui-base" />
             <option value="$PROJECT_DIR$/kui-base-anko" />
+            <option value="$PROJECT_DIR$/kui-icon" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
