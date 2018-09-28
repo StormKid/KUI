@@ -12,8 +12,6 @@
 ----
 # API herf
 ----
-# ChangeList
-----
 # Lisence
 ```
 Copyright [KUI] [stormKid]
