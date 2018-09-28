@@ -9,4 +9,5 @@
 /.idea/caches
 /captures
 .externalNativeBuild
+.idea/*
 
