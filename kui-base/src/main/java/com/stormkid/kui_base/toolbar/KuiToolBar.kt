@@ -3,9 +3,11 @@ package com.stormkid.kui_base.toolbar
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.graphics.Color
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.TypedValue
+import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -34,18 +36,21 @@ class KuiToolBar : RelativeLayout {
         val isNav = a.getBoolean(R.styleable.KuiToolBar_is_nav_bar, true)
         val content = a.getString(R.styleable.KuiToolBar_content_text)
         val contentSize = a.getDimensionPixelOffset(R.styleable.KuiToolBar_content_size, 12).toFloat()
+        val titleColor  = a.getColor(R.styleable.KuiToolBar_title_color,Color.rgb(102,102,102))
+        val contentColor = a.getColor(R.styleable.KuiToolBar_content_color,Color.rgb(153,153,153))
         initImageView(imageSize, leftIcon, rightIcon)
-        initTitle(title, titleGravity, imageSize, titleSize)
-        initContent(content, contentSize)
+        initTitle(title, titleGravity, imageSize, titleSize,titleColor)
+        initContent(content, contentSize,contentColor)
         if (isNav && context is Activity) this.getChildAt(0).setOnClickListener { context.finish() }
 
     }
 
-    private fun initContent(content: String?, contentSize: Float) {
+    private fun initContent(content: String?, contentSize: Float, contentColor: Int) {
         if (TextUtils.isEmpty(content)) return
         contentView = TextView(context).apply {
             text = content
             setTextSize(TypedValue.COMPLEX_UNIT_SP, contentSize)
+            setTextColor(contentColor)
             layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT).apply {
                 addRule(RelativeLayout.CENTER_VERTICAL)
                 addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
@@ -54,12 +59,13 @@ class KuiToolBar : RelativeLayout {
         this.addView(contentView)
     }
 
-    private fun initTitle(title: String?, titleGravity: Int, imageSize: Float, titleSize: Float) {
+    private fun initTitle(title: String?, titleGravity: Int, imageSize: Float, titleSize: Float, titleColor: Int) {
         if (TextUtils.isEmpty(title)) return
         val group = this
         titleView = TextView(context).apply {
             text = title
             setTextSize(TypedValue.COMPLEX_UNIT_SP, titleSize)
+            setTextColor(titleColor)
             layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT).apply {
                 addRule(RelativeLayout.CENTER_VERTICAL)
                 when (titleGravity) {
@@ -80,15 +86,15 @@ class KuiToolBar : RelativeLayout {
     private var rightIcon:ImageView? = null
     private var titleView:TextView? = null
     private var contentView:TextView? = null
-    fun setOnToolClickListener(listener: OnClickListener){
-        this.setOnClickListener(listener)
+    fun setOnToolClickListener(listener: (View)->Unit){
+        setOnClickListener(listener)
     }
 
-    fun setLeftIconClickListener(listener: OnClickListener){
+    fun setLeftIconClickListener(listener: (View)->Unit){
         if (null!=leftIcon)leftIcon?.setOnClickListener(listener)
     }
 
-    fun setRightIconClickListener(listener: OnClickListener){
+    fun setRightIconClickListener(listener: (View)->Unit){
         if (null!=rightIcon)rightIcon?.setOnClickListener(listener)
     }
 

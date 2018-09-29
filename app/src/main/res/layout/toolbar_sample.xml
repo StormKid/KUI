@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_height="match_parent">
+    <com.stormkid.kui_base.toolbar.KuiToolBar android:layout_width="match_parent"
+                                              app:title_text="我是默认标题栏"
+                                              android:background="@android:color/white"
+                                              android:foreground="?android:attr/selectableItemBackground"
+                                              android:id="@+id/tool_title"
+                                              app:left_image_icon="@mipmap/logo"
+                                              app:right_image_icon="@mipmap/logo"
+                                              android:layout_height="40dp"/>
+</LinearLayout>
