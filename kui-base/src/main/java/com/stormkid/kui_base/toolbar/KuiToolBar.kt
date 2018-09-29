@@ -11,7 +11,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.stormkid.kui_base.InitImgRes
 import com.stormkid.kui_base.R
+import com.stormkid.kui_base.Utils
 import com.stormkid.kui_base.dimen.ViewUtils
 
 /**
@@ -38,7 +40,10 @@ class KuiToolBar : RelativeLayout {
         val contentSize = a.getDimensionPixelOffset(R.styleable.KuiToolBar_content_size, 12).toFloat()
         val titleColor  = a.getColor(R.styleable.KuiToolBar_title_color,Color.rgb(102,102,102))
         val contentColor = a.getColor(R.styleable.KuiToolBar_content_color,Color.rgb(153,153,153))
-        initImageView(imageSize, leftIcon, rightIcon)
+        val leftIconColor = a.getResourceId(R.styleable.KuiToolBar_left_icon_color,0)
+        val rightIconColor = a.getResourceId(R.styleable.KuiToolBar_right_icon_color,0)
+
+        initImageView(imageSize, leftIcon, rightIcon,leftIconColor,rightIconColor)
         initTitle(title, titleGravity, imageSize, titleSize,titleColor)
         initContent(content, contentSize,contentColor)
         if (isNav && context is Activity) this.getChildAt(0).setOnClickListener { context.finish() }
@@ -106,17 +111,21 @@ class KuiToolBar : RelativeLayout {
         if (null!=contentView&&!TextUtils.isEmpty(text))contentView?.text = text
     }
 
-    private fun initImageView(imageSize: Float, leftIconRes: Int, rightIconRes: Int) {
+    private fun initImageView(imageSize: Float, leftIconRes: Int, rightIconRes: Int, leftIconColor: Int, rightIconColor: Int) {
         leftIcon = ImageView(context).apply {
             layoutParams = RelativeLayout.LayoutParams(ViewUtils.dip2px(context, imageSize), ViewUtils.dip2px(context, imageSize))
-            scaleType = ImageView.ScaleType.CENTER_CROP
-            setImageResource(leftIconRes)
+            scaleType = ImageView.ScaleType.CENTER
+            if (leftIconColor!=0)
+            Utils.initSvgColor(InitImgRes(leftIconRes,leftIconColor,this,context))
+            else   setImageResource(leftIconRes)
         }
 
         rightIcon = ImageView(context).apply {
             layoutParams = RelativeLayout.LayoutParams(ViewUtils.dip2px(context, imageSize), ViewUtils.dip2px(context, imageSize)).apply { addRule(RelativeLayout.ALIGN_PARENT_RIGHT) }
-            scaleType = ImageView.ScaleType.CENTER_CROP
-            setImageResource(rightIconRes)
+            scaleType = ImageView.ScaleType.CENTER
+            if (rightIconColor!=0)
+            Utils.initSvgColor(InitImgRes(rightIconRes,rightIconColor,this,context))
+            else   setImageResource(rightIconRes)
         }
         this.addView(leftIcon)
         this.addView(rightIcon)

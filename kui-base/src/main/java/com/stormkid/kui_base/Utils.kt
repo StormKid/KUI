@@ -1,6 +1,7 @@
 package com.stormkid.kui_base
 
 import android.graphics.Paint
+import android.support.graphics.drawable.VectorDrawableCompat
 
 /**
 各种工具
@@ -9,4 +10,15 @@ import android.graphics.Paint
  */
 object Utils {
     val paint by lazy {Paint()}
+
+    /**
+     * 给imageView 的svg初始化颜色
+     */
+    fun initSvgColor(initImgRes: InitImgRes){
+        val res  = initImgRes.context.resources
+        val theme = initImgRes.context.theme
+        val vectorDrawableCompat = VectorDrawableCompat.create(res,initImgRes.imgRes,theme) ?: return
+        vectorDrawableCompat.setTint(res.getColor(initImgRes.colorRes))
+        initImgRes.imageView.setImageDrawable(vectorDrawableCompat)
+    }
 }
