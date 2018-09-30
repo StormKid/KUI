@@ -13,7 +13,7 @@ import android.widget.TextView
 import com.stormkid.kui_base.InitImgRes
 import com.stormkid.kui_base.R
 import com.stormkid.kui_base.Utils
-import com.stormkid.kui_base.dimen.ViewUtils
+import com.stormkid.kui_base.dimen.DimenUtils
 
 /**
 主代码
@@ -53,12 +53,12 @@ class KuiToolBar : RelativeLayout {
         if (TextUtils.isEmpty(content)) return
         contentView = TextView(context).apply {
             text = content
-            textSize = ViewUtils.px2sp(context,contentSize).toFloat()
+            textSize = DimenUtils.px2sp(context,contentSize).toFloat()
             setTextColor(contentColor)
             layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT).apply {
                 addRule(RelativeLayout.CENTER_VERTICAL)
                 addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
-                setMargins(0, 0, ViewUtils.dip2px(context, imageSize) + 5, 0)
+                setMargins(0, 0, DimenUtils.dip2px(context, imageSize) + 5, 0)
             }
         }
         this.addView(contentView)
@@ -69,16 +69,16 @@ class KuiToolBar : RelativeLayout {
         val group = this
         titleView = TextView(context).apply {
             text = title
-            textSize = ViewUtils.px2sp(context,titleSize).toFloat()
+            textSize = DimenUtils.px2sp(context,titleSize).toFloat()
             setTextColor(titleColor)
             layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT).apply {
                 addRule(RelativeLayout.CENTER_VERTICAL)
                 when (titleGravity) {
                     0 -> addRule(RelativeLayout.CENTER_IN_PARENT)
-                    1 -> setMargins(ViewUtils.dip2px(context, imageSize) + 5, 0, 0, 0)
+                    1 -> setMargins(DimenUtils.dip2px(context, imageSize) + 5, 0, 0, 0)
                     2 -> {
                         addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
-                        setMargins(0, 0, ViewUtils.dip2px(context, imageSize) + 5, 0)
+                        setMargins(0, 0, DimenUtils.dip2px(context, imageSize) + 5, 0)
                     }
                 }
             }
@@ -113,7 +113,7 @@ class KuiToolBar : RelativeLayout {
 
     private fun initImageView(imageSize: Float, leftIconRes: Int, rightIconRes: Int, leftIconColor: Int, rightIconColor: Int) {
         leftIcon = ImageView(context).apply {
-            layoutParams = RelativeLayout.LayoutParams(ViewUtils.dip2px(context, imageSize), ViewUtils.dip2px(context, imageSize))
+            layoutParams = RelativeLayout.LayoutParams(DimenUtils.dip2px(context, imageSize), DimenUtils.dip2px(context, imageSize))
             scaleType = ImageView.ScaleType.CENTER
             if (leftIconColor!=0)
             Utils.initSvgColor(InitImgRes(leftIconRes,leftIconColor,this,context))
@@ -121,7 +121,7 @@ class KuiToolBar : RelativeLayout {
         }
 
         rightIcon = ImageView(context).apply {
-            layoutParams = RelativeLayout.LayoutParams(ViewUtils.dip2px(context, imageSize), ViewUtils.dip2px(context, imageSize)).apply { addRule(RelativeLayout.ALIGN_PARENT_RIGHT) }
+            layoutParams = RelativeLayout.LayoutParams(DimenUtils.dip2px(context, imageSize), DimenUtils.dip2px(context, imageSize)).apply { addRule(RelativeLayout.ALIGN_PARENT_RIGHT) }
             scaleType = ImageView.ScaleType.CENTER
             if (rightIconColor!=0)
             Utils.initSvgColor(InitImgRes(rightIconRes,rightIconColor,this,context))

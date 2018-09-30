@@ -7,7 +7,7 @@ view 适配utils
 @author ke_li
 @date 2018/9/25
  */
-object ViewUtils {
+object DimenUtils {
     /**	 * 根据手机的分辨率从 dp 的单位 转成为 px(像素)	 */
     fun dip2px(context: Context, dpValue: Float) = let {
         val scale = context.resources.displayMetrics.density
