@@ -21,7 +21,7 @@ class DimenFit private constructor(){
     private var sysScaleDensity = 0f
 
     /**
-     * 指定屏幕尺寸
+     * 指定设计屏幕尺寸
      */
     private var selfScreen = 360f
 

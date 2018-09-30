@@ -9,7 +9,7 @@
                                               android:foreground="?android:attr/selectableItemBackground"
                                               app:title_color="@android:color/white"
                                               app:left_image_icon="@drawable/ic_back"
-                                              android:layout_height="40dp"/>
+                                              android:layout_height="@dimen/dp_40"/>
 
     <com.stormkid.kui_base.toolbar.KuiToolBar android:layout_width="match_parent"
                                               app:title_text="我是默认使用栏目"
@@ -18,10 +18,11 @@
                                               android:id="@+id/tool_title"
                                               app:title_gravity="LEFT"
                                               app:title_color="@android:color/white"
+                                              app:is_nav_bar="false"
                                               app:content_text="我是小标题显示内容"
                                               app:content_color="@android:color/white"
                                               app:right_image_icon="@drawable/ic_right"
-                                              android:layout_height="40dp"/>
+                                              android:layout_height="@dimen/dp_40"/>
     <com.stormkid.kui_base.toolbar.KuiToolBar android:layout_width="match_parent"
                                               app:title_text="我是改变颜色栏目"
                                               android:background="@android:color/white"
@@ -29,10 +30,11 @@
                                               app:title_gravity="LEFT"
                                               app:title_color="@color/colorPrimary"
                                               app:content_text="我是小标题显示内容"
+                                              app:is_nav_bar="false"
                                               app:content_color="@color/colorPrimary"
                                               app:right_image_icon="@drawable/ic_right"
                                               app:right_icon_color="@color/colorPrimary"
-                                              android:layout_height="40dp"/>
+                                              android:layout_height="@dimen/dp_40"/>
 
     <com.stormkid.kui_base.toolbar.KuiToolBar android:layout_width="match_parent"
                                               app:title_text="我是改变颜色栏目"
@@ -41,23 +43,25 @@
                                               app:title_gravity="LEFT"
                                               app:title_color="@color/colorAccent"
                                               app:content_text="我是小标题显示内容"
+                                              app:is_nav_bar="false"
                                               app:content_color="@color/colorAccent"
                                               app:right_image_icon="@drawable/ic_right"
                                               app:right_icon_color="@color/colorAccent"
-                                              android:layout_height="40dp"/>
+                                              android:layout_height="@dimen/dp_40"/>
 
     <com.stormkid.kui_base.toolbar.KuiToolBar android:layout_width="match_parent"
                                               app:title_text="我是改变字体栏目"
                                               android:background="@android:color/white"
                                               android:foreground="?android:attr/selectableItemBackground"
                                               app:title_gravity="LEFT"
-                                              app:title_size="16sp"
-                                              app:content_size="10sp"
+                                              app:title_size="@dimen/sp_16"
+                                              app:content_size="@dimen/sp_10"
+                                              app:is_nav_bar="false"
                                               app:title_color="@color/colorPrimary"
                                               app:content_text="我是小标题显示内容"
                                               app:content_color="@color/colorPrimary"
                                               app:right_image_icon="@drawable/ic_right"
                                               app:right_icon_color="@color/colorPrimary"
-                                              android:layout_height="40dp"/>
+                                              android:layout_height="@dimen/dp_40"/>
 
 </LinearLayout>
