@@ -115,7 +115,7 @@ class KuiToolBar : RelativeLayout {
         if (null != contentView && !TextUtils.isEmpty(text)) contentView?.text = text
     }
 
-    fun setRightClick(listener: (View) -> Unit){
+    fun setRightTextClick(listener: (View) -> Unit){
         if (null != contentView) contentView?.setOnClickListener (listener )
     }
 
