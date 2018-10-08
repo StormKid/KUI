@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.graphics.Color
+import android.support.annotation.DrawableRes
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.View
@@ -117,6 +118,14 @@ class KuiToolBar : RelativeLayout {
 
     fun setRightTextClick(listener: (View) -> Unit){
         if (null != contentView) contentView?.setOnClickListener (listener )
+    }
+
+    fun setLeftIcon(@DrawableRes icon:Int){
+        if (null!=leftIcon) leftIcon?.setImageResource(icon)
+    }
+
+    fun setRightIcon(@DrawableRes icon: Int){
+        if (null!=rightIcon) rightIcon?.setImageResource(icon)
     }
 
     private fun initImageView(imageSize: Float, leftIconRes: Int, rightIconRes: Int, leftIconColor: Int, rightIconColor: Int) {
