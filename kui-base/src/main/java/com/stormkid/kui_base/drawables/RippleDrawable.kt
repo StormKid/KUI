@@ -1,4 +1,4 @@
-package com.stormkid.kui_base.ripple
+package com.stormkid.kui_base.drawables
 
 import android.graphics.Canvas
 import android.graphics.ColorFilter
