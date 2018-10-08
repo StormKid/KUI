@@ -12,6 +12,17 @@
                                               android:layout_height="@dimen/dp_40"/>
 
     <com.stormkid.kui_base.toolbar.KuiToolBar android:layout_width="match_parent"
+                                              app:content_text="点击"
+                                              app:content_color="@android:color/white"
+                                              app:title_text="我是含有右文字按钮标题栏"
+                                              android:background="@color/colorPrimary"
+                                              app:is_right_text="true"
+                                              android:foreground="?android:attr/selectableItemBackground"
+                                              app:title_color="@android:color/white"
+                                              app:left_image_icon="@drawable/ic_back"
+                                              android:layout_height="@dimen/dp_40"/>
+
+    <com.stormkid.kui_base.toolbar.KuiToolBar android:layout_width="match_parent"
                                               app:title_text="我是默认使用栏目"
                                               android:background="@color/colorPrimary"
                                               android:foreground="?android:attr/selectableItemBackground"

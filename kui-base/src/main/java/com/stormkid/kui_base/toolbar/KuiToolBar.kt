@@ -37,28 +37,32 @@ class KuiToolBar : RelativeLayout {
         val isNav = a.getBoolean(R.styleable.KuiToolBar_is_nav_bar, true)
         val content = a.getString(R.styleable.KuiToolBar_content_text)
         val contentSize = a.getDimensionPixelOffset(R.styleable.KuiToolBar_content_size, 24).toFloat()
-        val titleColor  = a.getColor(R.styleable.KuiToolBar_title_color,Color.rgb(102,102,102))
-        val contentColor = a.getColor(R.styleable.KuiToolBar_content_color,Color.rgb(153,153,153))
-        val leftIconColor = a.getResourceId(R.styleable.KuiToolBar_left_icon_color,0)
-        val rightIconColor = a.getResourceId(R.styleable.KuiToolBar_right_icon_color,0)
+        val titleColor = a.getColor(R.styleable.KuiToolBar_title_color, Color.rgb(102, 102, 102))
+        val contentColor = a.getColor(R.styleable.KuiToolBar_content_color, Color.rgb(153, 153, 153))
+        val leftIconColor = a.getResourceId(R.styleable.KuiToolBar_left_icon_color, 0)
+        val rightIconColor = a.getResourceId(R.styleable.KuiToolBar_right_icon_color, 0)
+        val isRightText = a.getBoolean(R.styleable.KuiToolBar_is_right_text, false)
 
-        initImageView(imageSize, leftIcon, rightIcon,leftIconColor,rightIconColor)
-        initTitle(title, titleGravity, imageSize, titleSize,titleColor)
-        initContent(content, contentSize,contentColor, imageSize)
+
+        initImageView(imageSize, leftIcon, rightIcon, leftIconColor, rightIconColor)
+        initTitle(title, titleGravity, imageSize, titleSize, titleColor)
+        initContent(content, contentSize, contentColor, imageSize, isRightText)
         if (isNav && context is Activity) this.getChildAt(0).setOnClickListener { context.finish() }
-
     }
 
-    private fun initContent(content: String?, contentSize: Float, contentColor: Int, imageSize: Float) {
+    private fun initContent(content: String?, contentSize: Float, contentColor: Int, imageSize: Float, rightText: Boolean) {
         if (TextUtils.isEmpty(content)) return
         contentView = TextView(context).apply {
             text = content
-            textSize = DimenUtils.px2sp(context,contentSize).toFloat()
+            textSize = DimenUtils.px2sp(context, contentSize).toFloat()
             setTextColor(contentColor)
             layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT).apply {
                 addRule(RelativeLayout.CENTER_VERTICAL)
                 addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
-                setMargins(0, 0, DimenUtils.dip2px(context, imageSize) + 5, 0)
+                if (rightText)
+                    setMargins(0, 0, DimenUtils.dip2px(context, 20f) , 0)
+                else
+                    setMargins(0, 0, DimenUtils.dip2px(context, imageSize) + 5, 0)
             }
         }
         this.addView(contentView)
@@ -69,7 +73,7 @@ class KuiToolBar : RelativeLayout {
         val group = this
         titleView = TextView(context).apply {
             text = title
-            textSize = DimenUtils.px2sp(context,titleSize).toFloat()
+            textSize = DimenUtils.px2sp(context, titleSize).toFloat()
             setTextColor(titleColor)
             layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT).apply {
                 addRule(RelativeLayout.CENTER_VERTICAL)
@@ -87,45 +91,52 @@ class KuiToolBar : RelativeLayout {
         group.addView(titleView)
     }
 
-    private var leftIcon:ImageView? = null
-    private var rightIcon:ImageView? = null
-    private var titleView:TextView? = null
-    private var contentView:TextView? = null
-    fun setOnToolClickListener(listener: (View)->Unit){
+    private var leftIcon: ImageView? = null
+    private var rightIcon: ImageView? = null
+    private var titleView: TextView? = null
+    private var contentView: TextView? = null
+    fun setOnToolClickListener(listener: (View) -> Unit) {
         setOnClickListener(listener)
     }
 
-    fun setLeftIconClickListener(listener: (View)->Unit){
-        if (null!=leftIcon)leftIcon?.setOnClickListener(listener)
+    fun setLeftIconClickListener(listener: (View) -> Unit) {
+        if (null != leftIcon) leftIcon?.setOnClickListener(listener)
     }
 
-    fun setRightIconClickListener(listener: (View)->Unit){
-        if (null!=rightIcon)rightIcon?.setOnClickListener(listener)
+    fun setRightIconClickListener(listener: (View) -> Unit) {
+        if (null != rightIcon) rightIcon?.setOnClickListener(listener)
     }
 
-    fun setTitle(text:String){
-        if (null!=titleView&&!TextUtils.isEmpty(text))titleView?.text = text
+    fun setTitle(text: String) {
+        if (null != titleView && !TextUtils.isEmpty(text)) titleView?.text = text
     }
 
-    fun setContent(text:String){
-        if (null!=contentView&&!TextUtils.isEmpty(text))contentView?.text = text
+    fun setContent(text: String) {
+        if (null != contentView && !TextUtils.isEmpty(text)) contentView?.text = text
+    }
+
+    fun setRightClick(listener: (View) -> Unit){
+        if (null != contentView) contentView?.setOnClickListener (listener )
     }
 
     private fun initImageView(imageSize: Float, leftIconRes: Int, rightIconRes: Int, leftIconColor: Int, rightIconColor: Int) {
         leftIcon = ImageView(context).apply {
-            layoutParams = RelativeLayout.LayoutParams(DimenUtils.dip2px(context, imageSize), DimenUtils.dip2px(context, imageSize))
+            layoutParams = RelativeLayout.LayoutParams(DimenUtils.dip2px(context, imageSize), DimenUtils.dip2px(context, imageSize)).apply { addRule(RelativeLayout.CENTER_VERTICAL) }
             scaleType = ImageView.ScaleType.CENTER
-            if (leftIconColor!=0)
-            Utils.initSvgColor(InitImgRes(leftIconRes,leftIconColor,this,context))
-            else   setImageResource(leftIconRes)
+            if (leftIconColor != 0)
+                Utils.initSvgColor(InitImgRes(leftIconRes, leftIconColor, this, context))
+            else setImageResource(leftIconRes)
         }
 
         rightIcon = ImageView(context).apply {
-            layoutParams = RelativeLayout.LayoutParams(DimenUtils.dip2px(context, imageSize), DimenUtils.dip2px(context, imageSize)).apply { addRule(RelativeLayout.ALIGN_PARENT_RIGHT) }
+            layoutParams = RelativeLayout.LayoutParams(DimenUtils.dip2px(context, imageSize), DimenUtils.dip2px(context, imageSize)).apply {
+                addRule(RelativeLayout.CENTER_VERTICAL)
+                addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+            }
             scaleType = ImageView.ScaleType.CENTER
-            if (rightIconColor!=0)
-            Utils.initSvgColor(InitImgRes(rightIconRes,rightIconColor,this,context))
-            else   setImageResource(rightIconRes)
+            if (rightIconColor != 0)
+                Utils.initSvgColor(InitImgRes(rightIconRes, rightIconColor, this, context))
+            else setImageResource(rightIconRes)
         }
         this.addView(leftIcon)
         this.addView(rightIcon)

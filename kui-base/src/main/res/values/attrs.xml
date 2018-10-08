@@ -7,6 +7,7 @@
         <attr name="right_image_icon" format="reference"/>
         <attr name="right_icon_color" format="reference"/>
         <attr name="is_nav_bar" format="boolean"/>
+        <attr name="is_right_text" format="boolean"/>
         <attr name="title_text" format="string"/>
         <attr name="title_size" format="dimension"/>
         <attr name="title_color" format="color"/>
