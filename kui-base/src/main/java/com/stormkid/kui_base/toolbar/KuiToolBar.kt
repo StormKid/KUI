@@ -4,9 +4,12 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.graphics.Color
+import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
+import android.support.v4.content.ContextCompat
 import android.text.TextUtils
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -105,7 +108,7 @@ class KuiToolBar : RelativeLayout {
     }
 
     fun setRightIconClickListener(listener: (View) -> Unit) {
-        if (null != rightIcon) rightIcon?.setOnClickListener(listener)
+        rightIcon?.setOnClickListener(listener)
     }
 
     fun setTitle(text: String) {
@@ -117,16 +120,41 @@ class KuiToolBar : RelativeLayout {
     }
 
     fun setRightTextClick(listener: (View) -> Unit){
-        if (null != contentView) contentView?.setOnClickListener (listener )
+        contentView?.setOnClickListener (listener )
     }
 
     fun setLeftIcon(@DrawableRes icon:Int){
-        if (null!=leftIcon) leftIcon?.setImageResource(icon)
+         leftIcon?.setImageResource(icon)
     }
 
     fun setRightIcon(@DrawableRes icon: Int){
-        if (null!=rightIcon) rightIcon?.setImageResource(icon)
+         rightIcon?.setImageResource(icon)
     }
+
+    fun setLeftIconResColor(@DrawableRes res:Int ,@ColorRes color:Int){
+        if (null!=leftIcon) Utils.initSvgColor(InitImgRes(res,color,leftIcon!!,context))
+    }
+
+    fun  setRightIconResColor(@DrawableRes res:Int,@ColorRes color: Int){
+        if (null!=rightIcon) Utils.initSvgColor(InitImgRes(res,color,rightIcon!!,context))
+    }
+
+    fun  setTitleColor(@ColorRes color: Int){
+         titleView?.setTextColor(ContextCompat.getColor(context,color))
+    }
+
+    fun  setContentColor(@ColorRes color: Int){
+         contentView?.setTextColor(ContextCompat.getColor(context,color))
+    }
+
+    fun setTitleSize(  size:Float){
+        titleView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
+    }
+
+    fun setContentSize(  size:Float){
+        contentView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
+    }
+
 
     private fun initImageView(imageSize: Float, leftIconRes: Int, rightIconRes: Int, leftIconColor: Int, rightIconColor: Int) {
         leftIcon = ImageView(context).apply {

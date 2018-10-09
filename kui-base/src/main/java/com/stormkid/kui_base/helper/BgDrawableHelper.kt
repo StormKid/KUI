@@ -17,4 +17,5 @@ class BgDrawableHelper (private val bgDrawableInterf: BgDrawableInterf){
     fun setRadiusDrawable(radiusDrawable: Drawable){
         bgDrawableInterf.getRadiusBg(radiusDrawable)
     }
+
 }
