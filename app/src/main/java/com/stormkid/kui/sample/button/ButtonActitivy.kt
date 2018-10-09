@@ -1,6 +1,7 @@
 package com.stormkid.kui.sample.button
 
 import com.stormkid.kui.MainActivity
+import com.stormkid.kui.R
 
 /**
 button sample
@@ -8,7 +9,8 @@ button sample
 @date 2018/9/30
  */
 class ButtonActitivy:MainActivity() {
-    override fun getLayoutId(): Int =0
+    override fun getLayoutId(): Int = R.layout.button_sample
+
 
     override fun initView() {
     }
