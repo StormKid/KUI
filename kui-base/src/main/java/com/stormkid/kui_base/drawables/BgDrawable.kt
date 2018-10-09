@@ -1,23 +1,29 @@
 package com.stormkid.kui_base.drawables
 
-import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
-import com.stormkid.kui_base.helper.BgDrawableHelper
-import com.stormkid.kui_base.helper.BgDrawableInterf
+import android.view.View
+import com.stormkid.kui_base.dimen.DimenUtils
 
 /**
 
 @author ke_li
 @date 2018/10/8
  */
-class BgDrawable : GradientDrawable() ,BgDrawableInterf{
+class BgDrawable private constructor(): GradientDrawable() {
 
-    private val helper:BgDrawableHelper =  BgDrawableHelper(this)
+    private var radius = 10f
 
-    override fun getCircleBg(bg: Drawable) {
+    companion object {
+        val instance by lazy { BgDrawable() }
     }
 
-    override fun getRadiusBg(bg: Drawable) {
+    fun getCircleDrawable(){
+
+    }
+
+    fun getRadiusDrawable(view: View){
+        val context = view.context
+        val radius = DimenUtils.px2dip(context,this.radius)
     }
 
 }

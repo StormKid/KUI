@@ -2,9 +2,7 @@ package com.stormkid.kui_base.button
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Canvas
 import android.util.AttributeSet
-import android.view.MotionEvent
 import android.widget.LinearLayout
 import com.stormkid.kui_base.R
 import com.stormkid.kui_base.dimen.DimenUtils
@@ -16,29 +14,22 @@ import com.stormkid.kui_base.dimen.DimenUtils
  */
 class KuiButton : LinearLayout {
     private val paddingSize = DimenUtils.dip2px(context,5f)
+    // 是否需要显示icon
+    private var isShowIcon = false
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
     @SuppressLint("Recycle")
     constructor(context: Context, attributeSet: AttributeSet?, defAttr: Int) : super(context, attributeSet, defAttr) {
         val a = context.obtainStyledAttributes(attributeSet,
                 R.styleable.KuiButton, defAttr, 0)
-    }
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-    }
-
-    override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        super.onLayout(changed, l, t, r, b)
-    }
-
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
+        val iconDimen = a.getDimension(R.styleable.KuiButton_icon_dimen,0f)
+        val textSize = a.getDimension(R.styleable.KuiButton_text_dimen,13f)
+        val gravity = a.getInt(R.styleable.KuiButton_icon_gravity,0)
+        val iconRes = a.getResourceId(R.styleable.KuiButton_icon_res,0)
+        val text = a.getString(R.styleable.KuiButton_text)
 
     }
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        return super.onTouchEvent(event)
-    }
 
 }
