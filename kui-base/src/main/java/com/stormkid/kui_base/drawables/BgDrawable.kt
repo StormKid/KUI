@@ -1,7 +1,8 @@
 package com.stormkid.kui_base.drawables
 
 import android.graphics.drawable.GradientDrawable
-import android.view.View
+import android.support.v4.content.ContextCompat
+import com.stormkid.kui_base.InitDrawable
 import com.stormkid.kui_base.dimen.DimenUtils
 
 /**
@@ -17,13 +18,25 @@ class BgDrawable private constructor(): GradientDrawable() {
         val instance by lazy { BgDrawable() }
     }
 
-    fun getCircleDrawable(){
-
+    /**
+     * 获取圆形背景
+     */
+    fun getCircleDrawable(initDrawable: InitDrawable){
+        shape = OVAL
+        val context = initDrawable.view.context
+        val color = initDrawable.colorRes
+        setColor(ContextCompat.getColor(context,color))
     }
 
-    fun getRadiusDrawable(view: View){
-        val context = view.context
+    /**
+     * 获取带有边角的背景
+     */
+    fun getRadiusDrawable(initDrawable: InitDrawable){
+        val context = initDrawable.view.context
+        val color = initDrawable.colorRes
         val radius = DimenUtils.px2dip(context,this.radius)
+        setColor(ContextCompat.getColor(context,color))
+        cornerRadius = radius.toFloat()
     }
 
 }
