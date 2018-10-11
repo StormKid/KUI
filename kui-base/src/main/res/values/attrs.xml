@@ -24,6 +24,7 @@
     <declare-styleable name="KuiButton">
         <attr name="icon_dimen" format="dimension"/>
         <attr name="icon_res" format="reference"/>
+        <attr name="icon_color" format="reference"/>
         <attr name="icon_gravity" format="enum">
             <enum name="TOP" value="0"/>
             <enum name="LEFT" value="1"/>
@@ -32,5 +33,10 @@
         </attr>
         <attr name="text" format="string"/>
         <attr name="text_dimen" format="dimension"/>
+        <attr name="bg_drawable" format="enum">
+            <enum name="radius" value="0"/>
+            <enum name="circle" value="1"/>
+            <enum name="fill" value="2"/>
+        </attr>
     </declare-styleable>
 </resources>

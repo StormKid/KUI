@@ -39,4 +39,15 @@ class BgDrawable private constructor(): GradientDrawable() {
         cornerRadius = radius.toFloat()
     }
 
+    /**
+     * 获取两侧是圆形，中间长的背景
+     */
+    fun getLeftRightCircleDrawable(initDrawable: InitDrawable){
+        val height = initDrawable.view.height
+        val context = initDrawable.view.context
+        this.radius = height/2f
+        val color = initDrawable.colorRes
+        setColor(ContextCompat.getColor(context,color))
+        cornerRadius = radius
+    }
 }
