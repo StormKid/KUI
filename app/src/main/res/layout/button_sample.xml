@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
+              android:gravity="center"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_40"
+    <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
+                                            app:bg_drawable="radius"
+                                            app:text="默认按钮"
+                                            app:text_dimen="@dimen/sp_14"
+                                            android:layout_height="@dimen/dp_40"/>
+
+
+    <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
+                                            app:bg_drawable="circle"
+                                            app:text="圆形按钮"
+                                            android:layout_margin="@dimen/dp_10"
+                                            app:text_dimen="@dimen/sp_14"
+                                            android:layout_height="@dimen/dp_80"/>
+
+    <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
+                                            app:bg_drawable="round"
+                                            app:text="默认按钮"
+                                            app:text_dimen="@dimen/sp_14"
                                             android:layout_height="@dimen/dp_40"/>
 </LinearLayout>

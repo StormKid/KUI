@@ -1,6 +1,7 @@
 package com.stormkid.kui_base
 
 import android.content.Context
+import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
 import android.view.View
@@ -26,6 +27,6 @@ data class InitImgRes(
  *  各种View 显示背景需要init构建的对象
  */
 data class InitDrawable(
-        @ColorRes val colorRes: Int,
+        @ColorInt val colorRes: Int,
         val view: View
 )
