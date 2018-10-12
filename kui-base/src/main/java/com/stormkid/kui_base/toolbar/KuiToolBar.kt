@@ -32,15 +32,15 @@ class KuiToolBar : RelativeLayout {
     constructor(context: Context, attributeSet: AttributeSet?, defAttr: Int) : super(context, attributeSet, defAttr) {
         val a = context.obtainStyledAttributes(attributeSet,
                 R.styleable.KuiToolBar, defAttr, 0)
-        val imageSize = a.getDimensionPixelSize(R.styleable.KuiToolBar_image_dimen, 40).toFloat()
+        val imageSize = a.getDimension(R.styleable.KuiToolBar_image_dimen, 40f)
         val leftIcon = a.getResourceId(R.styleable.KuiToolBar_left_image_icon, 0)
         val rightIcon = a.getResourceId(R.styleable.KuiToolBar_right_image_icon, 0)
         val title = a.getString(R.styleable.KuiToolBar_title_text)
-        val titleSize = a.getDimensionPixelOffset(R.styleable.KuiToolBar_title_size, 28).toFloat()
+        val titleSize = a.getDimension(R.styleable.KuiToolBar_title_size, 28f)
         val titleGravity = a.getInt(R.styleable.KuiToolBar_title_gravity, 0)
         val isNav = a.getBoolean(R.styleable.KuiToolBar_is_nav_bar, true)
         val content = a.getString(R.styleable.KuiToolBar_content_text)
-        val contentSize = a.getDimensionPixelOffset(R.styleable.KuiToolBar_content_size, 24).toFloat()
+        val contentSize = a.getDimension(R.styleable.KuiToolBar_content_size, 24f)
         val titleColor = a.getColor(R.styleable.KuiToolBar_title_color, Color.rgb(102, 102, 102))
         val contentColor = a.getColor(R.styleable.KuiToolBar_content_color, Color.rgb(153, 153, 153))
         val leftIconColor = a.getResourceId(R.styleable.KuiToolBar_left_icon_color, 0)
@@ -146,11 +146,12 @@ class KuiToolBar : RelativeLayout {
     fun  setContentColor(@ColorRes color: Int){
          contentView?.setTextColor(ContextCompat.getColor(context,color))
     }
-
+    @Deprecated("尽量不要在代码中改变字号")
     fun setTitleSize(  size:Float){
         titleView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
     }
 
+    @Deprecated("尽量不要在代码中改变字号")
     fun setContentSize(  size:Float){
         contentView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
     }
@@ -159,7 +160,8 @@ class KuiToolBar : RelativeLayout {
     private fun initImageView(imageSize: Float, leftIconRes: Int, rightIconRes: Int, leftIconColor: Int, rightIconColor: Int) {
         leftIcon = ImageView(context).apply {
             layoutParams = RelativeLayout.LayoutParams(DimenUtils.dip2px(context, imageSize), DimenUtils.dip2px(context, imageSize)).apply { addRule(RelativeLayout.CENTER_VERTICAL) }
-            scaleType = ImageView.ScaleType.CENTER
+            scaleType = ImageView.ScaleType.FIT_XY
+            setPadding(16,16,16,16)
             if (leftIconColor != 0)
                 Utils.initSvgColor(InitImgRes(leftIconRes, leftIconColor, this, context))
             else setImageResource(leftIconRes)
@@ -170,7 +172,8 @@ class KuiToolBar : RelativeLayout {
                 addRule(RelativeLayout.CENTER_VERTICAL)
                 addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
             }
-            scaleType = ImageView.ScaleType.CENTER
+            setPadding(16,16,16,16)
+            scaleType = ImageView.ScaleType.FIT_XY
             if (rightIconColor != 0)
                 Utils.initSvgColor(InitImgRes(rightIconRes, rightIconColor, this, context))
             else setImageResource(rightIconRes)

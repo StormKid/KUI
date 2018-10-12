@@ -5,6 +5,10 @@
               android:gravity="center"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+    <LinearLayout android:layout_width="match_parent"
+                  android:gravity="center"
+                  android:layout_height="wrap_content">
+
 
     <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
                                             app:bg_drawable="radius"
@@ -15,14 +19,110 @@
 
     <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
                                             app:bg_drawable="circle"
-                                            app:text="圆形按钮"
+                                            app:text="默认圆形按钮"
                                             android:layout_margin="@dimen/dp_10"
-                                            app:text_dimen="@dimen/sp_14"
+                                            app:text_dimen="@dimen/sp_10"
                                             android:layout_height="@dimen/dp_80"/>
 
     <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
                                             app:bg_drawable="round"
-                                            app:text="默认按钮"
-                                            app:text_dimen="@dimen/sp_14"
+                                            app:text="默认圆弧按钮"
+                                            app:text_dimen="@dimen/sp_10"
                                             android:layout_height="@dimen/dp_40"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:gravity="center"
+                  android:layout_height="wrap_content">
+
+
+        <com.stormkid.kui_base.button.KuiButton android:layout_width="wrap_content"
+                                                app:text="默认按钮"
+                                                android:foreground="?android:selectableItemBackground"
+                                                android:id="@+id/click_right"
+                                                app:icon_res="@drawable/ic_home"
+                                                app:text_dimen="@dimen/sp_10"
+                                                android:layout_height="wrap_content"/>
+
+
+        <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
+                                                app:bg_drawable="circle"
+                                                app:text="圆形按钮"
+                                                app:icon_res="@drawable/ic_home"
+                                                android:layout_margin="@dimen/dp_10"
+                                                app:text_dimen="@dimen/sp_10"
+                                                android:layout_height="@dimen/dp_80"/>
+
+        <com.stormkid.kui_base.button.KuiButton android:layout_width="wrap_content"
+                                                app:bg_drawable="round"
+                                                app:text="圆弧按钮"
+                                                app:icon_dimen="@dimen/dp_20"
+                                                app:icon_gravity="LEFT"
+                                                app:icon_res="@drawable/ic_home"
+                                                app:text_dimen="@dimen/sp_10"
+                                                android:layout_height="@dimen/dp_40"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:gravity="center"
+                  android:layout_height="wrap_content">
+
+
+        <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
+                                                app:bg_drawable="radius"
+                                                app:text="换颜色"
+                                                app:text_color="@color/colorAccent"
+                                                app:bg_color="@android:color/holo_orange_light"
+                                                app:text_dimen="@dimen/sp_14"
+                                                android:layout_height="@dimen/dp_40"/>
+
+
+        <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
+                                                app:bg_drawable="circle"
+                                                app:text="换大字号"
+                                                android:layout_margin="@dimen/dp_10"
+                                                app:text_dimen="@dimen/sp_18"
+                                                android:layout_height="@dimen/dp_80"/>
+
+        <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
+                                                app:bg_drawable="round"
+                                                app:text="换小字号"
+                                                app:text_dimen="@dimen/sp_5"
+                                                android:layout_height="@dimen/dp_40"/>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent"
+                  android:gravity="center"
+                  android:layout_height="wrap_content">
+
+
+        <com.stormkid.kui_base.button.KuiButton android:layout_width="wrap_content"
+                                                app:text="换图标颜色"
+                                                app:icon_res="@drawable/ic_home"
+                                                app:icon_color="@android:color/holo_orange_light"
+                                                app:text_dimen="@dimen/sp_10"
+                                                android:layout_height="wrap_content"/>
+
+
+        <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
+                                                app:bg_drawable="circle"
+                                                app:text="换大图标"
+                                                app:icon_gravity="BOTTOM"
+                                                app:icon_color="@android:color/holo_green_light"
+                                                app:icon_res="@drawable/ic_home"
+                                                app:icon_dimen="@dimen/dp_40"
+                                                android:layout_margin="@dimen/dp_10"
+                                                app:text_dimen="@dimen/sp_10"
+                                                android:layout_height="@dimen/dp_80"/>
+
+        <com.stormkid.kui_base.button.KuiButton android:layout_width="wrap_content"
+                                                app:bg_drawable="round"
+                                                app:text="缩小图标"
+                                                app:icon_color="@color/colorAccent"
+                                                app:icon_dimen="@dimen/dp_20"
+                                                app:icon_gravity="RIGHT"
+                                                app:icon_res="@drawable/ic_home"
+                                                app:text_dimen="@dimen/sp_10"
+                                                android:layout_height="@dimen/dp_40"/>
+    </LinearLayout>
+
 </LinearLayout>

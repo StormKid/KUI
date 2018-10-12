@@ -1,7 +1,9 @@
 package com.stormkid.kui.sample.button
 
+import android.util.Log
 import com.stormkid.kui.MainActivity
 import com.stormkid.kui.R
+import kotlinx.android.synthetic.main.button_sample.*
 
 /**
 button sample
@@ -13,5 +15,8 @@ class ButtonActitivy:MainActivity() {
 
 
     override fun initView() {
+        click_right.setOnClickListener {
+            Log.d("xxx","66666666666")
+        }
     }
 }

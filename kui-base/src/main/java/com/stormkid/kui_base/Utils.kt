@@ -1,6 +1,7 @@
 package com.stormkid.kui_base
 
 import android.graphics.Paint
+import android.os.Build
 import android.support.graphics.drawable.VectorDrawableCompat
 import android.view.View
 
@@ -19,7 +20,9 @@ object Utils {
         val res  = initImgRes.context.resources
         val theme = initImgRes.context.theme
         val vectorDrawableCompat = VectorDrawableCompat.create(res,initImgRes.imgRes,theme) ?: return
-        vectorDrawableCompat.setTint(res.getColor(initImgRes.colorRes))
+        if (Build.VERSION.SDK_INT>22)
+        vectorDrawableCompat.setTint(res.getColor(initImgRes.colorRes,theme))
+        else vectorDrawableCompat.setTint(res.getColor(initImgRes.colorRes))
         initImgRes.imageView.setImageDrawable(vectorDrawableCompat)
     }
 
