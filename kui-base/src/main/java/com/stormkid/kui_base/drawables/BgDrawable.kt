@@ -11,7 +11,7 @@ import com.stormkid.kui_base.dimen.DimenUtils
  */
 class BgDrawable private constructor() : GradientDrawable() {
 
-    private var radius = 10f
+    private var radius = 8f
 
     companion object {
         val instance by lazy { BgDrawable() }
@@ -26,7 +26,6 @@ class BgDrawable private constructor() : GradientDrawable() {
     fun getCircleDrawable(initDrawable: InitDrawable) {
         build().apply {
             shape = OVAL
-            val context = initDrawable.view.context
             val color = initDrawable.colorRes
             setColor(color)
             val view = initDrawable.view
@@ -41,7 +40,7 @@ class BgDrawable private constructor() : GradientDrawable() {
         build().apply {
             val context = initDrawable.view.context
             val color = initDrawable.colorRes
-            val radius = DimenUtils.px2dip(context, this.radius)
+            val radius = DimenUtils.dip2px(context, this.radius)
             setColor(color)
             cornerRadius = radius.toFloat()
             val view = initDrawable.view

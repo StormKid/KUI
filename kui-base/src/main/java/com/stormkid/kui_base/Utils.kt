@@ -1,8 +1,9 @@
 package com.stormkid.kui_base
 
 import android.graphics.Paint
-import android.os.Build
-import android.support.graphics.drawable.VectorDrawableCompat
+import android.graphics.drawable.Drawable
+import android.support.v4.content.ContextCompat
+import android.support.v4.graphics.drawable.DrawableCompat
 import android.view.View
 
 /**
@@ -13,17 +14,22 @@ import android.view.View
 object Utils {
     val paint by lazy {Paint()}
 
+
+    private fun  tintDrawable( drawable:Drawable, colors:Int): Drawable {
+        val wrap = DrawableCompat.wrap(drawable).mutate()
+        DrawableCompat.setTint(wrap,colors)
+        return wrap
+    }
+
     /**
      * 给imageView 的svg初始化颜色
      */
     fun initSvgColor(initImgRes: InitImgRes){
-        val res  = initImgRes.context.resources
-        val theme = initImgRes.context.theme
-        val vectorDrawableCompat = VectorDrawableCompat.create(res,initImgRes.imgRes,theme) ?: return
-        if (Build.VERSION.SDK_INT>22)
-        vectorDrawableCompat.setTint(res.getColor(initImgRes.colorRes,theme))
-        else vectorDrawableCompat.setTint(res.getColor(initImgRes.colorRes))
-        initImgRes.imageView.setImageDrawable(vectorDrawableCompat)
+        //利用ContextCompat工具类获取drawable图片资源
+        val drawable = ContextCompat.getDrawable(initImgRes.context, initImgRes.imgRes)?:return
+        //简单的使用tint改变drawable颜色
+        val drawableResult = tintDrawable(drawable,ContextCompat.getColor(initImgRes.context, initImgRes.colorRes))
+        initImgRes.imageView.setImageDrawable(drawableResult)
     }
 
     /**

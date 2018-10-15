@@ -3,7 +3,10 @@ package com.stormkid.kui_base.button
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.support.annotation.ColorRes
+import android.support.annotation.DrawableRes
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.Gravity
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -25,6 +28,8 @@ class KuiButton : LinearLayout {
     private var bg = 0
     private var bgColor = 0
     private var ignorePadding = false
+    private var textView:TextView? = null
+    private var icon:ImageView? = null
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
     @SuppressLint("Recycle")
@@ -42,7 +47,7 @@ class KuiButton : LinearLayout {
         bg = a.getInt(R.styleable.KuiButton_bg_drawable, 0)
         bgColor = a.getColor(R.styleable.KuiButton_bg_color, Color.rgb(33, 150, 243))
         ignorePadding = a.getBoolean(R.styleable.KuiButton_ignore_padding,false)
-        val textView = TextView(context).apply {
+        textView = TextView(context).apply {
             setText(text)
             setTextColor(textColor)
             textSize = DimenUtils.px2sp(context, textSizeResult).toFloat()
@@ -53,7 +58,7 @@ class KuiButton : LinearLayout {
             addView(textView)
             return
         }
-        val imageView = ImageView(context).apply {
+        icon = ImageView(context).apply {
             scaleType = ImageView.ScaleType.FIT_XY
             layoutParams = LinearLayout.LayoutParams( iconDimen.toInt(),  iconDimen.toInt())
             setPadding(5,5,5,5)
@@ -63,7 +68,43 @@ class KuiButton : LinearLayout {
             Utils.initSvgColor(InitImgRes(iconRes, iconColor, this, context))
         }
 
-        initGravity(gravity, textView, imageView)
+        initGravity(gravity, textView!!, icon!!)
+    }
+
+    /**
+     * 设置子的内容
+     */
+    fun setText(text:String){
+        if (null!=textView)textView?.text = text
+    }
+
+    /**
+     * 设置图标资源
+     */
+    fun setIconRes(@DrawableRes imgRes:Int){
+        if (null!=icon)icon?.setImageResource(imgRes)
+    }
+
+    /**
+     * 设置图标大小
+     */
+    fun setIconDimen(dimen:Float) {
+        val result = DimenUtils.dip2px(context,dimen)
+        if (null!=icon)icon?.layoutParams=LinearLayout.LayoutParams(result,result)
+    }
+
+
+    /**
+     * svg专用 给其上颜色
+     */
+    fun setIconResColor(@DrawableRes src: Int,@ColorRes res:Int){
+        if (null!=icon)Utils.initSvgColor(InitImgRes(src,res,icon!!,context))
+    }
+
+
+    @Deprecated("不建议代码更改字号")
+    fun setTextSize(size:Float){
+        if (null!=textView)textView?.setTextSize(TypedValue.COMPLEX_UNIT_SP,size)
     }
 
     private fun initBg(bg: Int, bgColor: Int) {
@@ -77,29 +118,29 @@ class KuiButton : LinearLayout {
         return
     }
 
-    private fun initGravity(gravity: Int, textView: TextView, imageView: ImageView) {
+    private fun initGravity(gravity: Int, textView: TextView, icon: ImageView) {
         if (!ignorePadding)
             setPadding(paddingSize,paddingSize,paddingSize,paddingSize)
         when (gravity) {
             0 -> {
                 orientation = VERTICAL
-                addView(imageView)
+                addView(icon)
                 addView(textView)
             }
             1 -> {
                 orientation = HORIZONTAL
-                addView(imageView)
+                addView(icon)
                 addView(textView)
             }
             2 -> {
                 orientation = HORIZONTAL
                 addView(textView)
-                addView(imageView)
+                addView(icon)
             }
             3 -> {
                 orientation = VERTICAL
                 addView(textView)
-                addView(imageView)
+                addView(icon)
             }
         }
     }
