@@ -9,6 +9,7 @@ import android.support.annotation.DrawableRes
 import android.support.v4.content.ContextCompat
 import android.text.TextUtils
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
@@ -32,15 +33,16 @@ class KuiToolBar : RelativeLayout {
     constructor(context: Context, attributeSet: AttributeSet?, defAttr: Int) : super(context, attributeSet, defAttr) {
         val a = context.obtainStyledAttributes(attributeSet,
                 R.styleable.KuiToolBar, defAttr, 0)
+        val display = resources.displayMetrics
         val imageSize = a.getDimension(R.styleable.KuiToolBar_image_dimen, 40f)
         val leftIcon = a.getResourceId(R.styleable.KuiToolBar_left_image_icon, 0)
         val rightIcon = a.getResourceId(R.styleable.KuiToolBar_right_image_icon, 0)
         val title = a.getString(R.styleable.KuiToolBar_title_text)
-        val titleSize = a.getDimension(R.styleable.KuiToolBar_title_size, 28f)
+        val titleSize = a.getDimension(R.styleable.KuiToolBar_title_size,  DimenUtils.sp2px(context,14f).toFloat())
         val titleGravity = a.getInt(R.styleable.KuiToolBar_title_gravity, 0)
         val isNav = a.getBoolean(R.styleable.KuiToolBar_is_nav_bar, true)
         val content = a.getString(R.styleable.KuiToolBar_content_text)
-        val contentSize = a.getDimension(R.styleable.KuiToolBar_content_size, 24f)
+        val contentSize = a.getDimension(R.styleable.KuiToolBar_content_size, DimenUtils.sp2px(context,12f).toFloat())
         val titleColor = a.getColor(R.styleable.KuiToolBar_title_color, Color.rgb(102, 102, 102))
         val contentColor = a.getColor(R.styleable.KuiToolBar_content_color, Color.rgb(153, 153, 153))
         val leftIconColor = a.getResourceId(R.styleable.KuiToolBar_left_icon_color, 0)
@@ -58,7 +60,8 @@ class KuiToolBar : RelativeLayout {
         if (TextUtils.isEmpty(content)) return
         contentView = TextView(context).apply {
             text = content
-            textSize = DimenUtils.px2sp(context, contentSize).toFloat()
+            Log.w("float","----$contentSize---")
+            setTextSize( TypedValue.COMPLEX_UNIT_PX,contentSize)
             setTextColor(contentColor)
             layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT).apply {
                 addRule(RelativeLayout.CENTER_VERTICAL)
@@ -77,7 +80,7 @@ class KuiToolBar : RelativeLayout {
         val group = this
         titleView = TextView(context).apply {
             text = title
-            textSize = DimenUtils.px2sp(context, titleSize).toFloat()
+            setTextSize( TypedValue.COMPLEX_UNIT_PX,titleSize)
             setTextColor(titleColor)
             layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT).apply {
                 addRule(RelativeLayout.CENTER_VERTICAL)
@@ -183,4 +186,5 @@ class KuiToolBar : RelativeLayout {
     }
 
 
+    //TODO 水波纹与分割线
 }

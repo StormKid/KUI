@@ -151,4 +151,6 @@ class KuiButton : LinearLayout {
         initBg(bg, bgColor)
     }
 
+
+    //TODO 水波纹与selector
 }

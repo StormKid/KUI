@@ -11,7 +11,6 @@
 
 
     <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
-                                            app:bg_drawable="radius"
                                             app:text="默认按钮"
                                             app:text_dimen="@dimen/sp_14"
                                             android:layout_height="@dimen/dp_40"/>
