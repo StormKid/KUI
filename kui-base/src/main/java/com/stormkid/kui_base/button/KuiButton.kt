@@ -3,6 +3,7 @@ package com.stormkid.kui_base.button
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
 import android.util.AttributeSet
@@ -24,19 +25,27 @@ import com.stormkid.kui_base.drawables.BgDrawable
 @date 2018/9/28
  */
 class KuiButton : LinearLayout {
+
+    companion object {
+        const val radiusType = 0
+        const val circleType = 1
+        const val roundType = 2
+    }
     private val paddingSize =  DimenUtils.dip2px(context,10f)
     private var bg = 0
+    @ColorInt
     private var bgColor = 0
     private var ignorePadding = false
     private var textView:TextView? = null
     private var icon:ImageView? = null
+    private var radius = 0f
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
     @SuppressLint("Recycle")
     constructor(context: Context, attributeSet: AttributeSet?, defAttr: Int) : super(context, attributeSet, defAttr) {
         val a = context.obtainStyledAttributes(attributeSet,
                 R.styleable.KuiButton, defAttr, 0)
-
+        radius = a.getDimension(R.styleable.KuiButton_bg_radius,DimenUtils.dip2px(context,10f).toFloat())
         val iconDimen = a.getDimension(R.styleable.KuiButton_icon_dimen, DimenUtils.dip2px(context,28f).toFloat())
         val iconColor = a.getResourceId(R.styleable.KuiButton_icon_color, 0)
         val iconRes = a.getResourceId(R.styleable.KuiButton_icon_res, 0)
@@ -101,18 +110,35 @@ class KuiButton : LinearLayout {
         if (null!=icon)Utils.initSvgColor(InitImgRes(src,res,icon!!,context))
     }
 
+    /**
+     * 设置button倒角
+     */
+    fun setRadius(dimen: Float){
+        this.radius = dimen
+    }
+
 
     @Deprecated("不建议代码更改字号")
     fun setTextSize(size:Float){
         if (null!=textView)textView?.setTextSize(TypedValue.COMPLEX_UNIT_SP,size)
     }
 
-    private fun initBg(bg: Int, bgColor: Int) {
+    fun setBgType(bg: Int){
+    }
+
+    /**
+     * 设置button背景色
+     */
+    fun setBgColor(@ColorInt bgColor: Int){
+        this.bgColor = bgColor
+    }
+
+    private fun initBg() {
         val drawableParams = InitDrawable(bgColor, this)
         when (bg) {
-            0 -> BgDrawable.instance.getRadiusDrawable(drawableParams)
-            1 -> BgDrawable.instance.getCircleDrawable(drawableParams)
-            2 -> BgDrawable.instance.getRoundDrawable(drawableParams)
+            radiusType -> BgDrawable.instance.getRadiusDrawable(drawableParams)
+            circleType -> BgDrawable.instance.getCircleDrawable(drawableParams)
+            roundType -> BgDrawable.instance.getRoundDrawable(drawableParams)
 
         }
         return
@@ -148,7 +174,7 @@ class KuiButton : LinearLayout {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        initBg(bg, bgColor)
+        initBg()
     }
 
 
