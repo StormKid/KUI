@@ -39,13 +39,14 @@ class KuiButton : LinearLayout {
     private var textView:TextView? = null
     private var icon:ImageView? = null
     private var radius = 0f
+    private var isStroke = false
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
     @SuppressLint("Recycle")
     constructor(context: Context, attributeSet: AttributeSet?, defAttr: Int) : super(context, attributeSet, defAttr) {
         val a = context.obtainStyledAttributes(attributeSet,
                 R.styleable.KuiButton, defAttr, 0)
-        radius = a.getDimension(R.styleable.KuiButton_bg_radius,DimenUtils.dip2px(context,10f).toFloat())
+        radius = a.getDimension(R.styleable.KuiButton_bg_radius,DimenUtils.dip2px(context,5f).toFloat())
         val iconDimen = a.getDimension(R.styleable.KuiButton_icon_dimen, DimenUtils.dip2px(context,28f).toFloat())
         val iconColor = a.getResourceId(R.styleable.KuiButton_icon_color, 0)
         val iconRes = a.getResourceId(R.styleable.KuiButton_icon_res, 0)
@@ -56,6 +57,7 @@ class KuiButton : LinearLayout {
         bg = a.getInt(R.styleable.KuiButton_bg_drawable, 0)
         bgColor = a.getColor(R.styleable.KuiButton_bg_color, Color.rgb(33, 150, 243))
         ignorePadding = a.getBoolean(R.styleable.KuiButton_ignore_padding,false)
+        isStroke = a.getBoolean(R.styleable.KuiButton_is_stroke,false)
         textView = TextView(context).apply {
             setText(text)
             setTextColor(textColor)
@@ -123,7 +125,11 @@ class KuiButton : LinearLayout {
         if (null!=textView)textView?.setTextSize(TypedValue.COMPLEX_UNIT_SP,size)
     }
 
+    /**
+     * 设置背景类型
+     */
     fun setBgType(bg: Int){
+        this.bg = bg
     }
 
     /**
@@ -134,7 +140,7 @@ class KuiButton : LinearLayout {
     }
 
     private fun initBg() {
-        val drawableParams = InitDrawable(bgColor, this)
+        val drawableParams = InitDrawable( bgColor,this,radius,isStroke)
         when (bg) {
             radiusType -> BgDrawable.instance.getRadiusDrawable(drawableParams)
             circleType -> BgDrawable.instance.getCircleDrawable(drawableParams)

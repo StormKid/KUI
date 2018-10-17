@@ -1,6 +1,8 @@
 package com.stormkid.kui_base.drawables
 
+import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
+import android.support.annotation.ColorInt
 import com.stormkid.kui_base.InitDrawable
 import com.stormkid.kui_base.dimen.DimenUtils
 
@@ -11,13 +13,22 @@ import com.stormkid.kui_base.dimen.DimenUtils
  */
 class BgDrawable private constructor() : GradientDrawable() {
 
-    private var radius = 8f
 
     companion object {
         val instance by lazy { BgDrawable() }
     }
 
     private fun build() = BgDrawable()
+
+    fun initbg(@ColorInt colorInt: Int) {
+        setColor(colorInt)
+    }
+
+    fun initBordBg(colorInt: Int) {
+        setColor(Color.WHITE)
+        setStroke(2,colorInt)
+    }
+
 
 
     /**
@@ -27,8 +38,9 @@ class BgDrawable private constructor() : GradientDrawable() {
         build().apply {
             shape = OVAL
             val color = initDrawable.colorRes
-            setColor(color)
             val view = initDrawable.view
+            if (initDrawable.isStroke)initBordBg(color)
+            else initbg(color)
             view.background = this
         }
     }
@@ -40,10 +52,11 @@ class BgDrawable private constructor() : GradientDrawable() {
         build().apply {
             val context = initDrawable.view.context
             val color = initDrawable.colorRes
-            val radius = DimenUtils.dip2px(context, this.radius)
-            setColor(color)
+            val radius = DimenUtils.dip2px(context, initDrawable.radius)
             cornerRadius = radius.toFloat()
             val view = initDrawable.view
+            if (initDrawable.isStroke) initBordBg(color)
+            else initbg(color)
             view.background = this
         }
     }
@@ -54,11 +67,12 @@ class BgDrawable private constructor() : GradientDrawable() {
     fun getRoundDrawable(initDrawable: InitDrawable) {
         build().apply {
             val height = initDrawable.view.measuredHeight
-            radius = height / 2f
+            val radius = height / 2f
             val color = initDrawable.colorRes
-            setColor(color)
             cornerRadius = radius
             val view = initDrawable.view
+            if (initDrawable.isStroke)initBordBg(color)
+            else initbg(color)
             view.background = this
         }
     }

@@ -29,5 +29,6 @@ data class InitImgRes(
 data class InitDrawable(
         @ColorInt val colorRes: Int,
         val view: View,
-        var radius:Int = 0
+        val radius:Float,
+        var isStroke:Boolean =false
 )

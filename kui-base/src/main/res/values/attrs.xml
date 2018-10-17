@@ -41,6 +41,7 @@
         </attr>
         <attr name="ignore_padding" format="boolean"/>
         <attr name="bg_color" format="color"/>
+        <attr name="is_stroke" format="boolean"/>
         <attr name="bg_radius" format="dimension"/>
     </declare-styleable>
 </resources>
