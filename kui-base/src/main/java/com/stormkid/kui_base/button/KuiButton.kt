@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.support.annotation.ColorInt
 import android.support.annotation.ColorRes
 import android.support.annotation.DrawableRes
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
@@ -83,7 +84,7 @@ class KuiButton : LinearLayout {
     }
 
     /**
-     * 设置子的内容
+     * 设置button文字
      */
     fun setText(text:String){
         if (null!=textView)textView?.text = text
@@ -123,6 +124,12 @@ class KuiButton : LinearLayout {
     @Deprecated("不建议代码更改字号")
     fun setTextSize(size:Float){
         if (null!=textView)textView?.setTextSize(TypedValue.COMPLEX_UNIT_SP,size)
+    }
+
+
+    fun setTextColor(@ColorRes res: Int){
+        val color = ContextCompat.getColor(context,res)
+        if (null!=textView)textView?.setTextColor(color)
     }
 
     /**
