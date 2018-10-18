@@ -25,7 +25,7 @@ class BgDrawable private constructor() : GradientDrawable() {
     }
 
     fun initBordBg(colorInt: Int) {
-        setColor(Color.TRANSPARENT)
+        setColor(Color.WHITE)
         setStroke(2,colorInt)
     }
 
