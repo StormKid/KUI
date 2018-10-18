@@ -2,7 +2,7 @@ package com.stormkid.kui_base.drawables
 
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
-import android.support.annotation.ColorInt
+import androidx.annotation.ColorInt
 import com.stormkid.kui_base.InitDrawable
 import com.stormkid.kui_base.dimen.DimenUtils
 

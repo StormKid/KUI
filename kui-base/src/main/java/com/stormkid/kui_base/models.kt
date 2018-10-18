@@ -1,9 +1,9 @@
 package com.stormkid.kui_base
 
 import android.content.Context
-import android.support.annotation.ColorInt
-import android.support.annotation.ColorRes
-import android.support.annotation.DrawableRes
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import android.view.View
 import android.widget.ImageView
 

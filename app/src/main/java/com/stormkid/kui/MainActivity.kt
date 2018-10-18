@@ -1,8 +1,8 @@
 package com.stormkid.kui
 
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v7.app.AppCompatActivity
+import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 import com.stormkid.kui_base.dimen.DimenFit
 
 abstract class MainActivity : AppCompatActivity() {

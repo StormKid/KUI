@@ -33,6 +33,6 @@ dependencies {
     // RecyclerView-v7
     api "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
     api "org.jetbrains.anko:anko-recyclerview-v7-coroutines:$anko_version"
-    api "com.android.support:recyclerview-v7:$v7_version"
-    implementation "com.android.support:appcompat-v7:$v7_version"
+    api 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation "androidx.appcompat:appcompat:$x_version"
 }
