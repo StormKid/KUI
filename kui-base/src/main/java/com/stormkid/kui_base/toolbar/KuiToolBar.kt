@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
@@ -103,63 +104,112 @@ class KuiToolBar : RelativeLayout {
     private var rightIcon: ImageView? = null
     private var titleView: TextView? = null
     private var contentView: TextView? = null
+    /**
+     * 整个条目点击方法
+     */
     fun setOnToolClickListener(listener: (View) -> Unit) {
         setOnClickListener(listener)
     }
 
+    /**
+     * 左侧图标点击事件
+     */
     fun setLeftIconClickListener(listener: (View) -> Unit) {
         if (null != leftIcon) leftIcon?.setOnClickListener(listener)
     }
 
+    /**
+     * 右侧图标点击事件
+     */
     fun setRightIconClickListener(listener: (View) -> Unit) {
         rightIcon?.setOnClickListener(listener)
     }
 
+    /**
+     * 设置主标题文字
+     */
     fun setTitle(text: String) {
         if (null != titleView && !TextUtils.isEmpty(text)) titleView?.text = text
     }
 
+    /**
+     * 设置小标题文字
+     */
     fun setContent(text: String) {
         if (null != contentView && !TextUtils.isEmpty(text)) contentView?.text = text
     }
 
+    /**
+     * 设置小标题文字点击事件
+     */
     fun setRightTextClick(listener: (View) -> Unit){
         contentView?.setOnClickListener (listener )
     }
 
+    /**
+     * 设置左图标
+     */
     fun setLeftIcon(@DrawableRes icon:Int){
          leftIcon?.setImageResource(icon)
     }
 
+    /**
+     * 设置右图标
+     */
     fun setRightIcon(@DrawableRes icon: Int){
          rightIcon?.setImageResource(icon)
     }
 
+    /**
+     * 设置左边图标和颜色 SVG专用
+     */
     fun setLeftIconResColor(@DrawableRes res:Int ,@ColorRes color:Int){
         if (null!=leftIcon) Utils.initSvgColor(InitImgRes(res,color,leftIcon!!,context))
     }
 
+    /**
+     * 设置右侧图标和颜色 SVG专用
+     */
     fun  setRightIconResColor(@DrawableRes res:Int,@ColorRes color: Int){
         if (null!=rightIcon) Utils.initSvgColor(InitImgRes(res,color,rightIcon!!,context))
     }
 
+    /**
+     * 设置标题颜色
+     */
     fun  setTitleColor(@ColorRes color: Int){
          titleView?.setTextColor(ContextCompat.getColor(context,color))
     }
 
+    /**
+     * 设置副标题颜色
+     */
     fun  setContentColor(@ColorRes color: Int){
          contentView?.setTextColor(ContextCompat.getColor(context,color))
     }
+
+    /**
+     * 修改标题字号
+     */
     @Deprecated("尽量不要在代码中改变字号")
     fun setTitleSize(  size:Float){
         titleView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
     }
 
+    /**
+     * 修改副标题字号
+     */
     @Deprecated("尽量不要在代码中改变字号")
     fun setContentSize(  size:Float){
         contentView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
     }
 
+    /**
+     * 修改水波纹颜色
+     */
+    fun setRippleColor(@ColorInt color: Int){
+        background = RippleDrawable(color,background)
+    }
 
     private fun initImageView(imageSize: Float, leftIconRes: Int, rightIconRes: Int, leftIconColor: Int, rightIconColor: Int) {
         leftIcon = ImageView(context).apply {
