@@ -20,15 +20,14 @@ class BgDrawable private constructor() : GradientDrawable() {
 
     private fun build() = BgDrawable()
 
-    fun initbg(@ColorInt colorInt: Int) {
+    private fun initBg(@ColorInt colorInt: Int) {
         setColor(colorInt)
     }
 
-    fun initBordBg(colorInt: Int) {
+    private fun initBordBg(colorInt: Int) {
         setColor(Color.WHITE)
-        setStroke(2,colorInt)
+        setStroke(2, colorInt)
     }
-
 
 
     /**
@@ -39,9 +38,13 @@ class BgDrawable private constructor() : GradientDrawable() {
             shape = OVAL
             val color = initDrawable.colorRes
             val view = initDrawable.view
-            if (initDrawable.isStroke)initBordBg(color)
-            else initbg(color)
-            view.background = this
+            if (initDrawable.isStroke) initBordBg(color)
+            else initBg(color)
+            if (initDrawable.showRipple) {
+                val drawable = RippleDrawable(initDrawable.rippleColor, this)
+                view.background = drawable
+            }else
+                view.background = this
         }
     }
 
@@ -56,8 +59,12 @@ class BgDrawable private constructor() : GradientDrawable() {
             cornerRadius = radius.toFloat()
             val view = initDrawable.view
             if (initDrawable.isStroke) initBordBg(color)
-            else initbg(color)
-            view.background = this
+            else initBg(color)
+            if (initDrawable.showRipple) {
+                val drawable = RippleDrawable(initDrawable.rippleColor, this)
+                view.background = drawable
+            }else
+                view.background = this
         }
     }
 
@@ -71,10 +78,15 @@ class BgDrawable private constructor() : GradientDrawable() {
             val color = initDrawable.colorRes
             cornerRadius = radius
             val view = initDrawable.view
-            if (initDrawable.isStroke)initBordBg(color)
-            else initbg(color)
-            view.background = this
+            if (initDrawable.isStroke) initBordBg(color)
+            else initBg(color)
+            if (initDrawable.showRipple) {
+                val drawable = RippleDrawable(initDrawable.rippleColor, this)
+                view.background = drawable
+            }else
+                view.background = this
         }
+
     }
 
 }

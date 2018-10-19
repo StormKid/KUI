@@ -1,11 +1,12 @@
 package com.stormkid.kui_base
 
 import android.content.Context
+import android.graphics.Color
+import android.view.View
+import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
-import android.view.View
-import android.widget.ImageView
 
 /**
 各种utils需要的model
@@ -30,5 +31,7 @@ data class InitDrawable(
         @ColorInt val colorRes: Int,
         val view: View,
         val radius:Float,
-        var isStroke:Boolean =false
+        var isStroke:Boolean =false,
+        var showRipple:Boolean = false,
+        @ColorInt var rippleColor:Int=Color.argb(120,0,0,0)
 )

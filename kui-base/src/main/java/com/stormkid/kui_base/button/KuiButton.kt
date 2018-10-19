@@ -32,23 +32,27 @@ class KuiButton : LinearLayout {
         const val circleType = 1
         const val roundType = 2
     }
-    private val paddingSize =  DimenUtils.dip2px(context,10f)
+
+    private val paddingSize = DimenUtils.dip2px(context, 10f)
     private var bg = 0
     @ColorInt
     private var bgColor = 0
     private var ignorePadding = false
-    private var textView:TextView? = null
-    private var icon:ImageView? = null
+    private var textView: TextView? = null
+    private var icon: ImageView? = null
     private var radius = 0f
     private var isStroke = false
+    private var isShowRipple = false
+    private var rippleColor = 0
+
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
     @SuppressLint("Recycle")
     constructor(context: Context, attributeSet: AttributeSet?, defAttr: Int) : super(context, attributeSet, defAttr) {
         val a = context.obtainStyledAttributes(attributeSet,
                 R.styleable.KuiButton, defAttr, 0)
-        radius = a.getDimension(R.styleable.KuiButton_bg_radius,DimenUtils.dip2px(context,5f).toFloat())
-        val iconDimen = a.getDimension(R.styleable.KuiButton_icon_dimen, DimenUtils.dip2px(context,28f).toFloat())
+        radius = a.getDimension(R.styleable.KuiButton_bg_radius, DimenUtils.dip2px(context, 5f).toFloat())
+        val iconDimen = a.getDimension(R.styleable.KuiButton_icon_dimen, DimenUtils.dip2px(context, 28f).toFloat())
         val iconColor = a.getResourceId(R.styleable.KuiButton_icon_color, 0)
         val iconRes = a.getResourceId(R.styleable.KuiButton_icon_res, 0)
         val textSizeResult = a.getDimension(R.styleable.KuiButton_text_dimen, 26f)
@@ -57,8 +61,10 @@ class KuiButton : LinearLayout {
         val textColor = a.getColor(R.styleable.KuiButton_text_color, Color.rgb(255, 255, 255))
         bg = a.getInt(R.styleable.KuiButton_bg_drawable, 0)
         bgColor = a.getColor(R.styleable.KuiButton_bg_color, Color.rgb(33, 150, 243))
-        ignorePadding = a.getBoolean(R.styleable.KuiButton_ignore_padding,false)
-        isStroke = a.getBoolean(R.styleable.KuiButton_is_stroke,false)
+        ignorePadding = a.getBoolean(R.styleable.KuiButton_ignore_padding, false)
+        isStroke = a.getBoolean(R.styleable.KuiButton_is_stroke, false)
+        rippleColor = a.getColor(R.styleable.KuiButton_button_ripple_color, 0)
+        isShowRipple = a.getBoolean(R.styleable.KuiButton_is_show_ripple, true)
         textView = TextView(context).apply {
             setText(text)
             setTextColor(textColor)
@@ -72,12 +78,12 @@ class KuiButton : LinearLayout {
         }
         icon = ImageView(context).apply {
             scaleType = ImageView.ScaleType.FIT_XY
-            layoutParams = LinearLayout.LayoutParams( iconDimen.toInt(),  iconDimen.toInt())
-            setPadding(5,5,5,5)
-            if (iconColor==0)
-            setImageResource(iconRes)
+            layoutParams = LinearLayout.LayoutParams(iconDimen.toInt(), iconDimen.toInt())
+            setPadding(5, 5, 5, 5)
+            if (iconColor == 0)
+                setImageResource(iconRes)
             else
-            Utils.initSvgColor(InitImgRes(iconRes, iconColor, this, context))
+                Utils.initSvgColor(InitImgRes(iconRes, iconColor, this, context))
         }
 
         initGravity(gravity, textView!!, icon!!)
@@ -86,68 +92,77 @@ class KuiButton : LinearLayout {
     /**
      * 设置button文字
      */
-    fun setText(text:String){
-        if (null!=textView)textView?.text = text
+    fun setText(text: String) {
+        if (null != textView) textView?.text = text
     }
 
     /**
      * 设置图标资源
      */
-    fun setIconRes(@DrawableRes imgRes:Int){
-        if (null!=icon)icon?.setImageResource(imgRes)
+    fun setIconRes(@DrawableRes imgRes: Int) {
+        if (null != icon) icon?.setImageResource(imgRes)
     }
 
     /**
      * 设置图标大小
      */
-    fun setIconDimen(dimen:Float) {
-        val result = DimenUtils.dip2px(context,dimen)
-        if (null!=icon)icon?.layoutParams=LinearLayout.LayoutParams(result,result)
+    fun setIconDimen(dimen: Float) {
+        val result = DimenUtils.dip2px(context, dimen)
+        if (null != icon) icon?.layoutParams = LinearLayout.LayoutParams(result, result)
     }
 
 
     /**
      * svg专用 给其上颜色
      */
-    fun setIconResColor(@DrawableRes src: Int,@ColorRes res:Int){
-        if (null!=icon)Utils.initSvgColor(InitImgRes(src,res,icon!!,context))
+    fun setIconResColor(@DrawableRes src: Int, @ColorRes res: Int) {
+        if (null != icon) Utils.initSvgColor(InitImgRes(src, res, icon!!, context))
     }
 
     /**
      * 设置button倒角
      */
-    fun setRadius(dimen: Float){
+    fun setRadius(dimen: Float) {
         this.radius = dimen
     }
 
 
     @Deprecated("不建议代码更改字号")
-    fun setTextSize(size:Float){
-        if (null!=textView)textView?.setTextSize(TypedValue.COMPLEX_UNIT_SP,size)
+    fun setTextSize(size: Float) {
+        if (null != textView) textView?.setTextSize(TypedValue.COMPLEX_UNIT_SP, size)
     }
 
 
-    fun setTextColor(@ColorRes res: Int){
-        val color = ContextCompat.getColor(context,res)
-        if (null!=textView)textView?.setTextColor(color)
+    fun setTextColor(@ColorRes res: Int) {
+        val color = ContextCompat.getColor(context, res)
+        if (null != textView) textView?.setTextColor(color)
     }
 
     /**
      * 设置背景类型
      */
-    fun setBgType(bg: Int){
+    fun setBgType(bg: Int) {
         this.bg = bg
     }
 
     /**
      * 设置button背景色
      */
-    fun setBgColor(@ColorInt bgColor: Int){
+    fun setBgColor(@ColorInt bgColor: Int) {
         this.bgColor = bgColor
     }
 
+    /**
+     * 设置水波纹颜色
+     */
+    fun setRippleColor(@ColorInt rippleColor:Int){
+        this.rippleColor = rippleColor
+    }
+
     private fun initBg() {
-        val drawableParams = InitDrawable( bgColor,this,radius,isStroke)
+        var drawableParams = InitDrawable(bgColor, this, radius, isStroke, isShowRipple)
+        if (rippleColor != 0)
+            drawableParams = InitDrawable(bgColor, this, radius, isStroke, isShowRipple, rippleColor)
         when (bg) {
             radiusType -> BgDrawable.instance.getRadiusDrawable(drawableParams)
             circleType -> BgDrawable.instance.getCircleDrawable(drawableParams)
@@ -159,7 +174,7 @@ class KuiButton : LinearLayout {
 
     private fun initGravity(gravity: Int, textView: TextView, icon: ImageView) {
         if (!ignorePadding)
-            setPadding(paddingSize,paddingSize,paddingSize,paddingSize)
+            setPadding(paddingSize, paddingSize, paddingSize, paddingSize)
         when (gravity) {
             0 -> {
                 orientation = VERTICAL
@@ -190,6 +205,4 @@ class KuiButton : LinearLayout {
         initBg()
     }
 
-
-    //TODO 水波纹与selector
 }

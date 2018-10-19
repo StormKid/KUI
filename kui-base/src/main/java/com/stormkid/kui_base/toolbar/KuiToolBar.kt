@@ -4,9 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.graphics.Color
-import androidx.annotation.ColorRes
-import androidx.annotation.DrawableRes
-import androidx.core.content.ContextCompat
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.Log
@@ -15,10 +12,14 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
 import com.stormkid.kui_base.InitImgRes
 import com.stormkid.kui_base.R
 import com.stormkid.kui_base.Utils
 import com.stormkid.kui_base.dimen.DimenUtils
+import com.stormkid.kui_base.drawables.RippleDrawable
 
 /**
 主代码
@@ -33,7 +34,6 @@ class KuiToolBar : RelativeLayout {
     constructor(context: Context, attributeSet: AttributeSet?, defAttr: Int) : super(context, attributeSet, defAttr) {
         val a = context.obtainStyledAttributes(attributeSet,
                 R.styleable.KuiToolBar, defAttr, 0)
-        val display = resources.displayMetrics
         val imageSize = a.getDimension(R.styleable.KuiToolBar_image_dimen, 40f)
         val leftIcon = a.getResourceId(R.styleable.KuiToolBar_left_image_icon, 0)
         val rightIcon = a.getResourceId(R.styleable.KuiToolBar_right_image_icon, 0)
@@ -48,12 +48,13 @@ class KuiToolBar : RelativeLayout {
         val leftIconColor = a.getResourceId(R.styleable.KuiToolBar_left_icon_color, 0)
         val rightIconColor = a.getResourceId(R.styleable.KuiToolBar_right_icon_color, 0)
         val isRightText = a.getBoolean(R.styleable.KuiToolBar_is_right_text, false)
-
-
+        val rippleColor = a.getColor(R.styleable.KuiToolBar_toolbar_ripple_color,Color.argb(120,0,0,0))
         initImageView(imageSize, leftIcon, rightIcon, leftIconColor, rightIconColor)
         initTitle(title, titleGravity, imageSize, titleSize, titleColor)
         initContent(content, contentSize, contentColor, imageSize, isRightText)
         if (isNav && context is Activity) this.getChildAt(0).setOnClickListener { context.finish() }
+        else  background = RippleDrawable(rippleColor,background)
+        translationZ = 5f
     }
 
     private fun initContent(content: String?, contentSize: Float, contentColor: Int, imageSize: Float, rightText: Boolean) {

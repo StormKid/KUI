@@ -19,6 +19,7 @@
         <attr name="content_color" format="color"/>
         <attr name="content_text" format="string"/>
         <attr name="content_size" format="dimension"/>
+        <attr name="toolbar_ripple_color" format="color" />
     </declare-styleable>
 
     <declare-styleable name="KuiButton">
@@ -43,5 +44,7 @@
         <attr name="bg_color" format="color"/>
         <attr name="is_stroke" format="boolean"/>
         <attr name="bg_radius" format="dimension"/>
+        <attr name="is_show_ripple" format="boolean"/>
+        <attr name="button_ripple_color" format="color"/>
     </declare-styleable>
 </resources>
