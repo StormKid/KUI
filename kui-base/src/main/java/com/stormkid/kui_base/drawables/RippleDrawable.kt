@@ -10,17 +10,4 @@ import androidx.annotation.ColorInt
 @author ke_li
 @date 2018/9/30
  */
-class RippleDrawable : RippleDrawable{
-
-
-    /**
-     * @param colorStateList 代码构建Selector
-     * @param limitDrawable 限制水波纹的drawable
-     * @param maskDrawable 限制显示背景的drawable
-     */
-    constructor(colorStateList: ColorStateList,limitDrawable: Drawable,maskDrawable: Drawable):super(colorStateList,limitDrawable,maskDrawable)
-
-
-    constructor(@ColorInt color: Int,limitDrawable: Drawable):this(ColorStateList.valueOf(color),limitDrawable,limitDrawable)
-
-}
+class RippleDrawable(@ColorInt color: Int,limitDrawable: Drawable) : RippleDrawable(ColorStateList.valueOf(color),limitDrawable,limitDrawable)

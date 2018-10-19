@@ -23,7 +23,7 @@ import com.stormkid.kui_base.dimen.DimenUtils
 import com.stormkid.kui_base.drawables.RippleDrawable
 
 /**
-主代码
+自定义带点击功能的banner
 @author ke_li
 @date 2018/9/25
  */

@@ -10,24 +10,24 @@
                   android:layout_height="wrap_content">
 
 
-    <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
-                                            app:text="默认按钮"
-                                            app:text_dimen="@dimen/sp_14"
-                                            android:layout_height="@dimen/dp_40"/>
+        <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
+                                                app:text="默认按钮"
+                                                app:text_dimen="@dimen/sp_14"
+                                                android:layout_height="@dimen/dp_40"/>
 
 
-    <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
-                                            app:bg_drawable="circle"
-                                            app:text="默认圆形按钮"
-                                            android:layout_margin="@dimen/dp_10"
-                                            app:text_dimen="@dimen/sp_10"
-                                            android:layout_height="@dimen/dp_80"/>
+        <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
+                                                app:bg_drawable="circle"
+                                                app:text="默认圆形按钮"
+                                                android:layout_margin="@dimen/dp_10"
+                                                app:text_dimen="@dimen/sp_10"
+                                                android:layout_height="@dimen/dp_80"/>
 
-    <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
-                                            app:bg_drawable="round"
-                                            app:text="默认圆弧按钮"
-                                            app:text_dimen="@dimen/sp_10"
-                                            android:layout_height="@dimen/dp_40"/>
+        <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
+                                                app:bg_drawable="round"
+                                                app:text="默认圆弧按钮"
+                                                app:text_dimen="@dimen/sp_10"
+                                                android:layout_height="@dimen/dp_40"/>
     </LinearLayout>
 
     <LinearLayout android:layout_width="match_parent"
@@ -48,6 +48,7 @@
                                                 app:bg_drawable="circle"
                                                 app:text="圆形按钮"
                                                 android:id="@+id/do_now"
+                                                app:button_ripple_color="@android:color/holo_green_light"
                                                 app:icon_res="@drawable/ic_home"
                                                 android:layout_margin="@dimen/dp_10"
                                                 app:text_dimen="@dimen/sp_10"
@@ -59,6 +60,7 @@
                                                 app:icon_dimen="@dimen/dp_20"
                                                 android:id="@+id/do_it"
                                                 app:icon_gravity="LEFT"
+                                                app:button_ripple_color="@color/colorAccent"
                                                 app:icon_res="@drawable/ic_home"
                                                 app:text_dimen="@dimen/sp_10"
                                                 android:layout_height="@dimen/dp_40"/>
