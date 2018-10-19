@@ -18,5 +18,13 @@ class ButtonActitivy:MainActivity() {
         click_right.setOnClickListener {
             Log.d("xxx","66666666666")
         }
+
+        do_now.setOnClickListener {
+            Log.w("eee","7777")
+        }
+
+        do_it.setOnClickListener {
+            Log.e("xxx","8888888")
+        }
     }
 }
