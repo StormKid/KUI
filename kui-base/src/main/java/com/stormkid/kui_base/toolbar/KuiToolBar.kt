@@ -55,7 +55,7 @@ class KuiToolBar : RelativeLayout {
         initContent(content, contentSize, contentColor, imageSize, isRightText)
         if (isNav && context is Activity) this.getChildAt(0).setOnClickListener { context.finish() }
         else  background = RippleDrawable(rippleColor,background)
-        translationZ = 5f
+        elevation = 5f
     }
 
     private fun initContent(content: String?, contentSize: Float, contentColor: Int, imageSize: Float, rightText: Boolean) {
