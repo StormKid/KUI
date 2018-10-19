@@ -236,6 +236,4 @@ class KuiToolBar : RelativeLayout {
         this.addView(rightIcon)
     }
 
-
-    //TODO 水波纹与分割线
 }
