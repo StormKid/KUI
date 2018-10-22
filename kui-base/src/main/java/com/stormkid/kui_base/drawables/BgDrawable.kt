@@ -7,7 +7,7 @@ import com.stormkid.kui_base.InitDrawable
 import com.stormkid.kui_base.dimen.DimenUtils
 
 /**
-
+获得不同形状背景的view
 @author ke_li
 @date 2018/10/8
  */

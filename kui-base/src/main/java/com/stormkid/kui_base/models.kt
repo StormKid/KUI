@@ -4,9 +4,8 @@ import android.content.Context
 import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
-import androidx.annotation.ColorInt
-import androidx.annotation.ColorRes
-import androidx.annotation.DrawableRes
+import androidx.annotation.*
+import com.stormkid.kui_base.helper.AnimateValue
 
 /**
 各种utils需要的model
@@ -35,3 +34,11 @@ data class InitDrawable(
         var showRipple:Boolean = false,
         @ColorInt var rippleColor:Int=Color.argb(120,0,0,0)
 )
+
+data class AlphaAnimateModel(val from:Float, val to:Float, override val duration: Long, override val view: View):AnimateValue
+
+data class RotateAnimationModel(val fromDegree:Float, val toDegree:Float, override val duration: Long, override val view: View):AnimateValue
+
+data class TransLateOrScaleAnimationModel(val fromX:Float, val fromY:Float, val toX:Float, val toY:Float, override val duration: Long, override val view: View):AnimateValue
+
+data class DialogModel(@LayoutRes val layoutId:Int,@StyleRes val resId:Int)
