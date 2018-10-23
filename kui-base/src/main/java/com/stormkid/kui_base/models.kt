@@ -35,10 +35,32 @@ data class InitDrawable(
         @ColorInt var rippleColor:Int=Color.argb(120,0,0,0)
 )
 
+/**
+ *  渐变动画构建对象
+ */
 data class AlphaAnimateModel(val from:Float, val to:Float, override val duration: Long, override val view: View):AnimateValue
 
+/**
+ * 翻转动画构建对象
+ */
 data class RotateAnimationModel(val fromDegree:Float, val toDegree:Float, override val duration: Long, override val view: View):AnimateValue
 
+/**
+ * 位移动画和放大缩小动画
+ */
 data class TransLateOrScaleAnimationModel(val fromX:Float, val fromY:Float, val toX:Float, val toY:Float, override val duration: Long, override val view: View):AnimateValue
+/**
+ * 自定义alert 构建对象
+ * @param  layoutId 自定alert填充布局
+ * @param  styleId 自定义alert xml属性样式
+ */
+data class DialogModel(@LayoutRes val layoutId:Int,@StyleRes val styleId:Int)
 
-data class DialogModel(@LayoutRes val layoutId:Int,@StyleRes val resId:Int)
+/**
+ * 建立自定义button颜色值
+ * @param textColor 文字颜色
+ * @param bgColor 背景或线条颜色
+ * @param rippleColor 点击水波纹颜色
+ * @param isStroke 是否是镂空
+ */
+data class ColorResButton(@ColorRes val textColor:Int,@ColorInt val bgColor:Int,@ColorInt val rippleColor: Int,val isStroke: Boolean)

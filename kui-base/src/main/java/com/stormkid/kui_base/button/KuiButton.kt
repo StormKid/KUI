@@ -51,7 +51,7 @@ class KuiButton : LinearLayout {
     constructor(context: Context, attributeSet: AttributeSet?, defAttr: Int) : super(context, attributeSet, defAttr) {
         val a = context.obtainStyledAttributes(attributeSet,
                 R.styleable.KuiButton, defAttr, 0)
-        radius = a.getDimension(R.styleable.KuiButton_bg_radius, DimenUtils.dip2px(context, 5f).toFloat())
+        radius = a.getDimension(R.styleable.KuiButton_bg_radius, DimenUtils.dip2px(context, 3f).toFloat())
         val iconDimen = a.getDimension(R.styleable.KuiButton_icon_dimen, DimenUtils.dip2px(context, 28f).toFloat())
         val iconColor = a.getResourceId(R.styleable.KuiButton_icon_color, 0)
         val iconRes = a.getResourceId(R.styleable.KuiButton_icon_res, 0)

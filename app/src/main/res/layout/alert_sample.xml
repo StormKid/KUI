@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:padding="@dimen/dp_20"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
+                                            app:text="自定义"
+                                            android:id="@+id/show_normal_alert"
+                                            android:layout_height="@dimen/dp_40"/>
+
+    <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
+                                            app:bg_drawable="round"
+                                            android:id="@+id/show_choose_alert"
+                                            app:text="choose"
+                                            android:layout_marginTop="@dimen/dp_20"
+                                            android:layout_height="@dimen/dp_40"/>
+
+</LinearLayout>

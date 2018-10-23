@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="myDialog" parent="Animation.AppCompat.Dialog"/>
+
+    <color name="primary">#2196F3</color>
 </resources>
