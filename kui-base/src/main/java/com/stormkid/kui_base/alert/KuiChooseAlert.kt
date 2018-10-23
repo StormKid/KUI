@@ -53,7 +53,7 @@ class KuiChooseAlert private constructor() : AlertContentListener {
             setOnClickListener {
                 dialog.dismiss()
                 initData()
-                yes
+                yes()
             }
         }
         view.findViewById<KuiButton>(R.id.cancel).apply {
@@ -64,7 +64,7 @@ class KuiChooseAlert private constructor() : AlertContentListener {
             setOnClickListener {
                 dialog.dismiss()
                 initData()
-                cancel
+                cancel()
             }
         }
 
@@ -150,12 +150,17 @@ class KuiChooseAlert private constructor() : AlertContentListener {
         return KuiAlert.instance(DialogModel(R.layout.alert_conetent, 0), this)
     }
 
-
+    /**
+     * 设置标题颜色
+     */
     fun setTitleColor(@ColorInt colorInt: Int): KuiChooseAlert {
         this.titleColor = colorInt
         return this
     }
 
+    /**
+     * 设置中间显示的颜色
+     */
     fun setContentColor(@ColorInt colorInt: Int): KuiChooseAlert {
         this.contentColor = colorInt
         return this
@@ -167,9 +172,9 @@ class KuiChooseAlert private constructor() : AlertContentListener {
         content = "是否干啥"
         positiveText = "确定"
         nagativeText = "取消"
-        positiveColorButton= ColorResButton(R.color.primary,Color.rgb(33,150,243),Color.rgb(33,150,243),true)
+        positiveColorButton= ColorResButton()
         nagativeColorButton= positiveColorButton
-        titleColor = Color.rgb(102, 102, 102)
-        contentColor = Color.rgb(153, 153, 153)
+        titleColor = Color.rgb(51, 51, 51)
+        contentColor = Color.rgb(102, 102, 102)
     }
 }

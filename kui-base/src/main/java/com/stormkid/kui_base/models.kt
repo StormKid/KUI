@@ -63,4 +63,4 @@ data class DialogModel(@LayoutRes val layoutId:Int,@StyleRes val styleId:Int)
  * @param rippleColor 点击水波纹颜色
  * @param isStroke 是否是镂空
  */
-data class ColorResButton(@ColorRes val textColor:Int,@ColorInt val bgColor:Int,@ColorInt val rippleColor: Int,val isStroke: Boolean)
+data class ColorResButton(@ColorRes var textColor:Int = R.color.primary,@ColorInt var  bgColor:Int = Color.rgb(33,150,243),@ColorInt var rippleColor: Int = Color.rgb(33,150,243),var isStroke: Boolean = true)
