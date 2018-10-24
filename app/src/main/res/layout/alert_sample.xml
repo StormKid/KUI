@@ -18,4 +18,12 @@
                                             android:layout_marginTop="@dimen/dp_20"
                                             android:layout_height="@dimen/dp_40"/>
 
+    <com.stormkid.kui_base.button.KuiButton android:layout_width="wrap_content"
+                                            android:paddingLeft="@dimen/dp_10"
+                                            android:paddingRight="@dimen/dp_10"
+                                            app:bg_drawable="round"
+                                            android:id="@+id/show_colorful_choose_alert"
+                                            app:text="colorful - choose"
+                                            android:layout_marginTop="@dimen/dp_20"
+                                            android:layout_height="@dimen/dp_40"/>
 </LinearLayout>

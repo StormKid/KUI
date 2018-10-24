@@ -159,6 +159,13 @@ class KuiButton : LinearLayout {
         this.rippleColor = rippleColor
     }
 
+    /**
+     * 设置是否 镂空
+     */
+    fun setStroke(isStroke:Boolean){
+        this.isStroke = isStroke
+    }
+
     private fun initBg() {
         var drawableParams = InitDrawable(bgColor, this, radius, isStroke, isShowRipple)
         if (rippleColor != 0)

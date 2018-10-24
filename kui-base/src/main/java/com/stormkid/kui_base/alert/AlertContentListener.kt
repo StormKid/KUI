@@ -10,4 +10,6 @@ import androidx.fragment.app.DialogFragment
  */
 interface AlertContentListener {
     fun contentViewEvents(view: View,dialog: DialogFragment)
+
+    fun beforeDismiss()
 }

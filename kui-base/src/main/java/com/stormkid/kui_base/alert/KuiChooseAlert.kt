@@ -19,17 +19,21 @@ import com.stormkid.kui_base.drawables.BgDrawable
 @date 2018/10/23
  */
 class KuiChooseAlert private constructor() : AlertContentListener {
+    override fun beforeDismiss() {
+        initData()
+    }
+
     private lateinit var yes: () -> Unit
     private lateinit var cancel: () -> Unit
     private lateinit var title :String
     private lateinit var content :String
     private lateinit var positiveText:String
-    private lateinit var nagativeText:String
-    private  var isClickAllDismiss:Boolean = false
-    private  var titleColor :Int = 0
-    private  var contentColor:Int = 0
+    private lateinit var negativeText:String
+    private  var isClickAllDismiss = false
+    private  var titleColor = 0
+    private  var contentColor = 0
     private lateinit var positiveColorButton : ColorResButton
-    private lateinit  var nagativeColorButton:ColorResButton
+    private lateinit  var negativeColorButton:ColorResButton
     init {
         initData()
     }
@@ -49,21 +53,21 @@ class KuiChooseAlert private constructor() : AlertContentListener {
             setText(positiveText)
             setTextColor(positiveColorButton.textColor)
             setBgColor(positiveColorButton.bgColor)
+            setStroke(positiveColorButton.isStroke)
             setRippleColor(positiveColorButton.rippleColor)
             setOnClickListener {
                 dialog.dismiss()
-                initData()
                 yes()
             }
         }
         view.findViewById<KuiButton>(R.id.cancel).apply {
-            setText(nagativeText)
-            setTextColor(nagativeColorButton.textColor)
-            setBgColor(nagativeColorButton.bgColor)
-            setRippleColor(nagativeColorButton.rippleColor)
+            setText(negativeText)
+            setStroke(negativeColorButton.isStroke)
+            setTextColor(negativeColorButton.textColor)
+            setBgColor(negativeColorButton.bgColor)
+            setRippleColor(negativeColorButton.rippleColor)
             setOnClickListener {
                 dialog.dismiss()
-                initData()
                 cancel()
             }
         }
@@ -86,10 +90,11 @@ class KuiChooseAlert private constructor() : AlertContentListener {
     /**
      * 赋值callback
      */
-    fun initCallback(yes: () -> Unit, cancel: () -> Unit): KuiChooseAlert {
+
+   fun initCallback(yes: () -> Unit, cancel: () -> Unit): Builder {
         this.yes = yes
         this.cancel = cancel
-        return this
+        return Builder()
     }
 
     /**
@@ -120,9 +125,9 @@ class KuiChooseAlert private constructor() : AlertContentListener {
     /**
      * 设置取消点击按钮的文字
      */
-    fun setNagativeText(content: String): KuiChooseAlert {
-        if (content.length > 6) this.nagativeText = content.substring(0, 5)
-        this.nagativeText = this.nagativeText + "..."
+    fun setNegativeText(content: String): KuiChooseAlert {
+        if (content.length > 6) this.negativeText = content.substring(0, 5)
+        this.negativeText = this.negativeText + "..."
         return this
     }
 
@@ -137,19 +142,20 @@ class KuiChooseAlert private constructor() : AlertContentListener {
     /**
      * 设置cancel按钮颜色属性
      */
-    fun setNativeButtonColorful(colorResButton: ColorResButton): KuiChooseAlert {
-        this.nagativeColorButton = colorResButton
+    fun setNegativeButtonColorful(colorResButton: ColorResButton): KuiChooseAlert {
+        this.negativeColorButton = colorResButton
         return this
     }
 
+    inner class Builder {
+        /**
+         * 构建窗体
+         */
+        fun build(): KuiAlert {
+            return KuiAlert.instance(DialogModel(R.layout.alert_conetent, 0), this@KuiChooseAlert)
+        }
 
-    /**
-     * 构建窗体
-     */
-    fun build(): KuiAlert {
-        return KuiAlert.instance(DialogModel(R.layout.alert_conetent, 0), this)
     }
-
     /**
      * 设置标题颜色
      */
@@ -171,10 +177,11 @@ class KuiChooseAlert private constructor() : AlertContentListener {
         title = "提示"
         content = "是否干啥"
         positiveText = "确定"
-        nagativeText = "取消"
+        negativeText = "取消"
         positiveColorButton= ColorResButton()
-        nagativeColorButton= positiveColorButton
+        negativeColorButton= positiveColorButton
         titleColor = Color.rgb(51, 51, 51)
         contentColor = Color.rgb(102, 102, 102)
+
     }
 }

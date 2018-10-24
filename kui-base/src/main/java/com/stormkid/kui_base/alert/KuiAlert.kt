@@ -1,6 +1,7 @@
 package com.stormkid.kui_base.alert
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,4 +37,10 @@ class KuiAlert : DialogFragment() {
         setStyle(STYLE_NO_TITLE,0)
         return super.onCreateDialog(savedInstanceState)
     }
+
+    override fun onDismiss(dialog: DialogInterface?) {
+        if (null!=alertContentListener)alertContentListener?.beforeDismiss()
+        super.onDismiss(dialog)
+    }
+
 }
