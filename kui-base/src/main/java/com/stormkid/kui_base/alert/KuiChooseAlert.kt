@@ -91,9 +91,9 @@ class KuiChooseAlert private constructor() : AlertContentListener {
      * 赋值callback
      */
 
-   fun initCallback(yes: () -> Unit, cancel: () -> Unit): Builder {
-        this.yes = yes
-        this.cancel = cancel
+   fun initCallback(okCallback: () -> Unit, cancelCallback: () -> Unit): Builder {
+        this.yes = okCallback
+        this.cancel = cancelCallback
         return Builder()
     }
 
