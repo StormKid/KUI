@@ -14,7 +14,7 @@ import com.stormkid.kui_base.button.KuiButton
 import com.stormkid.kui_base.drawables.BgDrawable
 
 /**
-
+自定义两个按钮的弹窗
 @author ke_li
 @date 2018/10/23
  */
