@@ -10,7 +10,7 @@ import com.stormkid.kui_base.ColorResButton
 import com.stormkid.kui_base.DialogModel
 import com.stormkid.kui_base.alert.AlertContentListener
 import com.stormkid.kui_base.alert.KuiAlert
-import com.stormkid.kui_base.alert.KuiChooseAlert
+import com.stormkid.kui_base.alert.KuiChoiceAlert
 import kotlinx.android.synthetic.main.alert_sample.*
 
 /**
@@ -41,7 +41,7 @@ class AlertActivity : MainActivity(),AlertContentListener {
         show_choose_alert.setOnClickListener {
             count +=1
             if (count%2 ==0){
-                KuiChooseAlert.instance.setTitle("这是偶数点击提示")
+                KuiChoiceAlert.instance.setTitle("这是偶数点击提示")
                         .setPositiveText("偶数确定比较长")
                         .setContent("偶数提示内容比较少")
                         .initClickDismiss(true)
@@ -51,7 +51,7 @@ class AlertActivity : MainActivity(),AlertContentListener {
                             Toast.makeText(this@AlertActivity,"偶数取消提示",Toast.LENGTH_SHORT).show()
                         }).build().show(supportFragmentManager,"2")
             }else {
-                KuiChooseAlert.instance.setTitle("这是奇数点击提示")
+                KuiChoiceAlert.instance.setTitle("这是奇数点击提示")
                         .initClickDismiss(true)
                         .setNegativeText("奇数的取消有点长")
                         .setContent("奇数提示内容比较多，以下为复制：啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊")
@@ -61,28 +61,10 @@ class AlertActivity : MainActivity(),AlertContentListener {
                             Toast.makeText(this@AlertActivity,"奇数取消提示",Toast.LENGTH_SHORT).show()
                 }).build().show(supportFragmentManager,"3")
             }
-
-            KuiChooseAlert.instance
-                    .setTitle("title")
-                    .setContent("content")
-                    .setTitleColor(Color.GRAY)
-                    .setContentColor(Color.LTGRAY)
-                    .setPositiveButtonColorful(ColorResButton())
-                    .setNegativeButtonColorful(ColorResButton())
-                    .setNegativeText("cancel")
-                    .setPositiveText("okay")
-                    .initClickDismiss(true)
-                    .initCallback({
-                        //确定回调
-                         },{
-                        //取消回调
-                    }).build().show(supportFragmentManager,"tag")
-
-
         }
 
         show_colorful_choose_alert.setOnClickListener {
-            KuiChooseAlert.instance.setTitleColor(Color.BLUE).setNegativeButtonColorful(ColorResButton(textColor = android.R.color.white)).setPositiveButtonColorful(
+            KuiChoiceAlert.instance.setTitleColor(Color.BLUE).setNegativeButtonColorful(ColorResButton(textColor = android.R.color.white)).setPositiveButtonColorful(
                     ColorResButton(bgColor = Color.YELLOW,rippleColor = Color.YELLOW,textColor = android.R.color.holo_orange_light,isStroke = true)).setTitle("显示多种颜色").setContentColor(Color.RED).setContent("嘿嘿嘿").initCallback({},{}).build().show(supportFragmentManager,"4")
         }
 

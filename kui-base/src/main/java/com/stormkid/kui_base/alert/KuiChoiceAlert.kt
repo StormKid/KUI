@@ -18,7 +18,7 @@ import com.stormkid.kui_base.drawables.BgDrawable
 @author ke_li
 @date 2018/10/23
  */
-class KuiChooseAlert private constructor() : AlertContentListener {
+class KuiChoiceAlert private constructor() : AlertContentListener {
     override fun beforeDismiss() {
         initData()
     }
@@ -76,13 +76,13 @@ class KuiChooseAlert private constructor() : AlertContentListener {
     }
 
     companion object {
-        val instance by lazy { KuiChooseAlert() }
+        val instance by lazy { KuiChoiceAlert() }
     }
 
     /**
      * 更新是否点击全部即可消失窗口
      */
-    fun initClickDismiss(isClickAllDismiss: Boolean): KuiChooseAlert {
+    fun initClickDismiss(isClickAllDismiss: Boolean): KuiChoiceAlert {
         this.isClickAllDismiss = isClickAllDismiss
         return this
     }
@@ -100,7 +100,7 @@ class KuiChooseAlert private constructor() : AlertContentListener {
     /**
      * 设置弹窗标题
      */
-    fun setTitle(title: String): KuiChooseAlert {
+    fun setTitle(title: String): KuiChoiceAlert {
         this.title = title
         return this
     }
@@ -108,7 +108,7 @@ class KuiChooseAlert private constructor() : AlertContentListener {
     /**
      * 设置主要提示的内容
      */
-    fun setContent(content: String): KuiChooseAlert {
+    fun setContent(content: String): KuiChoiceAlert {
         this.content = content
         return this
     }
@@ -116,7 +116,7 @@ class KuiChooseAlert private constructor() : AlertContentListener {
     /**
      * 设置确定点击按钮文字
      */
-    fun setPositiveText(content: String): KuiChooseAlert {
+    fun setPositiveText(content: String): KuiChoiceAlert {
         if (content.length > 6) this.positiveText = content.substring(0, 5)
         this.positiveText = this.positiveText + "..."
         return this
@@ -125,7 +125,7 @@ class KuiChooseAlert private constructor() : AlertContentListener {
     /**
      * 设置取消点击按钮的文字
      */
-    fun setNegativeText(content: String): KuiChooseAlert {
+    fun setNegativeText(content: String): KuiChoiceAlert {
         if (content.length > 6) this.negativeText = content.substring(0, 5)
         this.negativeText = this.negativeText + "..."
         return this
@@ -134,7 +134,7 @@ class KuiChooseAlert private constructor() : AlertContentListener {
     /**
      * 设置ok按钮颜色属性
      */
-    fun setPositiveButtonColorful(colorResButton: ColorResButton): KuiChooseAlert {
+    fun setPositiveButtonColorful(colorResButton: ColorResButton): KuiChoiceAlert {
         this.positiveColorButton = colorResButton
         return this
     }
@@ -142,7 +142,7 @@ class KuiChooseAlert private constructor() : AlertContentListener {
     /**
      * 设置cancel按钮颜色属性
      */
-    fun setNegativeButtonColorful(colorResButton: ColorResButton): KuiChooseAlert {
+    fun setNegativeButtonColorful(colorResButton: ColorResButton): KuiChoiceAlert {
         this.negativeColorButton = colorResButton
         return this
     }
@@ -152,14 +152,14 @@ class KuiChooseAlert private constructor() : AlertContentListener {
          * 构建窗体
          */
         fun build(): KuiAlert {
-            return KuiAlert.instance(DialogModel(R.layout.alert_conetent, 0), this@KuiChooseAlert)
+            return KuiAlert.instance(DialogModel(R.layout.alert_conetent, 0), this@KuiChoiceAlert)
         }
 
     }
     /**
      * 设置标题颜色
      */
-    fun setTitleColor(@ColorInt colorInt: Int): KuiChooseAlert {
+    fun setTitleColor(@ColorInt colorInt: Int): KuiChoiceAlert {
         this.titleColor = colorInt
         return this
     }
@@ -167,7 +167,7 @@ class KuiChooseAlert private constructor() : AlertContentListener {
     /**
      * 设置中间显示的颜色
      */
-    fun setContentColor(@ColorInt colorInt: Int): KuiChooseAlert {
+    fun setContentColor(@ColorInt colorInt: Int): KuiChoiceAlert {
         this.contentColor = colorInt
         return this
     }
