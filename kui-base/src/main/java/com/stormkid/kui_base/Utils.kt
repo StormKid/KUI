@@ -1,10 +1,9 @@
 package com.stormkid.kui_base
 
-import android.graphics.Paint
 import android.graphics.drawable.Drawable
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
-import android.view.View
 
 /**
 各种工具
@@ -12,8 +11,6 @@ import android.view.View
 @date 2018/9/29
  */
 object Utils {
-    val paint by lazy {Paint()}
-
 
     private fun  tintDrawable( drawable:Drawable, colors:Int): Drawable {
         val wrap = DrawableCompat.wrap(drawable).mutate()
