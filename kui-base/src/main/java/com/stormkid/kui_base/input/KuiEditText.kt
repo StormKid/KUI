@@ -1,7 +1,9 @@
 package com.stormkid.kui_base.input
 
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
@@ -40,11 +42,27 @@ class KuiEditText: EditText {
 
         }
         super.onFocusChanged(focused, direction, previouslyFocusedRect)
+
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         startX = measuredWidth/2
     }
+
+    override fun onDraw(canvas: Canvas?) {
+        paint.color = Color.YELLOW
+        paint.strokeWidth = 10f
+        canvas?.drawLine(left.toFloat(),measuredHeight.toFloat(),measuredWidth.toFloat(),measuredHeight.toFloat(),paint)
+        super.onDraw(canvas)
+    }
+
+
+    fun startLine(){
+        val animator = ObjectAnimator.ofFloat(this,"scaleX",0f,3f,1f)
+
+
+    }
+
 
 }

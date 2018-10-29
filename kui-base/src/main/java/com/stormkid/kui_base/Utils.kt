@@ -1,5 +1,6 @@
 package com.stormkid.kui_base
 
+import android.graphics.PointF
 import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -11,6 +12,7 @@ import androidx.core.graphics.drawable.DrawableCompat
 @date 2018/9/29
  */
 object Utils {
+
 
     private fun  tintDrawable( drawable:Drawable, colors:Int): Drawable {
         val wrap = DrawableCompat.wrap(drawable).mutate()
@@ -40,4 +42,13 @@ object Utils {
         view.measure(w, h)
         return view
     }
+
+    /**
+     * 获得两点之间的距离
+     */
+    public fun getDistance(point1: PointF, point2: PointF): Double {
+        return Math.sqrt(((point1.x - point2.x) * (point1.x - point2.x) + (point1.y - point2.y) * (point1.y - point2.y)).toDouble())
+    }
+
+
 }
