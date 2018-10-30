@@ -18,6 +18,8 @@
         <activity android:name=".sample.alert.AlertActivity">
         </activity>
         <activity android:name=".sample.input.InputActivity">
+        </activity>
+        <activity android:name=".sample.badge.BadgeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
