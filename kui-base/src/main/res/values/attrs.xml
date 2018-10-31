@@ -47,4 +47,16 @@
         <attr name="is_show_ripple" format="boolean"/>
         <attr name="button_ripple_color" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="KuiBadge">
+        <attr name="bg_style" format="enum">
+            <enum name="radius" value="0"/>
+            <enum name="circle" value="1"/>
+            <enum name="round" value="2"/>
+        </attr>
+        <attr name="badge_stroked" format="boolean"/>
+        <attr name="is_dragging" format="boolean"/>
+        <attr name="badge_radius" format="dimension"/>
+        <attr name="badge_bgColor" format="reference"/>
+    </declare-styleable>
 </resources>

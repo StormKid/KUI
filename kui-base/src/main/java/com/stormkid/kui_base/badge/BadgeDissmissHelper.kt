@@ -2,37 +2,35 @@ package com.stormkid.kui_base.badge
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.PixelFormat
 import android.graphics.PointF
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
-import android.widget.FrameLayout
-import android.widget.ImageView
-import com.stormkid.kui_base.Utils
-import com.stormkid.kui_base.dimen.DimenUtils
 
 /**
  MVP 模式处理回调
 @author ke_li
 @date 2018/10/29
  */
-class BadgeDissmissHelper(private val context: Context,private val dissmissCallback: DismissCallback): View.OnTouchListener {
+class BadgeDissmissHelper(private val view: View,private val dissmissCallback: DismissCallback): View.OnTouchListener {
     // 获取windowManager 遮罩长按移动
-    private val windowManager: WindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+    private val windowManager: WindowManager = view.context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     // 设置透明manager
     private val params = WindowManager.LayoutParams().apply {
         format = PixelFormat.TRANSPARENT
+        flags = WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
     }
-    private val badgeChangeHelper = BadgeChangeHelper(context)
-    private val frameLayout = FrameLayout(context)
-    private val imageView = ImageView(context).apply {
-         layoutParams = FrameLayout.LayoutParams(DimenUtils.dip2px(context,30f),DimenUtils.dip2px(context,30f))
-         frameLayout.addView(this)
-    }
+    private val badgeChangeHelper = BadgeChangeHelper(view.context)
     private var myBuild:BadgeChangeHelper.Builder? = null
-    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
 
+    init {
+        val color = view.tag ?:0
+        if (color!=0) badgeChangeHelper.setPaintColor(color as Int)
+    }
+
+    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
 
         when(event?.action){
             //按下时通过windowManager启动滑动操作
@@ -44,7 +42,7 @@ class BadgeDissmissHelper(private val context: Context,private val dissmissCallb
                 // 构建bitmap虚拟图层
                 val bitMap = getBitMap(v!!)
                 // 获取view中心点
-                badgeChangeHelper.initPoint(location[0].plus(v.width/2f),location[1].plus(v.height/2f)-Utils.getStatusBarHeight(context))
+                badgeChangeHelper.initPoint(location[0].plus(v.width/2f),location[1].plus(v.height/2f))
                 badgeChangeHelper.setBitmap(bitMap)
                 myBuild =  badgeChangeHelper.Builder(object :OnTouchListener{
                     override fun reBack() {
@@ -55,6 +53,7 @@ class BadgeDissmissHelper(private val context: Context,private val dissmissCallb
                     override fun dismiss(pointF: PointF) { // 取消后处理动画
                         windowManager.removeView(badgeChangeHelper)
                         dissmissCallback.dismissed(v)
+                        v.visibility - View.GONE
                     }
 
                 })
@@ -63,7 +62,7 @@ class BadgeDissmissHelper(private val context: Context,private val dissmissCallb
             }
             // 滑动开始计算距离
             MotionEvent.ACTION_MOVE->
-                badgeChangeHelper.updatedPoint(event.rawX,event.rawY-Utils.getStatusBarHeight(context))
+                badgeChangeHelper.updatedPoint(event.rawX,event.rawY)
 
             MotionEvent.ACTION_UP-> myBuild?.insertAnimator()
 
@@ -72,11 +71,10 @@ class BadgeDissmissHelper(private val context: Context,private val dissmissCallb
     }
 
     private fun getBitMap(view: View): Bitmap? {
-        view.isDrawingCacheEnabled = true
-        view.buildDrawingCache()
-        val bitmap = view.drawingCache
-        view.isDrawingCacheEnabled = false
-        view.destroyDrawingCache()
+        val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_4444)
+        val canvas = Canvas(bitmap)
+        canvas.translate((-view.scrollX).toFloat(), (-view.scrollY).toFloat())
+        view.draw(canvas)
         return bitmap
     }
 }

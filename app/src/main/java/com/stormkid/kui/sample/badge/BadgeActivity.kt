@@ -1,11 +1,7 @@
 package com.stormkid.kui.sample.badge
 
-import android.view.View
 import com.stormkid.kui.MainActivity
 import com.stormkid.kui.R
-import com.stormkid.kui_base.badge.BadgeChangeHelper
-import com.stormkid.kui_base.badge.DismissCallback
-import kotlinx.android.synthetic.main.badge_sample.*
 
 /**
 
@@ -17,10 +13,6 @@ class BadgeActivity:MainActivity() {
 
 
     override fun initView() {
-        BadgeChangeHelper.excute(search_badge,object :DismissCallback{
-            override fun dismissed(view: View) {
-            }
 
-        })
     }
 }

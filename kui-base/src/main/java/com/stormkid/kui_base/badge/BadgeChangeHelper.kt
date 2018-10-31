@@ -76,7 +76,7 @@ class BadgeChangeHelper : View {
 
     companion object {
         fun excute(view: View,dismissCallback: DismissCallback){
-                view.setOnTouchListener(BadgeDissmissHelper(view.context,dismissCallback))
+                view.setOnTouchListener(BadgeDissmissHelper(view,dismissCallback))
         }
     }
 
@@ -170,11 +170,11 @@ class BadgeChangeHelper : View {
             canvas.drawCircle(smallPoint.x,smallPoint.y,currentSmallRadius,paint)
             canvas.drawPath(path,paint)
         }
-//        // 绘制此对象映射的图片
-//        if (null!=bitmap){
-//            canvas.drawBitmap(bitmap,bigPoint.x-bitmap?.width!!.div(2),
-//                    bigPoint.y-bitmap?.height!!.div(2),paint)
-//        }
+        // 绘制此对象映射的图片
+        if (null!=bitmap){
+            canvas.drawBitmap(bitmap,bigPoint.x-bitmap?.width!!.div(2),
+                    bigPoint.y-bitmap?.height!!.div(2),paint)
+        }
 
     }
 }
