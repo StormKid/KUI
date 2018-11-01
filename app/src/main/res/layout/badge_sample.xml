@@ -3,6 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
+              android:padding="@dimen/dp_20"
               android:layout_height="match_parent">
 
     <com.stormkid.kui_base.badge.KuiBadge android:layout_width="@dimen/dp_40"
@@ -13,4 +14,66 @@
                                           android:textColor="@color/primary"
                                           android:layout_height="@dimen/dp_40"/>
 
+
+    <RelativeLayout android:layout_width="@dimen/dp_80"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_height="wrap_content">
+
+        <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
+                                                app:text="带badge"
+                                                app:icon_res="@drawable/ic_home"
+                                                android:layout_height="wrap_content"/>
+
+
+        <com.stormkid.kui_base.badge.KuiBadge android:layout_width="@dimen/dp_18"
+                                              app:bg_style="circle"
+                                              android:text="11"
+                                              app:is_dragging="true"
+                                              android:layout_alignParentEnd="true"
+                                              android:textSize="@dimen/sp_10"
+                                              android:padding="@dimen/dp_2"
+                                              android:textColor="@android:color/white"
+                                              app:badge_bgColor="@color/colorAccent"
+                                              android:layout_height="@dimen/dp_18"/>
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:layout_height="wrap_content">
+    <com.stormkid.kui_base.toolbar.KuiToolBar android:layout_width="match_parent"
+                                              app:title_color="@android:color/white"
+                                              app:title_text="带badge"
+                                              app:content_text="有badge"
+                                              app:title_gravity="LEFT"
+                                              app:is_nav_bar="false"
+                                              android:background="@color/primary"
+                                              app:content_color="@android:color/holo_orange_light"
+                                              android:layout_height="@dimen/dp_40"/>
+        <com.stormkid.kui_base.badge.KuiBadge android:layout_width="@dimen/dp_18"
+                                              app:bg_style="circle"
+                                              android:text="11"
+                                              android:layout_marginRight="@dimen/sp_10"
+                                              app:is_dragging="true"
+                                              android:layout_alignParentEnd="true"
+                                              android:layout_centerVertical="true"
+                                              android:textSize="@dimen/sp_10"
+                                              android:padding="@dimen/dp_2"
+                                              android:textColor="@android:color/white"
+                                              app:badge_bgColor="@color/colorAccent"
+                                              android:layout_height="@dimen/dp_18"/>
+    </RelativeLayout>
+
+
+    <com.stormkid.kui_base.badge.KuiBadge android:layout_width="wrap_content"
+                                          android:layout_marginTop="@dimen/dp_20"
+                                          android:text="/@\标记"
+                                          app:is_dragging="true"
+                                          app:badge_bgColor="@android:color/holo_orange_dark"
+                                          android:paddingLeft="@dimen/sp_10"
+                                          android:paddingRight="@dimen/sp_10"
+                                          android:paddingTop="@dimen/dp_5"
+                                          android:paddingBottom="@dimen/dp_5"
+                                          android:textColor="@android:color/white"
+                                          app:bg_style="round"
+                                          android:layout_height="wrap_content"/>
 </LinearLayout>
