@@ -10,7 +10,7 @@
 * **RefreshingLayout** make a easy datas changing when use recyclerview.
 * and so on......
 ----
-# API herf
+# [API herf](http://www.kui-document.cn)
 ----
 # Lisence
 ```
