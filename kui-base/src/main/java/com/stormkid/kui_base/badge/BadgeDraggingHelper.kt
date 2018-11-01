@@ -14,7 +14,7 @@ import android.view.WindowManager
 @author ke_li
 @date 2018/10/29
  */
-class BadgeDissmissHelper(private val view: View,private val dissmissCallback: DismissCallback): View.OnTouchListener {
+class BadgeDraggingHelper(private val view: View, private val dissmissCallback: DismissCallback): View.OnTouchListener {
     // 获取windowManager 遮罩长按移动
     private val windowManager: WindowManager = view.context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     // 设置透明manager
@@ -22,8 +22,8 @@ class BadgeDissmissHelper(private val view: View,private val dissmissCallback: D
         format = PixelFormat.TRANSPARENT
         flags = WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
     }
-    private val badgeChangeHelper = BadgeChangeHelper(view.context)
-    private var myBuild:BadgeChangeHelper.Builder? = null
+    private val badgeChangeHelper = BadgeDragView(view.context)
+    private var myBuild:BadgeDragView.Builder? = null
 
     init {
         val color = view.tag ?:0
@@ -76,5 +76,12 @@ class BadgeDissmissHelper(private val view: View,private val dissmissCallback: D
         canvas.translate((-view.scrollX).toFloat(), (-view.scrollY).toFloat())
         view.draw(canvas)
         return bitmap
+    }
+
+
+    companion object {
+        fun draging(view: View,dismissCallback: DismissCallback){
+            view.setOnTouchListener(BadgeDraggingHelper(view,dismissCallback))
+        }
     }
 }

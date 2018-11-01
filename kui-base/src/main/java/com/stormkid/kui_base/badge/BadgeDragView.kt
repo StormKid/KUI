@@ -18,7 +18,7 @@ import com.stormkid.kui_base.dimen.DimenUtils
 @author ke_li
 @date 2018/10/29
  */
-class BadgeChangeHelper : View {
+class BadgeDragView : View {
     //小型圆形中心点
     private val smallPoint = PointF()
     //大型圆形中心点
@@ -74,11 +74,6 @@ class BadgeChangeHelper : View {
         this.bitmap = bitmap
     }
 
-    companion object {
-        fun excute(view: View,dismissCallback: DismissCallback){
-                view.setOnTouchListener(BadgeDissmissHelper(view,dismissCallback))
-        }
-    }
 
 
     /**

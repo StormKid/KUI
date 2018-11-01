@@ -52,10 +52,22 @@ class KuiBadge : TextView {
     }
 
 
+
+    fun setDragCallback(callback: ()->Unit){
+        isDragging = false
+        this.tag = bgColor
+        BadgeDraggingHelper.draging(this,object :DismissCallback{
+            override fun dismissed(view: View) {
+                callback()
+            }
+        })
+    }
+
     private fun initDrag(){
         if (isDragging)
-        BadgeChangeHelper.excute(this,object :DismissCallback{
+        BadgeDraggingHelper.draging(this,object :DismissCallback{
             override fun dismissed(view: View) {
+
             }
         })
     }

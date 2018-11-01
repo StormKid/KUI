@@ -2,6 +2,7 @@ package com.stormkid.kui.sample.badge
 
 import com.stormkid.kui.MainActivity
 import com.stormkid.kui.R
+import kotlinx.android.synthetic.main.badge_sample.*
 
 /**
 
@@ -13,6 +14,8 @@ class BadgeActivity:MainActivity() {
 
 
     override fun initView() {
+        badge.setDragCallback {
 
+        }
     }
 }

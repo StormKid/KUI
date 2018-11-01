@@ -8,8 +8,9 @@
     <com.stormkid.kui_base.badge.KuiBadge android:layout_width="@dimen/dp_40"
                                           app:bg_style="circle"
                                           android:text="666"
-                                          android:textColor="@android:color/white"
-                                          app:is_dragging="true"
+                                          android:id="@+id/badge"
+                                          app:badge_stroked="true"
+                                          android:textColor="@color/primary"
                                           android:layout_height="@dimen/dp_40"/>
 
 </LinearLayout>
