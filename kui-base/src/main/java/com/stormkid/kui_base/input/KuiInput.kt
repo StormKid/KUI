@@ -44,7 +44,7 @@ class KuiInput : LinearLayout {
 
         when (ev?.action) {
             MotionEvent.ACTION_DOWN -> {
-                if (isFocus) editText.addFocusable()
+                if (!isFocus) editText.addFocusable()
                 else editText.loseFocusable()
                 isFocus = !isFocus
             }

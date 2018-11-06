@@ -78,8 +78,6 @@ class KuiEditText: EditText,Animator.AnimatorListener {
         canvas?.drawLine(left.toFloat(),measuredHeight.toFloat(),currentPoint,measuredHeight.toFloat(),paint)
     }
 
-
-
     private fun setDrawLine(x:Float){
         this.currentPoint = x
         invalidate()
