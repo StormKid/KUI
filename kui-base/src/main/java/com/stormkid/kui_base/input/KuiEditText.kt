@@ -10,6 +10,7 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.text.TextUtils
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -48,9 +49,6 @@ class KuiEditText: EditText,Animator.AnimatorListener {
 
     }
 
-    init {
-//        loseFocusable()
-    }
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
@@ -81,6 +79,20 @@ class KuiEditText: EditText,Animator.AnimatorListener {
     private fun setDrawLine(x:Float){
         this.currentPoint = x
         invalidate()
+    }
+    private var isFocus = false
+    fun initEditFocus(){
+        if (!isFocus) addFocusable()
+        else loseFocusable()
+    }
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        when (event?.action) {
+            MotionEvent.ACTION_DOWN -> {
+                initEditFocus()
+            }
+
+        }
+        return super.onTouchEvent(event)
     }
 
 
@@ -119,6 +131,7 @@ class KuiEditText: EditText,Animator.AnimatorListener {
         requestFocus()
         findFocus()
         service.showSoftInput(this,InputMethodManager.SHOW_FORCED)
+        isFocus = true
     }
 
     fun loseFocusable(){
@@ -126,5 +139,6 @@ class KuiEditText: EditText,Animator.AnimatorListener {
         isFocusable = false
         if (service.isActive)
         service.hideSoftInputFromWindow(this.windowToken,0)
+        isFocus = false
     }
 }
