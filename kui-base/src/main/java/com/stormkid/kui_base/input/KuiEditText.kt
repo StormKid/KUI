@@ -8,12 +8,14 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
+import android.os.LocaleList
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import com.stormkid.kui_base.dimen.DimenUtils
 
 /**
 自定义底部和placeholder 上移的edittext
@@ -24,6 +26,7 @@ class KuiEditText: EditText,Animator.AnimatorListener {
 
 
     private var isAnimator = false
+    private var isFirstMeasure = true
     private var flag = 1
     override fun onAnimationEnd(animation: Animator?) {
         clearAnimation()
@@ -53,10 +56,16 @@ class KuiEditText: EditText,Animator.AnimatorListener {
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
     @SuppressLint("Recycle")
-    constructor(context: Context, attributeSet: AttributeSet?, defAttr: Int) : super(context, attributeSet, defAttr)
+    constructor(context: Context, attributeSet: AttributeSet?, defAttr: Int) : super(context, attributeSet, defAttr){
+        hint = "666"
+    }
 
+    override fun getImeHintLocales(): LocaleList? {
+        return super.getImeHintLocales()
+    }
     override fun onFocusChanged(focused: Boolean, direction: Int, previouslyFocusedRect: Rect?) {
         super.onFocusChanged(focused, direction, previouslyFocusedRect)
+        isFocus = focused
         if (focused){ // 开启画线动画
             startLine()
         }else{ // 开启画线取消动画
@@ -131,7 +140,6 @@ class KuiEditText: EditText,Animator.AnimatorListener {
         requestFocus()
         findFocus()
         service.showSoftInput(this,InputMethodManager.SHOW_FORCED)
-        isFocus = true
     }
 
     fun loseFocusable(){
@@ -139,6 +147,23 @@ class KuiEditText: EditText,Animator.AnimatorListener {
         isFocusable = false
         if (service.isActive)
         service.hideSoftInputFromWindow(this.windowToken,0)
-        isFocus = false
     }
+
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        val mode = MeasureSpec.getMode(heightMeasureSpec)
+        val size = MeasureSpec.getSize(heightMeasureSpec)
+        if (isFirstMeasure){
+            val resultSize = DimenUtils.px2sp(context,size.toFloat())
+            val textSize = textSize
+            val div = resultSize/textSize
+            val line = Math.floor(div.toDouble())
+            maxLines=line.toInt()
+        }
+        isFirstMeasure = false
+    }
+
+
+
 }

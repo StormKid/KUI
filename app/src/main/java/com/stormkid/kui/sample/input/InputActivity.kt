@@ -18,7 +18,11 @@ class InputActivity:MainActivity() {
     override fun initView() {
         InputHelper.instance.initTouchEdit(this){
             input.cleanFocus()
-            real.cleanFocus()
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        input.cleanFocus()
     }
 }

@@ -5,7 +5,7 @@ import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
 import android.view.Gravity
-import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import com.stormkid.kui_base.dimen.DimenUtils
 
 
@@ -15,15 +15,13 @@ input 文字
 @author ke_li
 @date 2018/10/19
  */
-class KuiInput : LinearLayout {
+class KuiInput : RelativeLayout {
 
 
     private val paddingDimen = DimenUtils.dip2px(context, 10f)
-    private var isFocus = false
     private val editText = KuiEditText(context).apply {
         setBackgroundColor(Color.WHITE)
-        layoutParams = LayoutParams(0, LayoutParams.WRAP_CONTENT).apply {
-            weight = 1f
+        layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT).apply {
             setPadding(paddingDimen, paddingDimen, paddingDimen, paddingDimen)
         }
     }
@@ -40,14 +38,7 @@ class KuiInput : LinearLayout {
         gravity = Gravity.CENTER_VERTICAL
     }
 
-     fun initEditFocus(){
-        if (!isFocus) editText.addFocusable()
-        else editText.loseFocusable()
-        isFocus = !isFocus
-    }
-
-    fun cleanFocus(){
-        isFocus = false
+    fun cleanFocus() {
         editText.loseFocusable()
     }
 
