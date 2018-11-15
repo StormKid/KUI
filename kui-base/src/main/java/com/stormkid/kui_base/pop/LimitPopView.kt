@@ -12,13 +12,20 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.ColorInt
+import com.stormkid.kui_base.helper.AnimationCallback
 
 /**
 
 @author ke_li
 @date 2018/11/15
  */
-class LimitPopView : FrameLayout {
+class LimitPopView : FrameLayout ,AnimationCallback{
+    override fun onFinished() {
+    }
+
+    override fun onStarted() {
+    }
+
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
     @SuppressLint("Recycle")
