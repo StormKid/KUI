@@ -149,7 +149,7 @@ class BadgeDragView : View {
                 })
                 animator.start()
             } else {
-                // 显示爆炸效果
+                // TODO 显示爆炸效果
                 onTouchListener.dismiss(bigPoint)
             }
         }

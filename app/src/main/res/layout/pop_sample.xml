@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:padding="@dimen/dp_20"
+              android:layout_height="match_parent">
+    <com.stormkid.kui_base.button.KuiButton android:layout_width="wrap_content"
+                                            android:id="@+id/show_pop_window"
+                                            app:text="showPopWindow"
+                                            android:padding="@dimen/sp_10"
+                                            android:layout_height="@dimen/dp_40"/>
+
+</LinearLayout>
