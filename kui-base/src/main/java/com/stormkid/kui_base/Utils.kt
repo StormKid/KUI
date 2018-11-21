@@ -1,6 +1,8 @@
 package com.stormkid.kui_base
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.graphics.PointF
 import android.graphics.drawable.Drawable
 import android.view.View
@@ -89,5 +91,16 @@ object Utils {
             //根据资源ID获取响应的尺寸值
             context.resources.getDimensionPixelSize(resourceId)
         } else DimenUtils.dip2px(context,25f)
+    }
+
+    /**
+     * 获取view的bitmap
+     */
+    fun getBitMap(view: View): Bitmap? {
+        val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_4444)
+        val canvas = Canvas(bitmap)
+        canvas.translate((-view.scrollX).toFloat(), (-view.scrollY).toFloat())
+        view.draw(canvas)
+        return bitmap
     }
 }

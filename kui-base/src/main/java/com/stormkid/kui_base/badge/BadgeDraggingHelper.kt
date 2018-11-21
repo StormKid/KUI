@@ -1,13 +1,12 @@
 package com.stormkid.kui_base.badge
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Canvas
 import android.graphics.PixelFormat
 import android.graphics.PointF
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
+import com.stormkid.kui_base.Utils
 
 /**
  MVP 模式处理回调
@@ -40,7 +39,7 @@ class BadgeDraggingHelper(private val view: View, private val dissmissCallback: 
                 val location = intArrayOf(0,0)
                 v?.getLocationOnScreen(location)
                 // 构建bitmap虚拟图层
-                val bitMap = getBitMap(v!!)
+                val bitMap = Utils.getBitMap(v!!)
                 // 获取view中心点
                 badgeChangeHelper.initPoint(location[0].plus(v.width/2f),location[1].plus(v.height/2f))
                 badgeChangeHelper.setBitmap(bitMap)
@@ -70,13 +69,7 @@ class BadgeDraggingHelper(private val view: View, private val dissmissCallback: 
         return true
     }
 
-    private fun getBitMap(view: View): Bitmap? {
-        val bitmap = Bitmap.createBitmap(view.width, view.height, Bitmap.Config.ARGB_4444)
-        val canvas = Canvas(bitmap)
-        canvas.translate((-view.scrollX).toFloat(), (-view.scrollY).toFloat())
-        view.draw(canvas)
-        return bitmap
-    }
+
 
 
     companion object {

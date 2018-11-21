@@ -5,8 +5,8 @@ import android.animation.ArgbEvaluator
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.Rect
 import android.util.AttributeSet
 import android.view.View
@@ -20,6 +20,10 @@ import com.stormkid.kui_base.helper.AnimationCallback
 @date 2018/11/15
  */
 class LimitPopView : FrameLayout ,AnimationCallback{
+
+    // 绘制并计算rootview的bitmap显示
+    private val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+
     override fun onFinished() {
     }
 
@@ -33,11 +37,20 @@ class LimitPopView : FrameLayout ,AnimationCallback{
 
 
     private  val view = View(context)
-    fun addRootView(rootView:View,rect: Rect,callback: () -> Unit){
-        addView(view,FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT).apply {
-        })
+    private  var flag = KuiPop.DOWN
+    fun addRootView(rect: Rect,callback: () -> Unit){
+        addView(view,initDirection(flag,rect))
         initAnimator(callback,Color.TRANSPARENT,Color.argb(120, 0, 0, 0))
     }
+
+    fun addContentView(rootView:View,rect: Rect){
+        addView(rootView,initDirection(flag,rect))
+    }
+
+    fun setFlag(flag:Int){
+        this.flag = flag
+    }
+
 
     fun initDirection(flag:Int,rect: Rect)=FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT).apply {
         when (flag) {
@@ -60,11 +73,6 @@ class LimitPopView : FrameLayout ,AnimationCallback{
     }
 
 
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
-
-    }
-
 
     fun dissmissView(callback: () -> Unit) {
         initAnimator(callback,Color.argb(120, 0, 0, 0),Color.TRANSPARENT)
@@ -72,7 +80,7 @@ class LimitPopView : FrameLayout ,AnimationCallback{
 
     private fun initAnimator(callback: () -> Unit,@ColorInt startColor:Int,@ColorInt endColor:Int){
         ObjectAnimator.ofInt(view, "backgroundColor",startColor, endColor).apply {
-            duration = 2000
+            duration = 200
             setEvaluator(ArgbEvaluator())
             start()
         }.addListener(object : Animator.AnimatorListener {

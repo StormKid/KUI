@@ -40,10 +40,12 @@ class KuiPop(private val popParams: PopParams, private val popwindowListener: Po
     fun show(view: View, flag: Int) {
         val rect = Rect()
         view.getGlobalVisibleRect(rect)
+        limitPopView.setFlag(flag)
         val manager = view.context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         manager.addView(limitPopView, layoutparams)
-        limitPopView.addRootView(rootView, rect) {}
-
+        limitPopView.addRootView(rect) {
+            limitPopView.addContentView(rootView,rect)
+        }
         isShow = true
         limitPopView.setOnClickListener {
             if (isShow) limitPopView.dissmissView { manager.removeViewImmediate(limitPopView) }
@@ -52,22 +54,6 @@ class KuiPop(private val popParams: PopParams, private val popwindowListener: Po
     }
 
 
-    fun initLocation(rect: Rect) {
-        val left = rect.left
-        val right = rect.right
-        val top = rect.top
-        val bottom = rect.bottom
-        when (flag) {
-            DOWN -> {
-            }
-            LEFT -> {
-            }
-            RIGHT -> {
-            }
-            TOP -> {
-            }
-        }
-    }
 
     data class PopParams(val context: Context, @LayoutRes val layoutRes: Int)
 }
