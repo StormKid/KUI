@@ -23,8 +23,10 @@ class PopActivity:MainActivity(),PopwindowListener {
 
     override fun initView() {
         show_pop_window.setOnClickListener {
-            KuiPop(KuiPop.PopParams(this,R.layout.alert_sample),this).show(show_pop_window,KuiPop.DOWN)
+            KuiPop(KuiPop.PopParams(this,R.layout.alert_sample),this).show(show_pop_window, KuiPop.DOWN)
+
         }
+
 
     }
 }

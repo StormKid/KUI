@@ -31,19 +31,32 @@ class LimitPopView : FrameLayout ,AnimationCallback{
     @SuppressLint("Recycle")
     constructor(context: Context, attributeSet: AttributeSet?, defAttr: Int) : super(context, attributeSet, defAttr)
 
-    fun addRootView(callback: () -> Unit): LimitPopView {
+
+    private  val view = View(context)
+    fun addRootView(rootView:View,rect: Rect,callback: () -> Unit){
+        addView(view,FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT).apply {
+        })
         initAnimator(callback,Color.TRANSPARENT,Color.argb(120, 0, 0, 0))
-        return this
     }
 
+    fun initDirection(flag:Int,rect: Rect)=FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT).apply {
+        when (flag) {
+            KuiPop.DOWN ->
+               topMargin = rect.bottom
 
-    fun addRootView(rootView:View,rect: Rect){
-        addView(rootView,FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT).apply {
-                val bottom = rect.bottom
-                topMargin = bottom
-//                leftMargin = rect.right
-//                topMargin = rect.top
-        })
+            KuiPop.LEFT -> {
+                rightMargin = context.resources.displayMetrics.widthPixels -  rect.left
+                topMargin = rect.top
+            }
+
+            KuiPop.RIGHT -> {
+                leftMargin = rect.right
+                topMargin = rect.top
+            }
+            KuiPop.TOP -> {
+                bottomMargin = context.resources.displayMetrics.heightPixels -  rect.top
+            }
+        }
     }
 
 
@@ -58,8 +71,8 @@ class LimitPopView : FrameLayout ,AnimationCallback{
     }
 
     private fun initAnimator(callback: () -> Unit,@ColorInt startColor:Int,@ColorInt endColor:Int){
-        ObjectAnimator.ofInt(this, "backgroundColor",startColor, endColor).apply {
-            duration = 200
+        ObjectAnimator.ofInt(view, "backgroundColor",startColor, endColor).apply {
+            duration = 2000
             setEvaluator(ArgbEvaluator())
             start()
         }.addListener(object : Animator.AnimatorListener {
