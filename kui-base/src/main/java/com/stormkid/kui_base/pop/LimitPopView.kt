@@ -23,21 +23,23 @@ class LimitPopView : FrameLayout {
     @SuppressLint("Recycle")
     constructor(context: Context, attributeSet: AttributeSet?, defAttr: Int) : super(context, attributeSet, defAttr)
 
-
+    private var isAutoLayout =true
     private val view = View(context)
     private var flag = KuiPop.DOWN
     private var isNeedBg = false
     fun addRootView(rect: Rect, callback: () -> Unit) {
         if (isNeedBg) {
             addView(view, initDirection(rect, false))
-        }
-        initAnimator(callback, Color.TRANSPARENT, Color.argb(120, 0, 0, 0))
+            initAnimator(callback, Color.TRANSPARENT, Color.argb(120, 0, 0, 0))
+        }else callback()
     }
 
     fun addContentView(rootView: View, rect: Rect) {
         addView(rootView, initDirection(rect, true))
         showContent(rootView)
     }
+
+
 
     fun setFlag(flag: Int) {
         this.flag = flag
@@ -47,26 +49,31 @@ class LimitPopView : FrameLayout {
         this.isNeedBg = isNeedBg
     }
 
+
+    fun autoLayout(isAuto:Boolean){
+        isAutoLayout = isAuto
+    }
+
     private fun initDirection(rect: Rect, isContent: Boolean) = FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
         when (flag) {
             KuiPop.DOWN -> {
-                if (isContent)
+                if (isContent&&isAutoLayout)
                     leftMargin = rect.left
                 topMargin = rect.bottom
             }
             KuiPop.LEFT -> {
                 rightMargin = context.resources.displayMetrics.widthPixels - rect.left
-                if (isContent)
+                if (isContent&&isAutoLayout)
                     topMargin = rect.top
             }
 
             KuiPop.RIGHT -> {
                 leftMargin = rect.right
-                if (isContent)
+                if (isContent&&isAutoLayout)
                     topMargin = rect.top
             }
             KuiPop.TOP -> {
-                if (isContent)
+                if (isContent&&isAutoLayout)
                     leftMargin = rect.left
                 bottomMargin = context.resources.displayMetrics.heightPixels - rect.top
             }
@@ -81,18 +88,25 @@ class LimitPopView : FrameLayout {
         val width = view.measuredWidth
         when (flag) {
             KuiPop.DOWN -> updateAnimator(height, 0, {
+                if (isNeedBg)
                 initAnimator(callback, Color.argb(120, 0, 0, 0), Color.TRANSPARENT)
+                else callback()
             }) {
                 val currentHeight = it.animatedValue as Int
                 params.height = currentHeight
                 view.layoutParams = params
             }
             KuiPop.RIGHT -> updateAnimator(width, 0, {
+                if (isNeedBg)
                 initAnimator(callback, Color.argb(120, 0, 0, 0), Color.TRANSPARENT)
+                else callback()
             }) {
                 val currentHeight = it.animatedValue as Int
                 params.width = currentHeight
                 view.layoutParams = params
+            }
+            KuiPop.LEFT,KuiPop.TOP->{
+                callback()
             }
         }
     }

@@ -24,8 +24,10 @@ class KuiPop(private val popParams: PopParams, private val popwindowListener: Po
 
     companion object {
         const val DOWN = 0
+        @Deprecated("左侧显示无动画")
         const val LEFT = 1
         const val RIGHT = 2
+        @Deprecated("上部显示无动画且无对齐")
         const val TOP = 3
     }
 
@@ -36,13 +38,26 @@ class KuiPop(private val popParams: PopParams, private val popwindowListener: Po
     }
 
     /**
-     * 是否需要遮罩
+     * 是否需要自动对齐
      */
-    fun needBg(isNeed:Boolean): KuiPop {
-        limitPopView.isNeedBg(isNeed)
+    fun isGravityLocation(isAutoLayout: Boolean): KuiPop {
+        limitPopView.autoLayout(isAutoLayout)
         return this
     }
 
+
+    /**
+     * 是否需要遮罩
+     */
+    fun needBg(isNeed: Boolean): KuiPop {
+        limitPopView.isNeedBg(isNeed)
+        return this
+    }
+    /**
+     * 显示popwindow
+     * @param view 目标点击的view
+     * @param flag 指定相对于view的位置
+     */
 
     fun show(view: View, flag: Int) {
         val rect = Rect()
@@ -50,14 +65,17 @@ class KuiPop(private val popParams: PopParams, private val popwindowListener: Po
         limitPopView.setFlag(flag)
         val manager = view.context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         manager.addView(limitPopView, layoutparams)
-        limitPopView.addRootView(rect) { limitPopView.addContentView(rootView,rect) }
+        limitPopView.addRootView(rect) {
+            limitPopView.addContentView(rootView, rect)
+        }
         isShow = true
         limitPopView.setOnClickListener {
-            if (isShow) limitPopView.dissmissView(rootView) { manager.removeViewImmediate(limitPopView) }
+            if (isShow) limitPopView.dissmissView(rootView) {
+                manager.removeViewImmediate(limitPopView)
+            }
             isShow = false
         }
     }
-
 
 
     data class PopParams(val context: Context, @LayoutRes val layoutRes: Int)
