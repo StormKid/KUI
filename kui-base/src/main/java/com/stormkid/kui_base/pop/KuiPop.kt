@@ -15,7 +15,6 @@ pop 底部弹窗
  */
 class KuiPop(private val popParams: PopParams, private val popwindowListener: PopwindowListener) {
     private var rootView: View
-    private var flag = DOWN
     private var isShow = false
     private var limitPopView: LimitPopView
     private val layoutparams = WindowManager.LayoutParams().apply {
@@ -36,6 +35,14 @@ class KuiPop(private val popParams: PopParams, private val popwindowListener: Po
         limitPopView = LimitPopView(popParams.context)
     }
 
+    /**
+     * 是否需要遮罩
+     */
+    fun needBg(isNeed:Boolean): KuiPop {
+        limitPopView.isNeedBg(isNeed)
+        return this
+    }
+
 
     fun show(view: View, flag: Int) {
         val rect = Rect()
@@ -43,12 +50,10 @@ class KuiPop(private val popParams: PopParams, private val popwindowListener: Po
         limitPopView.setFlag(flag)
         val manager = view.context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         manager.addView(limitPopView, layoutparams)
-        limitPopView.addRootView(rect) {
-            limitPopView.addContentView(rootView,rect)
-        }
+        limitPopView.addRootView(rect) { limitPopView.addContentView(rootView,rect) }
         isShow = true
         limitPopView.setOnClickListener {
-            if (isShow) limitPopView.dissmissView { manager.removeViewImmediate(limitPopView) }
+            if (isShow) limitPopView.dissmissView(rootView) { manager.removeViewImmediate(limitPopView) }
             isShow = false
         }
     }
