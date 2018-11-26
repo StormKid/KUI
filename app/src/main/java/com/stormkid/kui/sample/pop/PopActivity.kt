@@ -22,10 +22,19 @@ class PopActivity:MainActivity(),PopwindowListener {
 
 
     override fun initView() {
-        show_pop_window.setOnClickListener {
-            KuiPop(KuiPop.PopParams(this,R.layout.alert_sample),this).needBg(true).show(show_pop_window, KuiPop.TOP)
+        show_down_window.setOnClickListener {
+            KuiPop(KuiPop.PopParams(this,R.layout.alert_sample),this).show(show_down_window)
         }
 
+        show_down_window_with_bg.setOnClickListener{
+            KuiPop(KuiPop.PopParams(this,R.layout.alert_sample),this).needBg(true).show(show_down_window_with_bg)
+        }
+        show_right_window.setOnClickListener{
+            KuiPop(KuiPop.PopParams(this,R.layout.alert_sample),this).show(show_right_window,KuiPop.RIGHT)
+        }
 
+        show_right_window_with_bg.setOnClickListener{
+            KuiPop(KuiPop.PopParams(this,R.layout.alert_sample),this).needBg(true).show(show_right_window_with_bg,KuiPop.RIGHT)
+        }
     }
 }

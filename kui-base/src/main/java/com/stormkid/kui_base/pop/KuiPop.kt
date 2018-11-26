@@ -24,11 +24,11 @@ class KuiPop(private val popParams: PopParams, private val popwindowListener: Po
 
     companion object {
         const val DOWN = 0
-        @Deprecated("左侧显示无动画")
-        const val LEFT = 1
+//        @Deprecated("左侧显示无动画")
+//        const val LEFT = 1
         const val RIGHT = 2
-        @Deprecated("上部显示无动画且无对齐")
-        const val TOP = 3
+//        @Deprecated("上部显示无动画且无对齐")
+//        const val TOP = 3
     }
 
     init {
@@ -53,6 +53,14 @@ class KuiPop(private val popParams: PopParams, private val popwindowListener: Po
         limitPopView.isNeedBg(isNeed)
         return this
     }
+
+    /**
+     * 默认向下弹出
+     */
+    fun show(view: View){
+        show(view, DOWN)
+    }
+
     /**
      * 显示popwindow
      * @param view 目标点击的view

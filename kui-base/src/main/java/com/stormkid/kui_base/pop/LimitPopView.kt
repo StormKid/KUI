@@ -61,22 +61,22 @@ class LimitPopView : FrameLayout {
                     leftMargin = rect.left
                 topMargin = rect.bottom
             }
-            KuiPop.LEFT -> {
-                rightMargin = context.resources.displayMetrics.widthPixels - rect.left
-                if (isContent&&isAutoLayout)
-                    topMargin = rect.top
-            }
+//            KuiPop.LEFT -> {
+//                rightMargin = context.resources.displayMetrics.widthPixels - rect.left
+//                if (isContent&&isAutoLayout)
+//                    topMargin = rect.top
+//            }
 
             KuiPop.RIGHT -> {
                 leftMargin = rect.right
                 if (isContent&&isAutoLayout)
                     topMargin = rect.top
             }
-            KuiPop.TOP -> {
-                if (isContent&&isAutoLayout)
-                    leftMargin = rect.left
-                bottomMargin = context.resources.displayMetrics.heightPixels - rect.top
-            }
+//            KuiPop.TOP -> {
+//                if (isContent&&isAutoLayout)
+//                    leftMargin = rect.left
+//                bottomMargin = context.resources.displayMetrics.heightPixels - rect.top
+//            }
         }
     }
 
@@ -105,9 +105,9 @@ class LimitPopView : FrameLayout {
                 params.width = currentHeight
                 view.layoutParams = params
             }
-            KuiPop.LEFT,KuiPop.TOP->{
-                callback()
-            }
+//            KuiPop.LEFT,KuiPop.TOP->{
+//                callback()
+//            }
         }
     }
 

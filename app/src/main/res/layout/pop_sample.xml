@@ -4,11 +4,32 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:padding="@dimen/dp_20"
-              android:gravity="center"
               android:layout_height="match_parent">
     <com.stormkid.kui_base.button.KuiButton android:layout_width="wrap_content"
-                                            android:id="@+id/show_pop_window"
-                                            app:text="showPopWindow"
+                                            android:id="@+id/show_down_window"
+                                            app:text="显示下侧"
+                                            android:padding="@dimen/sp_10"
+                                            android:layout_height="@dimen/dp_40"/>
+
+    <com.stormkid.kui_base.button.KuiButton android:layout_width="wrap_content"
+                                            android:id="@+id/show_right_window"
+                                            app:text="显示右侧"
+                                            android:layout_marginTop="@dimen/dp_20"
+                                            android:layout_marginBottom="@dimen/dp_20"
+                                            android:padding="@dimen/sp_10"
+                                            android:layout_height="@dimen/dp_40"/>
+
+    <com.stormkid.kui_base.button.KuiButton android:layout_width="wrap_content"
+                                            android:id="@+id/show_down_window_with_bg"
+                                            app:text="显示下侧带阴影"
+                                            android:layout_marginBottom="@dimen/dp_20"
+                                            android:padding="@dimen/sp_10"
+                                            android:layout_height="@dimen/dp_40"/>
+
+    <com.stormkid.kui_base.button.KuiButton android:layout_width="wrap_content"
+                                            android:id="@+id/show_right_window_with_bg"
+                                            app:text="显示右侧带阴影"
+                                            android:layout_marginBottom="@dimen/dp_20"
                                             android:padding="@dimen/sp_10"
                                             android:layout_height="@dimen/dp_40"/>
 
