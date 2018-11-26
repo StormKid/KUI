@@ -17,7 +17,7 @@ class ButtonActitivy:MainActivity() {
     override fun initView() {
 
         click_right.setOnClickListener {
-            Log.d("xxx","66666666666")
+            Log.d("xxx","66666666665")
         }
 
         do_now.setOnClickListener {

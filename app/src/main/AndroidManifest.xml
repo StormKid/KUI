@@ -18,17 +18,17 @@
         <activity android:name=".sample.alert.AlertActivity">
         </activity>
         <activity android:name=".sample.input.InputActivity">
-
-        </activity>
-        <activity android:name=".sample.badge.BadgeActivity">
-
-        </activity>
-        <activity android:name=".sample.pop.PopActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".sample.badge.BadgeActivity">
+
+        </activity>
+        <activity android:name=".sample.pop.PopActivity">
+
         </activity>
     </application>
 
