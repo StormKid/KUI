@@ -24,7 +24,7 @@ class KuiPop(private val popParams: PopParams, private val popwindowListener: Po
 
     companion object {
         const val DOWN = 0
-//        @Deprecated("左侧显示无动画")
+        //        @Deprecated("左侧显示无动画")
 //        const val LEFT = 1
         const val RIGHT = 2
 //        @Deprecated("上部显示无动画且无对齐")
@@ -57,8 +57,9 @@ class KuiPop(private val popParams: PopParams, private val popwindowListener: Po
     /**
      * 默认向下弹出
      */
-    fun show(view: View){
+    fun show(view: View) {
         show(view, DOWN)
+        android.R.anim.slide_in_left
     }
 
     /**

@@ -34,12 +34,15 @@ class KuiAlert : DialogFragment() {
 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        setStyle(STYLE_NO_TITLE,0)
+        setStyle(STYLE_NO_TITLE,dialogModel?.styleId?:0)
+        android.R.transition.slide_bottom
         return super.onCreateDialog(savedInstanceState)
     }
 
+
     override fun onDismiss(dialog: DialogInterface?) {
         if (null!=alertContentListener)alertContentListener?.beforeDismiss()
+
         super.onDismiss(dialog)
     }
 
