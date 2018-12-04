@@ -13,7 +13,11 @@ import com.stormkid.kui_base.TransLateOrScaleAnimationModel
  */
 class AnimationHelpers constructor(private val animationCallback: AnimationCallback) : Animation.AnimationListener {
 
-    private var needSet = 0
+    private var needSet:Int
+
+    init {
+        needSet = 0
+    }
 
 
     override fun onAnimationRepeat(animation: Animation?) {
@@ -55,7 +59,7 @@ class AnimationHelpers constructor(private val animationCallback: AnimationCallb
      * 位移动画
      */
     fun translateAnimation(animationModel: TransLateOrScaleAnimationModel): TranslateAnimation {
-        val animate = TranslateAnimation(animationModel.fromX, animationModel.toX, animationModel.fromY, animationModel.toY)
+        val animate = TranslateAnimation(Animation.RELATIVE_TO_PARENT,animationModel.fromX, Animation.RELATIVE_TO_PARENT, animationModel.toX ,Animation.RELATIVE_TO_PARENT, animationModel.fromY, Animation.RELATIVE_TO_PARENT, animationModel.toY)
         startAnimate(animationModel, animate)
         return animate
     }
@@ -70,25 +74,22 @@ class AnimationHelpers constructor(private val animationCallback: AnimationCallb
     }
 
     private fun startAnimate(animateValue: AnimateValue, animate: Animation) {
-        if (needSet == 0)
-            animateValue.view.animation = animate
         animate.duration = animateValue.duration
         animate.setAnimationListener(this)
-        animate.start()
+        if (needSet == 0)
+            animateValue.view.startAnimation(animate)
     }
 
 
     inner class BuildSet {
 
         fun build(view: View,vararg animation: Animation) =
-            AnimationSet(true).apply {
+            AnimationSet(false).apply {
                 setAnimationListener(this@AnimationHelpers)
                 animation.forEach {
                     addAnimation(it)
                 }
-                duration = 5000
-                view.animation = this
-                start()
+                view.startAnimation(this)
             }
 
     }
