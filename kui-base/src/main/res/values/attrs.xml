@@ -46,6 +46,11 @@
         <attr name="bg_radius" format="dimension"/>
         <attr name="is_show_ripple" format="boolean"/>
         <attr name="button_ripple_color" format="color"/>
+        <attr name="button_text_gravity" format="enum">
+            <enum name="center" value="0"/>
+            <enum name="left" value="1"/>
+            <enum name="right" value="2"/>
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="KuiBadge">

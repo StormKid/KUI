@@ -15,7 +15,10 @@ class ToastActivity : MainActivity() {
 
     override fun initView() {
         show_toast.setOnClickListener {
-            KuiToast(this).showToast()
+            KuiToast(this).BuildToast()
+                    .setBlock(true).setDrawable(KuiToast.ROUND)
+                    .setTextColor(R.color.primary).initToast()
+                    .showToast("测试",3000)
         }
     }
 }

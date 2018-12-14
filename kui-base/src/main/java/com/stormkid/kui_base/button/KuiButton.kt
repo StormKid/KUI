@@ -31,9 +31,14 @@ class KuiButton : LinearLayout {
         const val radiusType = 0
         const val circleType = 1
         const val roundType = 2
+
+        const val textCenter = 0
+        const val textLeft = 1
+        const val textRight = 2
     }
 
     private val paddingSize = DimenUtils.dip2px(context, 10f)
+    private val marginSize = DimenUtils.dip2px(context,5f)
     private var bg = 0
     @ColorInt
     private var bgColor = 0
@@ -44,6 +49,7 @@ class KuiButton : LinearLayout {
     private var isStroke = false
     private var isShowRipple = false
     private var rippleColor = 0
+    private var textGravity = textCenter
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
@@ -59,6 +65,7 @@ class KuiButton : LinearLayout {
         val gravity = a.getInt(R.styleable.KuiButton_icon_gravity, 0)
         val text = a.getString(R.styleable.KuiButton_text)
         val textColor = a.getColor(R.styleable.KuiButton_text_color, Color.rgb(255, 255, 255))
+        textGravity = a.getInt(R.styleable.KuiButton_button_text_gravity, textCenter)
         bg = a.getInt(R.styleable.KuiButton_bg_drawable, 0)
         bgColor = a.getColor(R.styleable.KuiButton_bg_color, Color.rgb(33, 150, 243))
         ignorePadding = a.getBoolean(R.styleable.KuiButton_ignore_padding, false)
@@ -69,9 +76,12 @@ class KuiButton : LinearLayout {
             setText(text)
             setTextColor(textColor)
             textSize = DimenUtils.px2sp(context, textSizeResult).toFloat()
-            layoutParams = LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+            layoutParams = LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
+                leftMargin = marginSize
+                rightMargin = marginSize
+            }
         }
-        setGravity(Gravity.CENTER)
+        setTextGravity(textGravity)
         if (iconRes == 0) {
             addView(textView)
             return
@@ -155,14 +165,14 @@ class KuiButton : LinearLayout {
     /**
      * 设置水波纹颜色
      */
-    fun setRippleColor(@ColorInt rippleColor:Int){
+    fun setRippleColor(@ColorInt rippleColor: Int) {
         this.rippleColor = rippleColor
     }
 
     /**
      * 设置是否 镂空
      */
-    fun setStroke(isStroke:Boolean){
+    fun setStroke(isStroke: Boolean) {
         this.isStroke = isStroke
     }
 
@@ -206,6 +216,14 @@ class KuiButton : LinearLayout {
         }
     }
 
+
+    fun setTextGravity(gravity: Int) {
+        when (gravity) {
+            textCenter -> setGravity(Gravity.CENTER)
+            textLeft -> setGravity(Gravity.START or Gravity.CENTER_VERTICAL)
+            textRight -> setGravity(Gravity.END or Gravity.CENTER_VERTICAL)
+        }
+    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
