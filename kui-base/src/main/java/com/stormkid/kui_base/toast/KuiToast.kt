@@ -1,6 +1,7 @@
 package com.stormkid.kui_base.toast
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.PixelFormat
 import android.os.Handler
 import android.view.Gravity
@@ -20,6 +21,7 @@ class KuiToast(private val context: Context) {
 
     private val kuiToastView = KuiToastView(context)
     private var rule = RelativeLayout.ALIGN_PARENT_BOTTOM
+    private var isDefault = true
     private var isAutoDismiss = true
     private val layoutparams = WindowManager.LayoutParams().apply {
         format = PixelFormat.TRANSPARENT
@@ -38,18 +40,21 @@ class KuiToast(private val context: Context) {
         const val ROUND = 12
 
         const val LENGTH_LONG = 4000L
-        const val LENGTH_SHORT = 1000L
+        const val LENGTH_SHORT = 1500L
 
     }
 
     fun showToast(text: String, time: Long) {
         val manager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         manager.addView(kuiToastView, layoutparams)
-        kuiToastView.getToastViewWithoutRule().setText(text)
+        kuiToastView.getToastViewWithoutRule().apply {  setText(text)
+            if (isDefault) setBgColor(Color.DKGRAY)
+        }
         if (isAutoDismiss) Handler().postDelayed({ manager.removeViewImmediate(kuiToastView) }, time)
         else kuiToastView.setOnClickListener {
             manager.removeViewImmediate(kuiToastView)
         }
+
 
     }
 
