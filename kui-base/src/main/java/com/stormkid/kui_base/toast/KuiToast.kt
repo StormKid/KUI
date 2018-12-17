@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.PixelFormat
 import android.os.Handler
-import android.view.Gravity
 import android.view.WindowManager
 import android.widget.RelativeLayout
 import androidx.annotation.ColorInt
@@ -17,35 +16,43 @@ import com.stormkid.kui_base.button.KuiButton
 @author ke_li
 @date 2018/10/23
  */
-class KuiToast(private val context: Context) {
+class KuiToast (private val context: Context) {
 
     private val kuiToastView = KuiToastView(context)
     private var rule = RelativeLayout.ALIGN_PARENT_BOTTOM
+    private var animation =   R.style.alphaShow
     private var isDefault = true
     private var isAutoDismiss = true
     private val layoutparams = WindowManager.LayoutParams().apply {
         format = PixelFormat.TRANSPARENT
         flags = WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS
-        windowAnimations = R.style.AnimBottom
-        gravity = Gravity.BOTTOM
     }
+
 
     companion object {
         const val TOP = 0
         const val CENTER = 1
-        const val BOTTOM = 2
+        // 默认不带gravity方法即在底部
+//        const val BOTTOM = 2
 
         const val NORMAL = 10
         const val CIRCLE = 11
         const val ROUND = 12
 
+        const val TEXT_CENTER = 20
+        const val TEXT_LEFT=21
+        const val TEXT_RIGHT = 22
+
+
         const val LENGTH_LONG = 4000L
         const val LENGTH_SHORT = 1500L
+
 
     }
 
     fun showToast(text: String, time: Long) {
         val manager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        layoutparams.windowAnimations = animation
         manager.addView(kuiToastView, layoutparams)
         kuiToastView.getToastViewWithoutRule().apply {  setText(text)
             if (isDefault) setBgColor(Color.DKGRAY)
@@ -60,17 +67,21 @@ class KuiToast(private val context: Context) {
 
 
     inner class BuildToast {
-
         fun setGravity(flag: Int): BuildToast {
             when (flag) {
-                KuiToast.BOTTOM -> rule = RelativeLayout.ALIGN_PARENT_BOTTOM
                 KuiToast.CENTER -> rule = RelativeLayout.CENTER_IN_PARENT
                 KuiToast.TOP -> rule = RelativeLayout.ALIGN_PARENT_TOP
             }
             kuiToastView.getToastView().apply {
                 val params = layoutParams as RelativeLayout.LayoutParams
-                params.addRule(rule)
+                params.addRule(rule,1)
             }
+            return this
+        }
+
+        fun needBottom(isNeed:Boolean): BuildToast {
+            animation = if (isNeed) R.style.AnimBottom
+            else R.style.alphaShow
             return this
         }
 
@@ -79,23 +90,20 @@ class KuiToast(private val context: Context) {
                 KuiToast.NORMAL -> {
                 }
                 KuiToast.CIRCLE -> kuiToastView.getToastViewWithoutRule().setBgType(KuiButton.circleType)
+
                 KuiToast.ROUND -> kuiToastView.getToastViewWithoutRule().setBgType(KuiButton.roundType)
             }
             return this
         }
 
         fun setToastColor(@ColorInt color: Int): BuildToast {
+            isDefault = false
             kuiToastView.getToastViewWithoutRule().setBgColor(color)
             return this
         }
 
         fun setBlock(isBlock: Boolean): BuildToast {
             kuiToastView.getToastViewWithoutRule().setStroke(isBlock)
-            return this
-        }
-
-        fun setTextGravity(gravity: Int): BuildToast {
-            kuiToastView.getToastViewWithoutRule().setTextGravity(gravity)
             return this
         }
 

@@ -7,8 +7,32 @@
               android:layout_height="match_parent">
 
     <com.stormkid.kui_base.button.KuiButton android:layout_width="wrap_content"
-                                            app:text="弹toast"
+                                            app:text="弹默认toast"
                                             android:id="@+id/show_toast"
+                                            android:padding="@dimen/dp_10"
+                                            android:layout_height="wrap_content"/>
+    <com.stormkid.kui_base.button.KuiButton android:layout_width="wrap_content"
+                                            app:text="弹自定义toast"
+                                            android:id="@+id/show_self_toast"
+                                            android:layout_marginTop="@dimen/dp_20"
+                                            android:padding="@dimen/dp_10"
+                                            android:layout_height="wrap_content"/>
+    <com.stormkid.kui_base.button.KuiButton android:layout_width="wrap_content"
+                                            app:text="弹顶部toast"
+                                            android:id="@+id/show_top_toast"
+                                            android:layout_marginTop="@dimen/dp_20"
+                                            android:padding="@dimen/dp_10"
+                                            android:layout_height="wrap_content"/>
+    <com.stormkid.kui_base.button.KuiButton android:layout_width="wrap_content"
+                                            app:text="弹中部toast"
+                                            android:layout_marginTop="@dimen/dp_20"
+                                            android:id="@+id/show_middle_toast"
+                                            android:padding="@dimen/dp_10"
+                                            android:layout_height="wrap_content"/>
+    <com.stormkid.kui_base.button.KuiButton android:layout_width="wrap_content"
+                                            app:text="弹带底部弹出动画的toast"
+                                            android:layout_marginTop="@dimen/dp_20"
+                                            android:id="@+id/show_bottom_toast"
                                             android:padding="@dimen/dp_10"
                                             android:layout_height="wrap_content"/>
 
