@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
+              android:padding="@dimen/dp_40"
               android:layout_height="match_parent">
-    <com.stormkid.kui_base.input.KuiInput android:layout_width="match_parent"
-                                          android:background="@color/primary"
-                                          android:id="@+id/input"
-                                          android:layout_height="@dimen/dp_80"/>
 
-
-
-    <!--<com.stormkid.kui_base.input.KuiInput android:layout_width="match_parent"-->
-                                          <!--android:background="@color/primary"-->
-                                          <!--android:id="@+id/real"-->
-                                          <!--android:layout_height="@dimen/dp_80"/>-->
 
 
 </LinearLayout>
