@@ -64,4 +64,12 @@
         <attr name="badge_radius" format="dimension"/>
         <attr name="badge_bgColor" format="reference"/>
     </declare-styleable>
+
+    <declare-styleable name="KuiCard">
+        <attr name="card_radius" format="dimension"/>
+        <attr name="card_bg" format="color"/>
+        <attr name="card_shade" format="color"/>
+        <attr name="is_card_button" format="boolean"/>
+        <attr name="evel" format="dimension"/>
+    </declare-styleable>
 </resources>
