@@ -58,6 +58,17 @@ class KuiCard : LinearLayout {
      */
     private var shadeMode = SHAPE_RIGHT_BOTTOM
 
+    /**
+     * padding值
+     */
+    private var padding = 0
+
+    private var contentPaddingLeft = 0
+    private var contentPaddingRight = 0
+    private var contentPaddingTop = 0
+    private var contentPaddingBottom = 0
+
+
     companion object {
         const val SHAPE_LEFT_TOP = 0
         const val SHAPE_LEFT_BOTTOM = 1
@@ -95,6 +106,14 @@ class KuiCard : LinearLayout {
         initRadius = floatArrayOf(radius, radius, radius, radius, radius, radius, radius, radius)
         isButton = a.getBoolean(R.styleable.KuiCard_is_card_button,false)
         shadeMode = a.getInt(R.styleable.KuiCard_shape_mode,SHAPE_RIGHT_BOTTOM)
+
+        //padding
+        padding = a.getDimensionPixelOffset(R.styleable.KuiCard_padding,0)
+        contentPaddingLeft = a.getDimensionPixelOffset(R.styleable.KuiCard_padding_left,0)
+        contentPaddingRight = a.getDimensionPixelOffset(R.styleable.KuiCard_padding_right,0)
+        contentPaddingBottom = a.getDimensionPixelOffset(R.styleable.KuiCard_padding_bottom,0)
+        contentPaddingTop = a.getDimensionPixelOffset(R.styleable.KuiCard_padding_top,0)
+
         bottonShow()
         buildDraw()
     }
@@ -122,6 +141,10 @@ class KuiCard : LinearLayout {
         val six = buildDownDr()
         val layerDrawable = LayerDrawable(arrayOf(one, two, three, four, five, six))
         this.background = layerDrawable
+        if (!isButton)
+            if (padding > 0) setPadding(padding, padding, padding, padding)
+            else setPadding(contentPaddingLeft, contentPaddingTop, contentPaddingRight, contentPaddingBottom)
+
     }
 
 
@@ -164,10 +187,6 @@ class KuiCard : LinearLayout {
         }
     }
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-
-    }
 
 
     fun buttonView() = button

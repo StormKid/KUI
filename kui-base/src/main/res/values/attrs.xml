@@ -78,5 +78,10 @@
              <enum name="RIGHT_AND_BOTTOM" value="3"/>
              <enum name="ALL" value="4"/>
         </attr>
+        <attr name="padding" format="dimension"/>
+        <attr name="padding_left" format="dimension"/>
+        <attr name="padding_right" format="dimension"/>
+        <attr name="padding_top" format="dimension"/>
+        <attr name="padding_bottom" format="dimension"/>
     </declare-styleable>
 </resources>
