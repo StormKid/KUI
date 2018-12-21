@@ -71,5 +71,12 @@
         <attr name="card_shade" format="color"/>
         <attr name="is_card_button" format="boolean"/>
         <attr name="evel" format="dimension"/>
+        <attr name="shape_mode" format="enum">
+             <enum name="LEFT_AND_TOP" value="0"/>
+             <enum name="LEFT_AND_BOTTOM" value="1"/>
+             <enum name="RIGHT_AND_TOP" value="2"/>
+             <enum name="RIGHT_AND_BOTTOM" value="3"/>
+             <enum name="ALL" value="4"/>
+        </attr>
     </declare-styleable>
 </resources>

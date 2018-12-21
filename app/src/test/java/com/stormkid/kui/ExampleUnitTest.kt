@@ -1,6 +1,5 @@
 package com.stormkid.kui
 
-import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**
@@ -11,12 +10,11 @@ import org.junit.Test
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        hex(45)
     }
 
-    @Test
-    fun hex(){
-        var decimal = 195
+    fun hex(color:Int){
+        var decimal = color
         var hex = ""
         while (decimal != 0) {
             val hexValue = decimal % 16

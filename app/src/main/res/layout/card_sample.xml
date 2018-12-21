@@ -1,19 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:padding="@dimen/dp_20"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <LinearLayout android:layout_width="wrap_content"
-                  android:id="@+id/card"
-                  android:orientation="vertical"
+    <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content">
-        <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_40"
-                                                android:id="@+id/button"
-                                                android:layout_height="@dimen/dp_40"/>
+        <com.stormkid.kui_base.card.KuiCard android:layout_width="@dimen/dp_80"
+                                            android:layout_marginRight="@dimen/dp_20"
+                                            app:card_radius="@dimen/dp_20"
+                                            android:orientation="vertical"
+                                            android:layout_height="@dimen/dp_40">
+
+        </com.stormkid.kui_base.card.KuiCard>
+        <com.stormkid.kui_base.card.KuiCard android:layout_width="@dimen/dp_80"
+                                            android:layout_marginRight="@dimen/dp_20"
+                                            app:card_radius="@dimen/dp_20"
+                                            app:shape_mode="LEFT_AND_TOP"
+                                            android:orientation="vertical"
+                                            android:layout_height="@dimen/dp_40">
+
+        </com.stormkid.kui_base.card.KuiCard>
+        <com.stormkid.kui_base.card.KuiCard android:layout_width="@dimen/dp_80"
+                                            android:layout_marginRight="@dimen/dp_20"
+                                            app:card_radius="@dimen/dp_20"
+                                            app:shape_mode="LEFT_AND_BOTTOM"
+                                            android:orientation="vertical"
+                                            android:layout_height="@dimen/dp_40">
+
+        </com.stormkid.kui_base.card.KuiCard>
 
     </LinearLayout>
 
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_marginTop="@dimen/dp_20"
+                  android:layout_height="wrap_content">
+        <com.stormkid.kui_base.card.KuiCard android:layout_width="@dimen/dp_80"
+                                            android:layout_marginRight="@dimen/dp_20"
+                                            app:card_radius="@dimen/dp_20"
+                                            app:shape_mode="RIGHT_AND_TOP"
+                                            android:orientation="vertical"
+                                            android:layout_height="@dimen/dp_40">
+
+        </com.stormkid.kui_base.card.KuiCard>
+        <com.stormkid.kui_base.card.KuiCard android:layout_width="@dimen/dp_80"
+                                            android:layout_marginRight="@dimen/dp_20"
+                                            app:card_radius="@dimen/dp_20"
+                                            app:shape_mode="ALL"
+                                            android:orientation="vertical"
+                                            android:layout_height="@dimen/dp_40">
+
+        </com.stormkid.kui_base.card.KuiCard>
+    </LinearLayout>
+
+    <com.stormkid.kui_base.card.KuiCard android:layout_width="match_parent"
+                                        android:orientation="vertical"
+                                        android:padding="@dimen/dp_20"
+                                        android:layout_marginTop="@dimen/dp_20"
+                                        android:layout_height="wrap_content">
+        <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
+                                                app:text="one"
+                                                android:layout_marginTop="@dimen/dp_20"
+                                                android:layout_height="@dimen/dp_40"/>
+
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_marginTop="20dp"
+                      android:layout_height="wrap_content">
+            <com.stormkid.kui_base.card.KuiCard android:layout_width="@dimen/dp_80"
+                                                app:is_card_button="true"
+                                                android:layout_marginRight="@dimen/dp_20"
+                                                app:card_radius="@dimen/dp_20"
+                                                android:id="@+id/left_card"
+                                                android:orientation="vertical"
+                                                android:layout_height="@dimen/dp_40">
+
+            </com.stormkid.kui_base.card.KuiCard>
+            <com.stormkid.kui_base.card.KuiCard android:layout_width="@dimen/dp_80"
+                                                app:is_card_button="true"
+                                                android:layout_marginRight="@dimen/dp_20"
+                                                app:card_radius="@dimen/dp_20"
+                                                android:id="@+id/mid_card"
+                                                app:shape_mode="LEFT_AND_TOP"
+                                                android:orientation="vertical"
+                                                android:layout_height="@dimen/dp_40">
+
+            </com.stormkid.kui_base.card.KuiCard>
+            <com.stormkid.kui_base.card.KuiCard android:layout_width="@dimen/dp_80"
+                                                app:is_card_button="true"
+                                                android:layout_marginRight="@dimen/dp_20"
+                                                android:id="@+id/right_card"
+                                                app:card_radius="@dimen/dp_20"
+                                                app:shape_mode="LEFT_AND_BOTTOM"
+                                                android:orientation="vertical"
+                                                android:layout_height="@dimen/dp_40">
+
+            </com.stormkid.kui_base.card.KuiCard>
+
+        </LinearLayout>
+
+        <com.stormkid.kui_base.button.KuiButton android:layout_width="@dimen/dp_80"
+                                                app:text="three"
+                                                android:layout_marginBottom="@dimen/dp_20"
+                                                android:layout_marginTop="@dimen/dp_20"
+                                                android:layout_height="@dimen/dp_40"/>
+    </com.stormkid.kui_base.card.KuiCard>
 
 </LinearLayout>

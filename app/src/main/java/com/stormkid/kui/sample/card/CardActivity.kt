@@ -1,8 +1,8 @@
 package com.stormkid.kui.sample.card
 
+import android.graphics.Color
 import com.stormkid.kui.MainActivity
 import com.stormkid.kui.R
-import com.stormkid.kui_base.card.KuiCard
 import kotlinx.android.synthetic.main.card_sample.*
 
 /**
@@ -15,8 +15,15 @@ class CardActivity : MainActivity(){
 
 
     override fun initView() {
-        KuiCard(this).buildDraw(card)
-        button.setOnClickListener {  }
+        left_card.buttonView().setText("←按钮")
+        left_card.setOnClickListener {  }
+        left_card.buttonView().setRippleColor(Color.CYAN)
+        mid_card.buttonView().setText("中间按钮")
+        mid_card.buttonView().setRippleColor(Color.RED)
+        mid_card.setOnClickListener {  }
+        right_card.buttonView().setText("→按钮")
+        right_card.buttonView().setRippleColor(Color.YELLOW)
+        right_card.setOnClickListener {  }
     }
 
 }
