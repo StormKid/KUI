@@ -123,13 +123,50 @@ class KuiCard : LinearLayout {
         paint.color = color
     }
 
+    /**
+     * 设置card背景色
+     */
     fun setCardBg(@ColorInt color: Int) {
         this.color = color
     }
 
+    /**
+     * 设置阴影背景色
+     */
     fun setCardShadeColor(@ColorInt color: Int){
         this.shadeColor = color
     }
+
+    /**
+     * 设置阴影高度[越高阴影越大]
+     */
+    fun setEvel(dimen:Float){
+        this.paddingDimen = DimenUtils.dip2px(context,dimen)
+    }
+
+    /**
+     * 是否是card按钮
+     */
+    fun isButton(isButton:Boolean){
+        this.isButton = isButton
+    }
+
+    /**
+     * 设置card圆弧
+     */
+    fun setRaduis(radius:Float){
+        this.radius = radius
+        initRadius = floatArrayOf(radius, radius, radius, radius, radius, radius, radius, radius)
+    }
+
+    /**
+     * 设置card的投影模式
+     */
+    fun setMode(mode:Int){
+        this.shadeMode = mode
+    }
+
+
 
 
     private fun buildDraw() {
@@ -175,6 +212,9 @@ class KuiCard : LinearLayout {
         hex
     }
 
+    /**
+     * button状态下的card的显示控制
+     */
     private fun bottonShow(){
         if (isButton){
             val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT)

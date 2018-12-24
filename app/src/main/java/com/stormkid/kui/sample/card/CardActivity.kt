@@ -17,6 +17,8 @@ class CardActivity : MainActivity(){
     override fun initView() {
         left_card.buttonView().setText("←按钮")
         left_card.setOnClickListener {  }
+        left_card.buttonView().setTextColor(R.color.primary)
+        left_card.buttonView().setStroke(true)
         left_card.buttonView().setRippleColor(Color.CYAN)
         mid_card.buttonView().setText("中间按钮")
         mid_card.buttonView().setRippleColor(Color.RED)
