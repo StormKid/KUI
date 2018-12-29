@@ -39,7 +39,7 @@
                                                 app:text="默认按钮"
                                                 android:foreground="?android:selectableItemBackground"
                                                 android:id="@+id/click_right"
-                                                app:icon_res="@drawable/ic_home"
+                                                app:icon_res="@drawable/ic_home_demo"
                                                 app:text_dimen="@dimen/sp_10"
                                                 android:layout_height="wrap_content"/>
 
@@ -49,7 +49,7 @@
                                                 app:text="圆形按钮"
                                                 android:id="@+id/do_now"
                                                 app:button_ripple_color="@android:color/holo_green_light"
-                                                app:icon_res="@drawable/ic_home"
+                                                app:icon_res="@drawable/ic_home_demo"
                                                 android:layout_margin="@dimen/dp_10"
                                                 app:text_dimen="@dimen/sp_10"
                                                 android:layout_height="@dimen/dp_80"/>
@@ -61,7 +61,7 @@
                                                 android:id="@+id/do_it"
                                                 app:icon_gravity="LEFT"
                                                 app:button_ripple_color="@color/colorAccent"
-                                                app:icon_res="@drawable/ic_home"
+                                                app:icon_res="@drawable/ic_home_demo"
                                                 app:text_dimen="@dimen/sp_10"
                                                 android:layout_height="@dimen/dp_40"/>
     </LinearLayout>
@@ -99,7 +99,7 @@
 
         <com.stormkid.kui_base.button.KuiButton android:layout_width="wrap_content"
                                                 app:text="换图标颜色"
-                                                app:icon_res="@drawable/ic_home"
+                                                app:icon_res="@drawable/ic_home_demo"
                                                 app:icon_color="@android:color/holo_orange_light"
                                                 app:text_dimen="@dimen/sp_10"
                                                 android:layout_height="wrap_content"/>
@@ -110,7 +110,7 @@
                                                 app:text="换大图标"
                                                 app:icon_gravity="BOTTOM"
                                                 app:icon_color="@android:color/holo_green_light"
-                                                app:icon_res="@drawable/ic_home"
+                                                app:icon_res="@drawable/ic_home_demo"
                                                 app:icon_dimen="@dimen/dp_40"
                                                 android:layout_margin="@dimen/dp_10"
                                                 app:text_dimen="@dimen/sp_10"
@@ -122,7 +122,7 @@
                                                 app:icon_color="@color/colorAccent"
                                                 app:icon_dimen="@dimen/dp_20"
                                                 app:icon_gravity="RIGHT"
-                                                app:icon_res="@drawable/ic_home"
+                                                app:icon_res="@drawable/ic_home_demo"
                                                 app:text_dimen="@dimen/sp_10"
                                                 android:layout_height="@dimen/dp_40"/>
     </LinearLayout>
@@ -137,7 +137,7 @@
                                                 app:text="镂空方按钮"
                                                 app:is_stroke="true"
                                                 app:bg_color="@android:color/holo_orange_light"
-                                                app:icon_res="@drawable/ic_home"
+                                                app:icon_res="@drawable/ic_home_demo"
                                                 app:icon_color="@android:color/holo_orange_light"
                                                 app:text_dimen="@dimen/sp_10"
                                                 app:text_color="@android:color/holo_orange_light"
@@ -152,7 +152,7 @@
                                                 app:text_color="@android:color/holo_green_light"
                                                 app:icon_gravity="BOTTOM"
                                                 app:icon_color="@android:color/holo_green_light"
-                                                app:icon_res="@drawable/ic_home"
+                                                app:icon_res="@drawable/ic_home_demo"
                                                 app:icon_dimen="@dimen/dp_40"
                                                 app:bg_color="@android:color/holo_green_light"
                                                 android:layout_margin="@dimen/dp_10"
@@ -168,7 +168,7 @@
                                                 app:icon_color="@color/colorAccent"
                                                 app:icon_dimen="@dimen/dp_20"
                                                 app:icon_gravity="RIGHT"
-                                                app:icon_res="@drawable/ic_home"
+                                                app:icon_res="@drawable/ic_home_demo"
                                                 app:text_dimen="@dimen/sp_10"
                                                 android:layout_height="@dimen/dp_40"/>
     </LinearLayout>

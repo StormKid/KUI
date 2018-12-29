@@ -35,6 +35,11 @@ class KuiButton : LinearLayout {
         const val textCenter = 0
         const val textLeft = 1
         const val textRight = 2
+
+        const val iconTop = 0
+        const val iconLeft = 1
+        const val iconRight = 2
+        const val iconBottom = 3
     }
 
     private val paddingSize = DimenUtils.dip2px(context, 10f)
@@ -50,7 +55,10 @@ class KuiButton : LinearLayout {
     private var isShowRipple = false
     private var rippleColor = 0
     private var textGravity = textCenter
-
+    private var iconGravity = iconTop
+    private var iconRes = 0
+    private var iconDimen = 0f
+    private var iconColor = 0
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
     @SuppressLint("Recycle")
@@ -58,11 +66,11 @@ class KuiButton : LinearLayout {
         val a = context.obtainStyledAttributes(attributeSet,
                 R.styleable.KuiButton, defAttr, 0)
         radius = a.getDimension(R.styleable.KuiButton_bg_radius, DimenUtils.dip2px(context, 3f).toFloat())
-        val iconDimen = a.getDimension(R.styleable.KuiButton_icon_dimen, DimenUtils.dip2px(context, 28f).toFloat())
-        val iconColor = a.getResourceId(R.styleable.KuiButton_icon_color, 0)
-        val iconRes = a.getResourceId(R.styleable.KuiButton_icon_res, 0)
+        iconDimen = a.getDimension(R.styleable.KuiButton_icon_dimen, DimenUtils.dip2px(context, 28f).toFloat())
+        iconColor = a.getResourceId(R.styleable.KuiButton_icon_color, 0)
+        iconRes = a.getResourceId(R.styleable.KuiButton_icon_res, 0)
         val textSizeResult = a.getDimension(R.styleable.KuiButton_text_dimen, 26f)
-        val gravity = a.getInt(R.styleable.KuiButton_icon_gravity, 0)
+        iconGravity = a.getInt(R.styleable.KuiButton_icon_gravity, 0)
         val text = a.getString(R.styleable.KuiButton_text)
         val textColor = a.getColor(R.styleable.KuiButton_text_color, Color.rgb(255, 255, 255))
         textGravity = a.getInt(R.styleable.KuiButton_button_text_gravity, textCenter)
@@ -82,6 +90,17 @@ class KuiButton : LinearLayout {
             }
         }
         setTextGravity(textGravity)
+        initIcon()
+    }
+
+    /**
+     * 设置button文字
+     */
+    fun setText(text: String) {
+        if (null != textView) textView?.text = text
+    }
+
+    private fun initIcon(){
         if (iconRes == 0) {
             addView(textView)
             return
@@ -96,29 +115,23 @@ class KuiButton : LinearLayout {
                 Utils.initSvgColor(InitImgRes(iconRes, iconColor, this, context))
         }
 
-        initGravity(gravity, textView!!, icon!!)
-    }
-
-    /**
-     * 设置button文字
-     */
-    fun setText(text: String) {
-        if (null != textView) textView?.text = text
+        initGravity(iconGravity)
     }
 
     /**
      * 设置图标资源
      */
     fun setIconRes(@DrawableRes imgRes: Int) {
-        if (null != icon) icon?.setImageResource(imgRes)
+        iconRes = imgRes
+        initIcon()
     }
 
     /**
      * 设置图标大小
      */
     fun setIconDimen(dimen: Float) {
-        val result = DimenUtils.dip2px(context, dimen)
-        if (null != icon) icon?.layoutParams = LinearLayout.LayoutParams(result, result)
+        iconDimen = DimenUtils.dip2px(context, dimen).toFloat()
+        initIcon()
     }
 
 
@@ -126,7 +139,9 @@ class KuiButton : LinearLayout {
      * svg专用 给其上颜色
      */
     fun setIconResColor(@DrawableRes src: Int, @ColorRes res: Int) {
-        if (null != icon) Utils.initSvgColor(InitImgRes(src, res, icon!!, context))
+        iconRes = src
+        iconColor = res
+        initIcon()
     }
 
     /**
@@ -189,7 +204,8 @@ class KuiButton : LinearLayout {
         return
     }
 
-    private fun initGravity(gravity: Int, textView: TextView, icon: ImageView) {
+    private fun initGravity(gravity: Int) {
+        if (childCount>0) removeAllViewsInLayout()
         if (!ignorePadding)
             setPadding(paddingSize, paddingSize, paddingSize, paddingSize)
         when (gravity) {
@@ -216,7 +232,9 @@ class KuiButton : LinearLayout {
         }
     }
 
-
+    /**
+     * 设置文字位置
+     */
     fun setTextGravity(gravity: Int) {
         when (gravity) {
             textCenter -> setGravity(Gravity.CENTER)
@@ -224,6 +242,16 @@ class KuiButton : LinearLayout {
             textRight -> setGravity(Gravity.END or Gravity.CENTER_VERTICAL)
         }
     }
+
+    /**
+     * 设置图标位置
+     */
+    fun setIconGravity(gravity: Int){
+        this.iconGravity = gravity
+        initIcon()
+    }
+
+
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)

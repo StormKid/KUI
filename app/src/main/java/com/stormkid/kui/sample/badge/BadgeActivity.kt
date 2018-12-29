@@ -14,7 +14,7 @@ class BadgeActivity:MainActivity() {
 
 
     override fun initView() {
-        badge.setDragCallback {
+        badge.setDragDismissCallback {
 
         }
     }

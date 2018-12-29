@@ -53,7 +53,7 @@ class KuiBadge : TextView {
 
 
 
-    fun setDragCallback(callback: ()->Unit){
+    fun setDragDismissCallback(callback: ()->Unit){
         isDragging = false
         this.tag = bgColor
         BadgeDraggingHelper.draging(this,object :DismissCallback{
@@ -105,5 +105,12 @@ class KuiBadge : TextView {
      */
     fun setRadius(radius:Float){
         this.radius = radius
+    }
+
+    /**
+     * 设置bg的类型
+     */
+    fun setBgType(type:Int){
+        this.bgStyle=type
     }
 }
