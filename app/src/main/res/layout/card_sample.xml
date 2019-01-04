@@ -111,7 +111,5 @@
                                                 android:layout_height="@dimen/dp_40"/>
     </com.stormkid.kui_base.card.KuiCard>
 
-    <com.stormkid.kui_base.tabbar.KuiTabbutton android:layout_width="@dimen/dp_80"
-                                               android:layout_height="@dimen/dp_80"/>
 
 </LinearLayout>

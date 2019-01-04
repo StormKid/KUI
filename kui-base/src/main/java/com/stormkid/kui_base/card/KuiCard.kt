@@ -172,9 +172,9 @@ class KuiCard : LinearLayout {
     private fun buildDraw() {
         val one = buildShapeDr(Color.parseColor(pingColor("0d")))
         val two = buildShapeDr(Color.parseColor(pingColor("10")))
-        val three = buildShapeDr(Color.parseColor(pingColor("15")))
-        val four = buildShapeDr(Color.parseColor(pingColor("20")))
-        val five = buildShapeDr(Color.parseColor(pingColor("25")))
+        val three = buildShapeDr(Color.parseColor(pingColor("12")))
+        val four = buildShapeDr(Color.parseColor(pingColor("14")))
+        val five = buildShapeDr(Color.parseColor(pingColor("16")))
         val six = buildDownDr()
         val layerDrawable = LayerDrawable(arrayOf(one, two, three, four, five, six))
         this.background = layerDrawable
