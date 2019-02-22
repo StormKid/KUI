@@ -10,7 +10,7 @@ import org.junit.Test
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        hex(45)
+        deCodeMd5("0B27E6F6753955F62FB42E390FAC5A117BFB0991")
     }
 
     fun hex(color:Int){
@@ -29,5 +29,9 @@ class ExampleUnitTest {
             (hexValue + '0'.toInt()).toChar()
         else
             (hexValue - 10 + 'A'.toInt()).toChar()
+    }
+
+    fun deCodeMd5(value: String){
+        
     }
 }
