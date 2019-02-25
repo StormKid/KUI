@@ -84,4 +84,14 @@
         <attr name="padding_top" format="dimension"/>
         <attr name="padding_bottom" format="dimension"/>
     </declare-styleable>
+
+
+    <declare-styleable name="KuiTabbar">
+        <attr name="isFull" format="boolean"/>
+        <attr name="mode" format="enum">
+            <enum name="NORMAL" value="0"/>
+            <enum name="BLOCK" value="1"/>
+            <enum name="TRIANGLE" value="2"/>
+        </attr>
+    </declare-styleable>
 </resources>

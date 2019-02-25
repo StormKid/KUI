@@ -3,5 +3,8 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+    <com.stormkid.kui_base.tabbar.KuiTabbar android:layout_width="match_parent"
+                                            android:id="@+id/tab"
+                                            android:layout_height="@dimen/dp_40"/>
 
 </LinearLayout>
