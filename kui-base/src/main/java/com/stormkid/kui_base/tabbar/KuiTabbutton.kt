@@ -3,6 +3,7 @@ package com.stormkid.kui_base.tabbar
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.widget.RelativeLayout
 import com.stormkid.kui_base.badge.KuiBadge
 import com.stormkid.kui_base.button.KuiButton
@@ -34,4 +35,8 @@ class KuiTabbutton : RelativeLayout{
 
     fun getButton() = button
     fun getBage() = bage
+
+    override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
+        return true
+    }
 }
