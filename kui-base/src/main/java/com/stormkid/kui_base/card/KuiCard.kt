@@ -81,11 +81,11 @@ class KuiCard : LinearLayout {
         shape = RoundRectShape(initRadius, null, null)
         paint.color = color
         when(shadeMode){
-            SHAPE_LEFT_TOP->setPadding(paddingDimen, paddingDimen, 0, 0)
-            SHAPE_LEFT_BOTTOM->setPadding(paddingDimen, 0, 0, paddingDimen)
+            SHAPE_LEFT_TOP ->setPadding(paddingDimen, paddingDimen, 0, 0)
+            SHAPE_LEFT_BOTTOM ->setPadding(paddingDimen, 0, 0, paddingDimen)
             SHAPE_RIGHT_TOP ->setPadding(0, paddingDimen, paddingDimen, 0)
-            SHAPE_RIGHT_BOTTOM->setPadding(0, 0, paddingDimen, paddingDimen)
-            ALL->setPadding(paddingDimen, paddingDimen, paddingDimen, paddingDimen)
+            SHAPE_RIGHT_BOTTOM ->setPadding(0, 0, paddingDimen, paddingDimen)
+            ALL ->setPadding(paddingDimen, paddingDimen, paddingDimen, paddingDimen)
         }
 
     }
@@ -102,10 +102,10 @@ class KuiCard : LinearLayout {
         radius = a.getDimensionPixelOffset(R.styleable.KuiCard_card_radius, DimenUtils.dip2px(context, 8f)).toFloat()
         color = a.getColor(R.styleable.KuiCard_card_bg, Color.WHITE)
         shadeColor = a.getResourceId(R.styleable.KuiCard_card_shade,android.R.color.darker_gray)
-        paddingDimen = a.getDimensionPixelOffset(R.styleable.KuiCard_evel,DimenUtils.dip2px(context, 1f))
+        paddingDimen = a.getDimensionPixelOffset(R.styleable.KuiCard_evel, DimenUtils.dip2px(context, 1f))
         initRadius = floatArrayOf(radius, radius, radius, radius, radius, radius, radius, radius)
         isButton = a.getBoolean(R.styleable.KuiCard_is_card_button,false)
-        shadeMode = a.getInt(R.styleable.KuiCard_shape_mode,SHAPE_RIGHT_BOTTOM)
+        shadeMode = a.getInt(R.styleable.KuiCard_shape_mode, SHAPE_RIGHT_BOTTOM)
 
         //padding
         padding = a.getDimensionPixelOffset(R.styleable.KuiCard_padding,0)
@@ -128,6 +128,7 @@ class KuiCard : LinearLayout {
      */
     fun setCardBg(@ColorInt color: Int) {
         this.color = color
+        buildDraw()
     }
 
     /**
