@@ -13,7 +13,11 @@
 
         </activity>
         <activity android:name=".sample.button.ButtonActitivy">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
 
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity android:name=".sample.alert.AlertActivity">
         </activity>
@@ -33,11 +37,7 @@
 
         </activity>
         <activity android:name=".sample.tab.TabActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
     </application>
 
