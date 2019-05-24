@@ -3,6 +3,7 @@ package com.stormkid.kui_base.swiper
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.view.MotionEvent
 import androidx.recyclerview.widget.RecyclerView
 
 /**
@@ -24,6 +25,14 @@ class KuiSwiper: RecyclerView{
              })
     }
 
+    override fun onTouchEvent(e: MotionEvent?): Boolean {
+        return super.onTouchEvent(e)
+    }
+
+
+    override fun onInterceptHoverEvent(event: MotionEvent?): Boolean {
+        return super.onInterceptHoverEvent(event)
+    }
 
 
 
