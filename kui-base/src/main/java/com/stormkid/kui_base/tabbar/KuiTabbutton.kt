@@ -17,11 +17,11 @@ import com.stormkid.kui_base.dimen.DimenUtils
 class KuiTabbutton : RelativeLayout{
     private val marginDimen = DimenUtils.dip2px(context,5f)
     private val button = KuiButton(context).apply {
-        layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT)
+        layoutParams = LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT)
     } // tab_button 主体
     private val bage = KuiBadge(context).apply {
-        layoutParams = RelativeLayout.LayoutParams(40,40).apply {
-            addRule(RelativeLayout.ALIGN_PARENT_RIGHT)
+        layoutParams = LayoutParams(40,40).apply {
+            addRule(ALIGN_PARENT_RIGHT)
             setMargins(0,marginDimen,marginDimen,0)
         }
     } // tab_bage 主体

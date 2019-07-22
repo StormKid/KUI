@@ -5,8 +5,9 @@ import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
 import android.view.ViewGroup
-import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.stormkid.kui_base.R
 
 /**
@@ -14,7 +15,7 @@ import com.stormkid.kui_base.R
 @author ke_li
 @date 2018/10/22
  */
-class KuiTabbar : HorizontalScrollView {
+class KuiTabbar : RecyclerView {
 
     /**
      * 使用tabLayout填充此布局
@@ -43,7 +44,6 @@ class KuiTabbar : HorizontalScrollView {
         clipChildren = false
         clipToPadding = false
         setWillNotDraw(true)
-        isFillViewport = true
         addView(tabLayout)
     }
 
@@ -52,7 +52,11 @@ class KuiTabbar : HorizontalScrollView {
     @SuppressLint("Recycle")
     constructor(context: Context, attributeSet: AttributeSet?, defAttr: Int) : super(context, attributeSet, defAttr) {
         initAttr(context, attributeSet!!, defAttr)
+        layoutManager = LinearLayoutManager(context).apply {
+            orientation = HORIZONTAL
+        }
     }
+
 
     private fun initAttr(context: Context, attributeSet: AttributeSet, defAttr: Int) {
         val attr = context.obtainStyledAttributes(attributeSet, R.styleable.KuiTabbar, defAttr, 0)
@@ -119,6 +123,7 @@ class KuiTabbar : HorizontalScrollView {
     ///////////////////////////////////////////////////////////////////////////
 
 
+    /////////////////////输入模式////////////////////
     fun setMode(mode:Int){
         tabMode = mode
     }
