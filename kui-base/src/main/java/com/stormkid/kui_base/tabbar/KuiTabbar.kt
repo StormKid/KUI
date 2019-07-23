@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
+import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,6 +56,7 @@ class KuiTabbar : RecyclerView {
         layoutManager = LinearLayoutManager(context).apply {
             orientation = HORIZONTAL
         }
+        adapter = TabAdapter()
     }
 
 
@@ -126,5 +128,21 @@ class KuiTabbar : RecyclerView {
     /////////////////////输入模式////////////////////
     fun setMode(mode:Int){
         tabMode = mode
+    }
+
+
+    inner class TabAdapter:Adapter<TabHolder>(){
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TabHolder = TabHolder(KuiTabbutton(context))
+
+        override fun getItemCount(): Int = tabs.size
+
+        override fun onBindViewHolder(holder: TabHolder, position: Int) {
+        }
+
+    }
+
+
+    inner class TabHolder(view:View):ViewHolder(view){
+
     }
 }
