@@ -10,6 +10,7 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.stormkid.kui_base.R
+import java.io.Serializable
 
 /**
 任意位置的tab栏目
@@ -145,4 +146,11 @@ class KuiTabbar : RecyclerView {
     inner class TabHolder(view:View):ViewHolder(view){
 
     }
+
+
+
+    data class TabBean (
+            val position: Int,
+            var title : String = ""
+    ):Serializable
 }

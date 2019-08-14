@@ -2,7 +2,6 @@ package com.stormkid.kui.sample.tab
 
 import com.stormkid.kui.MainActivity
 import com.stormkid.kui.R
-import com.stormkid.kui_base.tabbar.TabBean
 import kotlinx.android.synthetic.main.sample_tab.*
 
 /**
